@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.PowerBoxDao">
+    <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.PowerBox">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="loop_type" jdbcType="INTEGER" property="loopType"/>
+        <result column="parent_type" jdbcType="INTEGER" property="parentType"/>
+        <result column="feeder_id" jdbcType="BIGINT" property="feederId"/>
+        <result column="feeder_loop_id" jdbcType="BIGINT" property="feederLoopId"/>
+        <result column="box_id" jdbcType="BIGINT" property="boxId"/>
+        <result column="box_loop_id" jdbcType="BIGINT" property="boxLoopId"/>
+        <result column="transformer_id" jdbcType="BIGINT" property="transformerId"/>
+        <result column="power_id" jdbcType="BIGINT" property="powerId"/>
+        <result column="project_id" jdbcType="BIGINT" property="projectId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+        ,
+        `name`,
+        loop_type,
+        parent_type,
+        feeder_id,
+        feeder_loop_id,
+        box_id,
+        box_loop_id,
+        transformer_id,
+        power_id,
+        project_id,
+        create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from iot_power_box
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectBoxByLoopId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from iot_power_box
+        where parent_type = #{parentType}
+        <choose>
+            <when test="parentType ==0">
+                and feeder_loop_id = #{loopId}
+            </when>
+            <otherwise>
+                and box_loop_id = #{loopId}
+            </otherwise>
+        </choose>
+    </select>
+    <select id="selectBoxByTransformerId" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from iot_power_box where transformer_id =#{transformerId}
+    </select>
+    <select id="selectPowerBoxCenter" resultType="com.steelman.iot.platform.entity.vo.DeviceCenterVo">
+        select a.id, a.name,a.create_time, b.url, b.power_type_id
+        from iot_power_box a
+                 left join iot_power_type_picture b on b.power_type_id = 7
+        where a.power_id = #{powerId}
+        order by a.id desc
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from iot_power_box
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.PowerBox"
+            useGeneratedKeys="true">
+        insert into iot_power_box (`name`, loop_type, parent_type,
+                                   feeder_id, feeder_loop_id, box_id,
+                                   box_loop_id, transformer_id, power_id,
+                                   project_id, create_time, update_time)
+        values (#{name,jdbcType=VARCHAR}, #{loopType,jdbcType=INTEGER}, #{parentType,jdbcType=INTEGER},
+                #{feederId,jdbcType=BIGINT}, #{feederLoopId,jdbcType=BIGINT}, #{boxId,jdbcType=BIGINT},
+                #{boxLoopId,jdbcType=BIGINT}, #{transformerId,jdbcType=BIGINT}, #{powerId,jdbcType=BIGINT},
+                #{projectId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.steelman.iot.platform.entity.PowerBox" useGeneratedKeys="true">
+        insert into iot_power_box
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="loopType != null">
+                loop_type,
+            </if>
+            <if test="parentType != null">
+                parent_type,
+            </if>
+            <if test="feederId != null">
+                feeder_id,
+            </if>
+            <if test="feederLoopId != null">
+                feeder_loop_id,
+            </if>
+            <if test="boxId != null">
+                box_id,
+            </if>
+            <if test="boxLoopId != null">
+                box_loop_id,
+            </if>
+            <if test="transformerId != null">
+                transformer_id,
+            </if>
+            <if test="powerId != null">
+                power_id,
+            </if>
+            <if test="projectId != null">
+                project_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="loopType != null">
+                #{loopType,jdbcType=INTEGER},
+            </if>
+            <if test="parentType != null">
+                #{parentType,jdbcType=INTEGER},
+            </if>
+            <if test="feederId != null">
+                #{feederId,jdbcType=BIGINT},
+            </if>
+            <if test="feederLoopId != null">
+                #{feederLoopId,jdbcType=BIGINT},
+            </if>
+            <if test="boxId != null">
+                #{boxId,jdbcType=BIGINT},
+            </if>
+            <if test="boxLoopId != null">
+                #{boxLoopId,jdbcType=BIGINT},
+            </if>
+            <if test="transformerId != null">
+                #{transformerId,jdbcType=BIGINT},
+            </if>
+            <if test="powerId != null">
+                #{powerId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.PowerBox">
+        update iot_power_box
+        <set>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="loopType != null">
+                loop_type = #{loopType,jdbcType=INTEGER},
+            </if>
+            <if test="parentType != null">
+                parent_type = #{parentType,jdbcType=INTEGER},
+            </if>
+            <if test="feederId != null">
+                feeder_id = #{feederId,jdbcType=BIGINT},
+            </if>
+            <if test="feederLoopId != null">
+                feeder_loop_id = #{feederLoopId,jdbcType=BIGINT},
+            </if>
+            <if test="boxId != null">
+                box_id = #{boxId,jdbcType=BIGINT},
+            </if>
+            <if test="boxLoopId != null">
+                box_loop_id = #{boxLoopId,jdbcType=BIGINT},
+            </if>
+            <if test="transformerId != null">
+                transformer_id = #{transformerId,jdbcType=BIGINT},
+            </if>
+            <if test="powerId != null">
+                power_id = #{powerId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.PowerBox">
+        update iot_power_box
+        set `name`         = #{name,jdbcType=VARCHAR},
+            loop_type      = #{loopType,jdbcType=INTEGER},
+            parent_type    = #{parentType,jdbcType=INTEGER},
+            feeder_id      = #{feederId,jdbcType=BIGINT},
+            feeder_loop_id = #{feederLoopId,jdbcType=BIGINT},
+            box_id         = #{boxId,jdbcType=BIGINT},
+            box_loop_id    = #{boxLoopId,jdbcType=BIGINT},
+            transformer_id = #{transformerId,jdbcType=BIGINT},
+            power_id       = #{powerId,jdbcType=BIGINT},
+            project_id     = #{projectId,jdbcType=BIGINT},
+            create_time    = #{createTime,jdbcType=TIMESTAMP},
+            update_time    = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="getByBoxNameAndTransformerId" resultMap="BaseResultMap">
+       select <include refid="Base_Column_List"></include>
+       from iot_power_box
+       where power_id=#{powerId} AND name=#{name}
+    </select>
+    <select id="selectCountByPowerId" resultType="long">
+        select count(1)
+        from iot_power_box
+        where power_id = #{powerId}
+    </select>
+    <select id="findByPowerId" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"></include>
+        from iot_power_box
+        where power_id=#{powerId}
+    </select>
+</mapper>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.LogProjectUserDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.LogProjectUser">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="project_name" jdbcType="VARCHAR" property="projectName" />
+    <result column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="login_time" jdbcType="VARCHAR" property="loginTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, username, project_id, project_name, role_id, role_name, login_time, 
+    create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_log_project_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_log_project_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.LogProjectUser" useGeneratedKeys="true">
+    insert into iot_log_project_user (user_id, username, project_id, 
+      project_name, role_id, role_name, 
+      login_time, create_time, update_time
+      )
+    values (#{userId,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{projectId,jdbcType=BIGINT}, 
+      #{projectName,jdbcType=VARCHAR}, #{roleId,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, 
+      #{loginTime,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.LogProjectUser" useGeneratedKeys="true">
+    insert into iot_log_project_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="projectName != null">
+        project_name,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="loginTime != null">
+        login_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="projectName != null">
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.LogProjectUser">
+    update iot_log_project_user
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="projectName != null">
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null">
+        login_time = #{loginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.LogProjectUser">
+    update iot_log_project_user
+    set user_id = #{userId,jdbcType=BIGINT},
+      username = #{username,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=BIGINT},
+      project_name = #{projectName,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=BIGINT},
+      role_name = #{roleName,jdbcType=VARCHAR},
+      login_time = #{loginTime,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <insert id="saveLogProjectUser" parameterType="com.steelman.iot.platform.entity.LogProjectUser">
+        INSERT INTO iot_log_project_user ( id, user_id, username, project_id, project_name, role_id, role_name, login_time,
+        create_time, update_time)
+        VALUES (#{id},#{userId},#{username},#{projectId},#{projectName},#{roleId},#{roleName},#{loginTime},#{createTime},#{updateTime})
+  </insert>
+</mapper>

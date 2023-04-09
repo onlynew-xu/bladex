@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.SystemDao">
+    <resultMap id="systemMap" type="com.steelman.iot.platform.entity.SysSystem">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="create_time" property="createTime"></result>
+        <result column="update_time" property="updateTime"></result>
+    </resultMap>
+    <select id="getByProjectId" parameterType="long" resultMap="systemMap">
+        SELECT sy.id,sy.name, sy.create_time,sy.update_time
+        FROM iot_project_system  ps
+        INNER JOIN sys_system sy ON  sy.id=ps.system_id
+        where ps.project_id=#{projectId}
+    </select>
+    <select id="selectByAll"  resultMap="systemMap">
+        select * from sys_system ORDER BY id desc
+    </select>
+    <select id="getByDeviceId" parameterType="java.lang.Long" resultMap="systemMap">
+       select s.* from iot_device_system ds
+      LEFT JOIN sys_system s on s.id=ds.system_id
+      where ds.device_id=#{deviceId}
+    </select>
+</mapper>

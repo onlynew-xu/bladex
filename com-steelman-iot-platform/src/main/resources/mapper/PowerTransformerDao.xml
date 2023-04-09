@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.PowerTransformerDao">
+    <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.PowerTransformer">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="brand" jdbcType="VARCHAR" property="brand"/>
+        <result column="capacity" jdbcType="VARCHAR" property="capacity"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="relation_status" jdbcType="INTEGER" property="relationStatus"/>
+        <result column="power_id" jdbcType="BIGINT" property="powerId"/>
+        <result column="project_id" jdbcType="BIGINT" property="projectId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+        ,
+        `name`,
+        brand,
+        capacity,
+        `status`,
+    relation_status,
+        power_id,
+        project_id,
+        create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from iot_power_transformer
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByPowerId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from iot_power_transformer where power_id = #{powerId} ORDER BY id asc
+    </select>
+    <select id="selectPowerTransformerCenter" resultType="com.steelman.iot.platform.entity.vo.DeviceCenterVo">
+        select a.id, a.name,a.create_time, b.url, b.power_type_id from iot_power_transformer a left join iot_power_type_picture b on b.power_type_id =0 where a.power_id = #{powerId} order by a.id desc
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from iot_power_transformer
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+
+    <delete id="deleteByPowerId">
+        delete
+        from iot_power_transformer
+        where power_id = #{id}
+    </delete>
+
+    <insert id="insert" keyColumn="id" keyProperty="id"
+            parameterType="com.steelman.iot.platform.entity.PowerTransformer" useGeneratedKeys="true">
+        insert into iot_power_transformer (`name`, brand, capacity,
+                                           `status`,relation_status, power_id, project_id,
+                                           create_time, update_time)
+        values (#{name,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, #{capacity,jdbcType=VARCHAR},
+                #{status,jdbcType=INTEGER},#{relationStatus,jdbcType=INTEGER},#{powerId,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT},
+                #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.steelman.iot.platform.entity.PowerTransformer" useGeneratedKeys="true">
+        insert into iot_power_transformer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="brand != null">
+                brand,
+            </if>
+            <if test="capacity != null">
+                capacity,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="relationStatus != null">
+                relation_status,
+            </if>
+            <if test="powerId != null">
+                power_id,
+            </if>
+            <if test="projectId != null">
+                project_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="brand != null">
+                #{brand,jdbcType=VARCHAR},
+            </if>
+            <if test="capacity != null">
+                #{capacity,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="relationStatus != null">
+                #{relationStatus,jdbcType=INTEGER},
+            </if>
+            <if test="powerId != null">
+                #{powerId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.PowerTransformer">
+        update iot_power_transformer
+        <set>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="brand != null">
+                brand = #{brand,jdbcType=VARCHAR},
+            </if>
+            <if test="capacity != null">
+                capacity = #{capacity,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="relationStatus != null">
+                relation_status = #{relationStatus,jdbcType=INTEGER},
+            </if>
+            <if test="powerId != null">
+                power_id = #{powerId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.PowerTransformer">
+        update iot_power_transformer
+        set `name`      = #{name,jdbcType=VARCHAR},
+            brand       = #{brand,jdbcType=VARCHAR},
+            capacity    = #{capacity,jdbcType=VARCHAR},
+            `status`    = #{status,jdbcType=INTEGER},
+            relation_status=#{relationStatus,jdbcType=INTEGER},
+            power_id    = #{powerId,jdbcType=BIGINT},
+            project_id  = #{projectId,jdbcType=BIGINT},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="selectByTransformNameAndPowerId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM iot_power_transformer WHERE name=#{name} AND power_id=#{powerId}
+    </select>
+    <update id="updateRelationStatus">
+        update iot_power_transformer
+        set relation_status=#{status} ,update_time=#{updateTime}
+        where id=#{transformerId}
+    </update>
+    <select id="getUnBandingTransformer" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM iot_power_transformer
+        WHERE power_id=#{powerId} and relation_status=0
+    </select>
+</mapper>

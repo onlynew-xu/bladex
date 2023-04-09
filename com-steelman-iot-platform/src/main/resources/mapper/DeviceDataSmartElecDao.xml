@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.DeviceDataSmartElecDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.DeviceDataSmartElec">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="device_id" jdbcType="BIGINT" property="deviceId" />
+    <result column="serial_num" jdbcType="VARCHAR" property="serialNum" />
+    <result column="volt_phase_angle_a" jdbcType="VARCHAR" property="voltPhaseAngleA" />
+    <result column="volt_phase_angle_b" jdbcType="VARCHAR" property="voltPhaseAngleB" />
+    <result column="volt_phase_angle_c" jdbcType="VARCHAR" property="voltPhaseAngleC" />
+    <result column="amp_phase_angle_a" jdbcType="VARCHAR" property="ampPhaseAngleA" />
+    <result column="amp_phase_angle_b" jdbcType="VARCHAR" property="ampPhaseAngleB" />
+    <result column="amp_phase_angle_c" jdbcType="VARCHAR" property="ampPhaseAngleC" />
+    <result column="volt_rms_a" jdbcType="VARCHAR" property="voltRmsA" />
+    <result column="volt_rms_b" jdbcType="VARCHAR" property="voltRmsB" />
+    <result column="volt_rms_c" jdbcType="VARCHAR" property="voltRmsC" />
+    <result column="amp_rms_a" jdbcType="VARCHAR" property="ampRmsA" />
+    <result column="amp_rms_b" jdbcType="VARCHAR" property="ampRmsB" />
+    <result column="amp_rms_c" jdbcType="VARCHAR" property="ampRmsC" />
+    <result column="leaked" jdbcType="VARCHAR" property="leaked" />
+    <result column="temp1" jdbcType="VARCHAR" property="temp1" />
+    <result column="temp2" jdbcType="VARCHAR" property="temp2" />
+    <result column="temp3" jdbcType="VARCHAR" property="temp3" />
+    <result column="temp4" jdbcType="VARCHAR" property="temp4" />
+    <result column="active_power_a" jdbcType="VARCHAR" property="activePowerA" />
+    <result column="active_power_b" jdbcType="VARCHAR" property="activePowerB" />
+    <result column="active_power_c" jdbcType="VARCHAR" property="activePowerC" />
+    <result column="reactive_power_a" jdbcType="VARCHAR" property="reactivePowerA" />
+    <result column="reactive_power_b" jdbcType="VARCHAR" property="reactivePowerB" />
+    <result column="reactive_power_c" jdbcType="VARCHAR" property="reactivePowerC" />
+    <result column="apparent_power_a" jdbcType="VARCHAR" property="apparentPowerA" />
+    <result column="apparent_power_b" jdbcType="VARCHAR" property="apparentPowerB" />
+    <result column="apparent_power_c" jdbcType="VARCHAR" property="apparentPowerC" />
+    <result column="power_factor_a" jdbcType="VARCHAR" property="powerFactorA" />
+    <result column="power_factor_b" jdbcType="VARCHAR" property="powerFactorB" />
+    <result column="power_factor_c" jdbcType="VARCHAR" property="powerFactorC" />
+    <result column="line_freq" jdbcType="VARCHAR" property="lineFreq" />
+    <result column="thdi_a" jdbcType="VARCHAR" property="thdiA" />
+    <result column="thdi_b" jdbcType="VARCHAR" property="thdiB" />
+    <result column="thdi_c" jdbcType="VARCHAR" property="thdiC" />
+    <result column="thdv_a" jdbcType="VARCHAR" property="thdvA" />
+    <result column="thdv_b" jdbcType="VARCHAR" property="thdvB" />
+    <result column="thdv_c" jdbcType="VARCHAR" property="thdvC" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, device_id, serial_num, volt_phase_angle_a, volt_phase_angle_b, volt_phase_angle_c,
+    amp_phase_angle_a, amp_phase_angle_b, amp_phase_angle_c, volt_rms_a, volt_rms_b,
+    volt_rms_c, amp_rms_a, amp_rms_b, amp_rms_c, leaked, temp1, temp2, temp3, temp4,
+    active_power_a, active_power_b, active_power_c, reactive_power_a, reactive_power_b,
+    reactive_power_c, apparent_power_a, apparent_power_b, apparent_power_c, power_factor_a,
+    power_factor_b, power_factor_c, line_freq, thdi_a, thdi_b, thdi_c, thdv_a, thdv_b,
+    thdv_c, create_time
+  </sql>
+  <select id="getLastedTenData" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM iot_device_data_smart_elec
+    WHERE device_id=#{deviceId}
+    ORDER BY create_time DESC LIMIT 10
+  </select>
+  <select id="selectLastData" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from iot_device_data_smart_elec where device_id =#{deviceId} order by id desc limit 1
+  </select>
+
+  <select id="selectPowerVoltData" resultType="java.util.Map">
+    select volt_rms_a as voltRmsA, volt_rms_b as voltRmsB, volt_rms_c as voltRmsC, TimeStampDiff(SECOND ,create_time,sysdate()) as `second` from iot_device_data_smart_elec
+    where device_id = #{deviceId}
+    order by create_time desc limit 10
+  </select>
+
+  <select id="selectPowerAmpData" resultType="java.util.Map">
+    select amp_rms_a as ampRmsA, amp_rms_b as ampRmsB, amp_rms_c as ampRmsC, TimeStampDiff(SECOND ,create_time,sysdate()) as `second` from iot_device_data_smart_elec
+    where device_id = #{deviceId}
+    order by create_time desc limit 10
+  </select>
+  <select id="selectPowerFactorData" resultType="java.util.Map">
+    select power_factor_a as powerFactorA, power_factor_b as powerFactorB, power_factor_c as powerFactorC, TimeStampDiff(SECOND ,create_time,sysdate()) as `second` from iot_device_data_smart_elec
+    where device_id = #{deviceId}
+    order by create_time desc limit 10
+  </select>
+
+  <select id="selectPowerActiveData" resultType="java.util.Map">
+    select active_power_a as activePowerA, active_power_b as activePowerB, active_power_c as activePowerC, TimeStampDiff(SECOND ,create_time,sysdate()) as `second` from iot_device_data_smart_elec
+    where device_id = #{deviceId}
+    order by create_time desc limit 10
+  </select>
+
+  <select id="selectPowerReactiveData" resultType="java.util.Map">
+    select reactive_power_a as reactivePowerA, reactive_power_b as reactivePowerB, reactive_power_c as reactivePowerC, TimeStampDiff(SECOND ,create_time,sysdate()) as `second` from iot_device_data_smart_elec
+    where device_id = #{deviceId}
+    order by create_time desc limit 10
+  </select>
+
+  <select id="selectPowerThdiData" resultType="java.util.Map">
+    select thdi_a as thdiA, thdi_b as thdiB, thdi_c as thdiC, TimeStampDiff(SECOND ,create_time,sysdate()) as `second` from iot_device_data_smart_elec
+    where device_id = #{deviceId}
+    order by create_time desc limit 10
+  </select>
+  <select id="selectPowerThdvData" resultType="java.util.Map">
+    select thdv_a as thdvA, thdv_b as thdvB, thdv_c as thdvC, TimeStampDiff(SECOND ,create_time,sysdate()) as `second` from iot_device_data_smart_elec
+    where device_id = #{deviceId}
+    order by create_time desc limit 10
+  </select>
+  <delete id="deleteByDeviceId">
+    delete  from  iot_device_data_smart_elec
+    where  device_id=#{deviceId}
+  </delete>
+
+</mapper>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.FactoryUploadConfigureDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.FactoryUploadConfigure">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="enterprise_code" jdbcType="VARCHAR" property="enterpriseCode" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+    <result column="register_url" jdbcType="VARCHAR" property="registerUrl" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="center_info_url" jdbcType="VARCHAR" property="centerInfoUrl" />
+    <result column="center_data_url" jdbcType="VARCHAR" property="centerDataUrl" />
+    <result column="center_info_download_url" jdbcType="VARCHAR" property="centerInfoDownloadUrl" />
+    <result column="center_data_download_url" jdbcType="VARCHAR" property="centerDataDownloadUrl" />
+    <result column="factory_id" jdbcType="BIGINT" property="factoryId" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, enterprise_code, region, register_url, device_id, center_info_url, center_data_url, 
+    center_info_download_url, center_data_download_url, factory_id, project_id, create_time,
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_factory_upload_configure
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_factory_upload_configure
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.FactoryUploadConfigure" useGeneratedKeys="true">
+    insert into iot_factory_upload_configure (enterprise_code, region, register_url, 
+      device_id, center_info_url, center_data_url, 
+      center_info_download_url, center_data_download_url,
+      factory_id, project_id, create_time, 
+      update_time)
+    values (#{enterpriseCode,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR}, #{registerUrl,jdbcType=VARCHAR}, 
+      #{deviceId,jdbcType=VARCHAR}, #{centerInfoUrl,jdbcType=VARCHAR}, #{centerDataUrl,jdbcType=VARCHAR}, 
+      #{centerInfoDownloadUrl,jdbcType=VARCHAR}, #{centerDataDownloadUrl,jdbcType=VARCHAR},
+      #{factoryId,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.FactoryUploadConfigure" useGeneratedKeys="true">
+    insert into iot_factory_upload_configure
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="enterpriseCode != null">
+        enterprise_code,
+      </if>
+      <if test="region != null">
+        region,
+      </if>
+      <if test="registerUrl != null">
+        register_url,
+      </if>
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="centerInfoUrl != null">
+        center_info_url,
+      </if>
+      <if test="centerDataUrl != null">
+        center_data_url,
+      </if>
+      <if test="centerInfoDownloadUrl != null">
+        center_info_download_url,
+      </if>
+      <if test="centerDataDownloadUrl != null">
+        center_data_download_url,
+      </if>
+      <if test="factoryId != null">
+        factory_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="enterpriseCode != null">
+        #{enterpriseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="registerUrl != null">
+        #{registerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="centerInfoUrl != null">
+        #{centerInfoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="centerDataUrl != null">
+        #{centerDataUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="centerInfoDownloadUrl != null">
+        #{centerInfoDownloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="centerDataDownloadUrl != null">
+        #{centerDataDownloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryId != null">
+        #{factoryId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.FactoryUploadConfigure">
+    update iot_factory_upload_configure
+    <set>
+      <if test="enterpriseCode != null">
+        enterprise_code = #{enterpriseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="registerUrl != null">
+        register_url = #{registerUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="centerInfoUrl != null">
+        center_info_url = #{centerInfoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="centerDataUrl != null">
+        center_data_url = #{centerDataUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="centerInfoDownloadUrl != null">
+        center_info_download_url = #{centerInfoDownloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="centerDataDownloadUrl != null">
+        center_data_download_url = #{centerDataDownloadUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryId != null">
+        factory_id = #{factoryId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.FactoryUploadConfigure">
+    update iot_factory_upload_configure
+    set enterprise_code = #{enterpriseCode,jdbcType=VARCHAR},
+      region = #{region,jdbcType=VARCHAR},
+      register_url = #{registerUrl,jdbcType=VARCHAR},
+      device_id = #{deviceId,jdbcType=VARCHAR},
+      center_info_url = #{centerInfoUrl,jdbcType=VARCHAR},
+      center_data_url = #{centerDataUrl,jdbcType=VARCHAR},
+      center_info_download_url = #{centerInfoDownloadUrl,jdbcType=VARCHAR},
+      center_data_download_url = #{centerDataDownloadUrl,jdbcType=VARCHAR},
+      factory_id = #{factoryId,jdbcType=BIGINT},
+      project_id = #{projectId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getByFactoryId" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM iot_factory_upload_configure
+    WHERE factory_id=#{factoryInfoId}
+  </select>
+
+  <update id="updateFactoryUpload" parameterType="com.steelman.iot.platform.entity.FactoryUploadConfigure" >
+    update iot_factory_upload_configure
+    set  device_id = #{deviceId,jdbcType=VARCHAR},
+        center_info_url = #{centerInfoUrl,jdbcType=VARCHAR},
+        center_data_url = #{centerDataUrl,jdbcType=VARCHAR},
+        center_info_download_url = #{centerInfoDownloadUrl,jdbcType=VARCHAR},
+        center_data_download_url = #{centerDataDownloadUrl,jdbcType=VARCHAR},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

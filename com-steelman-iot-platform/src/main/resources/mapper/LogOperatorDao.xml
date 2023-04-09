@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.LogOperatorDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.LogOperator">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="operation" jdbcType="VARCHAR" property="operation" />
+    <result column="method" jdbcType="VARCHAR" property="method" />
+    <result column="params" jdbcType="VARCHAR" property="params" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, user_id, `operation`, `method`, params, project_id, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_log_operator
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+    <select id="selectByUserId" resultType="com.steelman.iot.platform.entity.LogOperator">
+      select <include refid="Base_Column_List"/>from iot_log_operator where user_id = #{userId} order by id desc
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_log_operator
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.LogOperator" useGeneratedKeys="true">
+    insert into iot_log_operator (username, user_id, `operation`, 
+      `method`, params, project_id, 
+      create_time, update_time)
+    values (#{username,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{operation,jdbcType=VARCHAR}, 
+      #{method,jdbcType=VARCHAR}, #{params,jdbcType=VARCHAR}, #{projectId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.LogOperator" useGeneratedKeys="true">
+    insert into iot_log_operator
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        username,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="operation != null">
+        `operation`,
+      </if>
+      <if test="method != null">
+        `method`,
+      </if>
+      <if test="params != null">
+        params,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="operation != null">
+        #{operation,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null">
+        #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.LogOperator">
+    update iot_log_operator
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="operation != null">
+        `operation` = #{operation,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null">
+        `method` = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="params != null">
+        params = #{params,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.LogOperator">
+    update iot_log_operator
+    set username = #{username,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      `operation` = #{operation,jdbcType=VARCHAR},
+      `method` = #{method,jdbcType=VARCHAR},
+      params = #{params,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="getLogOperateByProjectId" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM iot_log_operator WHERE project_id=#{projectId}  ORDER BY create_time DESC LIMIT 500
+  </select>
+</mapper>

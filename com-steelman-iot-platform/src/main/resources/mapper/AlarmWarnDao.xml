@@ -1,0 +1,937 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.AlarmWarnDao">
+    <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.AlarmWarn">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="device_id" jdbcType="BIGINT" property="deviceId"/>
+        <result column="serial_num" jdbcType="VARCHAR" property="serialNum"/>
+        <result column="area_id" jdbcType="BIGINT" property="areaId"/>
+        <result column="building_id" jdbcType="BIGINT" property="buildingId"/>
+        <result column="storey_id" jdbcType="BIGINT" property="storeyId"/>
+        <result column="room_id" jdbcType="BIGINT" property="roomId"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
+        <result column="system_id" jdbcType="BIGINT" property="systemId"/>
+        <result column="project_id" jdbcType="BIGINT" property="projectId"/>
+        <result column="alarm_item_id" jdbcType="BIGINT" property="alarmItemId"/>
+        <result column="alarm_type_id" jdbcType="BIGINT" property="alarmTypeId"/>
+        <result column="alarm_value" jdbcType="VARCHAR" property="alarmValue"/>
+        <result column="handle_flag" jdbcType="INTEGER" property="handleFlag"/>
+        <result column="create_task" jdbcType="INTEGER" property="createTask"/>
+        <result column="task_type" jdbcType="INTEGER" property="taskType"/>
+        <result column="task_id" jdbcType="BIGINT" property="taskId"/>
+        <result column="year" jdbcType="VARCHAR" property="year"/>
+        <result column="month" jdbcType="VARCHAR" property="month"/>
+        <result column="day" jdbcType="VARCHAR" property="day"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+        ,
+        device_id,
+        serial_num,
+        area_id,
+        building_id,
+        storey_id,
+        room_id,
+        `location`,
+        system_id,
+        project_id,
+        alarm_item_id,
+        alarm_type_id,
+        alarm_value,
+        handle_flag,
+        create_task,
+        task_type,
+        task_id,
+        year,
+        month,
+        day
+        create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from iot_alarm_warn
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from iot_alarm_warn
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.AlarmWarn"
+            useGeneratedKeys="true">
+        insert into iot_alarm_warn (device_id, serial_num, area_id,
+                                    building_id, storey_id, room_id,
+                                    `location`, system_id, project_id,
+                                    alarm_item_id, alarm_type_id, alarm_value,
+                                    handle_flag, create_task, task_type,
+                                    task_id, year, month, day, create_time, update_time)
+        values (#{deviceId,jdbcType=BIGINT}, #{serialNum,jdbcType=VARCHAR}, #{areaId,jdbcType=BIGINT},
+                #{buildingId,jdbcType=BIGINT}, #{storeyId,jdbcType=BIGINT}, #{roomId,jdbcType=BIGINT},
+                #{location,jdbcType=VARCHAR}, #{systemId,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT},
+                #{alarmItemId,jdbcType=BIGINT}, #{alarmTypeId,jdbcType=BIGINT}, #{alarmValue,jdbcType=VARCHAR},
+                #{handleFlag,jdbcType=INTEGER}, #{createTask,jdbcType=INTEGER}, #{taskType,jdbcType=INTEGER},
+                #{taskId,jdbcType=BIGINT}, #{year,jdbcType=VARCHAR}, #{month,jdbcType=VARCHAR}, #{day,jdbcType=VARCHAR},
+                #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.steelman.iot.platform.entity.AlarmWarn" useGeneratedKeys="true">
+        insert into iot_alarm_warn
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="deviceId != null">
+                device_id,
+            </if>
+            <if test="serialNum != null">
+                serial_num,
+            </if>
+            <if test="areaId != null">
+                area_id,
+            </if>
+            <if test="buildingId != null">
+                building_id,
+            </if>
+            <if test="storeyId != null">
+                storey_id,
+            </if>
+            <if test="roomId != null">
+                room_id,
+            </if>
+            <if test="location != null">
+                `location`,
+            </if>
+            <if test="systemId != null">
+                system_id,
+            </if>
+            <if test="projectId != null">
+                project_id,
+            </if>
+            <if test="alarmItemId != null">
+                alarm_item_id,
+            </if>
+            <if test="alarmTypeId != null">
+                alarm_type_id,
+            </if>
+            <if test="alarmValue != null">
+                alarm_value,
+            </if>
+
+            <if test="handleFlag != null">
+                handle_flag,
+            </if>
+            <if test="createTask != null">
+                create_task,
+            </if>
+            <if test="taskType != null">
+                task_type,
+            </if>
+            <if test="taskId != null">
+                task_id,
+            </if>
+
+            <if test="year != null">
+                year,
+            </if>
+            <if test="month != null">
+                month,
+            </if>
+            <if test="day != null">
+                day,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="deviceId != null">
+                #{deviceId,jdbcType=BIGINT},
+            </if>
+            <if test="serialNum != null">
+                #{serialNum,jdbcType=VARCHAR},
+            </if>
+            <if test="areaId != null">
+                #{areaId,jdbcType=BIGINT},
+            </if>
+            <if test="buildingId != null">
+                #{buildingId,jdbcType=BIGINT},
+            </if>
+            <if test="storeyId != null">
+                #{storeyId,jdbcType=BIGINT},
+            </if>
+            <if test="roomId != null">
+                #{roomId,jdbcType=BIGINT},
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="systemId != null">
+                #{systemId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="alarmItemId != null">
+                #{alarmItemId,jdbcType=BIGINT},
+            </if>
+            <if test="alarmTypeId != null">
+                #{alarmTypeId,jdbcType=BIGINT},
+            </if>
+            <if test="alarmValue != null">
+                #{alarmValue,jdbcType=VARCHAR},
+            </if>
+
+            <if test="handleFlag != null">
+                #{handleFlag,jdbcType=INTEGER},
+            </if>
+            <if test="createTask != null">
+                #{createTask,jdbcType=INTEGER},
+            </if>
+            <if test="taskType != null">
+                #{taskType,jdbcType=INTEGER},
+            </if>
+            <if test="taskId != null">
+                #{taskId,jdbcType=BIGINT},
+            </if>
+            <if test="year != null">
+                #{year,jdbcType=VARCHAR},
+            </if>
+            <if test="month != null">
+                #{month,jdbcType=VARCHAR},
+            </if>
+            <if test="day != null">
+                #{day,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.AlarmWarn">
+        update iot_alarm_warn
+        <set>
+            <if test="deviceId != null">
+                device_id = #{deviceId,jdbcType=BIGINT},
+            </if>
+            <if test="serialNum != null">
+                serial_num = #{serialNum,jdbcType=VARCHAR},
+            </if>
+            <if test="areaId != null">
+                area_id = #{areaId,jdbcType=BIGINT},
+            </if>
+            <if test="buildingId != null">
+                building_id = #{buildingId,jdbcType=BIGINT},
+            </if>
+            <if test="storeyId != null">
+                storey_id = #{storeyId,jdbcType=BIGINT},
+            </if>
+            <if test="roomId != null">
+                room_id = #{roomId,jdbcType=BIGINT},
+            </if>
+            <if test="location != null">
+                `location` = #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="systemId != null">
+                system_id = #{systemId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="alarmItemId != null">
+                alarm_item_id = #{alarmItemId,jdbcType=BIGINT},
+            </if>
+            <if test="alarmTypeId != null">
+                alarm_type_id = #{alarmTypeId,jdbcType=BIGINT},
+            </if>
+            <if test="alarmValue != null">
+                alarm_value = #{alarmValue,jdbcType=VARCHAR},
+            </if>
+
+            <if test="handleFlag != null">
+                handle_flag = #{handleFlag,jdbcType=INTEGER},
+            </if>
+            <if test="createTask != null">
+                create_task = #{createTask,jdbcType=INTEGER},
+            </if>
+            <if test="taskType != null">
+                task_type = #{taskType,jdbcType=INTEGER},
+            </if>
+            <if test="taskId != null">
+                task_id = #{taskId,jdbcType=BIGINT},
+            </if>
+            <if test="year != null">
+                year = #{year,jdbcType=VARCHAR},
+            </if>
+            <if test="month != null">
+                month = #{month,jdbcType=VARCHAR},
+            </if>
+            <if test="day != null">
+                day = #{day,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.AlarmWarn">
+        update iot_alarm_warn
+        set device_id     = #{deviceId,jdbcType=BIGINT},
+            serial_num    = #{serialNum,jdbcType=VARCHAR},
+            area_id       = #{areaId,jdbcType=BIGINT},
+            building_id   = #{buildingId,jdbcType=BIGINT},
+            storey_id     = #{storeyId,jdbcType=BIGINT},
+            room_id       = #{roomId,jdbcType=BIGINT},
+            `location`    = #{location,jdbcType=VARCHAR},
+            system_id     = #{systemId,jdbcType=BIGINT},
+            project_id    = #{projectId,jdbcType=BIGINT},
+            alarm_item_id = #{alarmItemId,jdbcType=BIGINT},
+            alarm_type_id = #{alarmTypeId,jdbcType=BIGINT},
+            alarm_value=#{alarmValue,jdbcType=VARCHAR},
+            handle_flag   = #{handleFlag,jdbcType=INTEGER},
+            create_task   = #{createTask,jdbcType=INTEGER},
+            task_type     = #{taskType,jdbcType=INTEGER},
+            task_id       = #{taskId,jdbcType=BIGINT},
+            year          = #{year,jdbcType=VARCHAR},
+            month         = #{month,jdbcType=VARCHAR},
+            day           = #{day,jdbcType=VARCHAR},
+            create_time   = #{createTime,jdbcType=TIMESTAMP},
+            update_time   = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="getHandleStatus" resultType="map">
+        SELECT count(1) as countNum ,handle_flag as flag
+        FROM iot_alarm_warn
+        WHERE project_id=#{projectId} AND system_id=#{systemId}
+        <if test="areaId != null">
+            AND area_id=#{areaId}
+        </if>
+        <if test="buildingId != null">
+            AND building_id=#{buildingId}
+        </if>
+        GROUP BY handle_flag
+    </select>
+    <select id="getAlarmCountByDate" resultType="map">
+        SELECT count(1) as count,DATE_FORMAT(create_time,'%Y-%m-%d') as createTime
+        FROM iot_alarm_warn
+        WHERE project_id=#{projectId} and system_id=#{systemId} and (DATE_FORMAT(create_time
+            ,'%Y-%m-%d') between DATE_FORMAT(#{strDate}
+            ,'%Y-%m-%d') and DATE_FORMAT(#{endDate}
+            ,'%Y-%m-%d'))
+        GROUP BY DATE_FORMAT(create_time,'%Y-%m-%d'
+            )
+    </select>
+    <select id="getInHandlerAlarmWarn" resultType="com.steelman.iot.platform.entity.dto.AlarmWarnDto">
+        SELECT wa.id            as id,
+               wa.device_id     as deviceId,
+               wa.serial_num    as serialNum,
+               wa.area_id       as areaId,
+               wa.building_id   as buildingId,
+               wa.storey_id     as storeyId,
+               wa.room_id       as roomId,
+               wa.location      as location,
+               wa.system_id     as systemId,
+               wa.project_id    as projectId,
+               wa.alarm_item_id as alarmItemId,
+               wa.alarm_type_id as alarmTypeId,
+               wa.alarm_value   as alarmValue,
+               wa.handle_flag   as handleFlag,
+               wa.create_task   as createTask,
+               wa.task_type     as taskType,
+               wa.task_id       as taskId,
+               wa.year
+               as
+               year,
+               wa
+               .
+               month as
+               month,
+               wa
+               .
+               day as
+               day,
+               wa
+               .
+               create_time as
+               createTime,
+               wa
+               .
+               update_time as
+               updateTime,
+               dty
+               .
+               name as
+               deviceTypeName
+        FROM iot_alarm_warn
+             wa
+             INNER
+             JOIN
+             iot_device
+             de
+        ON wa
+           .
+           device_id=
+           de
+           .
+           id
+           and
+           de
+           .
+           project_id=
+           #{projectId}
+           INNER
+           JOIN
+           iot_device_type
+           dty
+           ON
+           de
+           .
+           device_type_id=
+           dty
+           .
+           id
+        WHERE wa.project_id=#{projectId} and wa.system_id=#{systemId} and wa.handle_flag=0
+        ORDER BY wa.create_time DESC
+    </select>
+    <select id="getAlarmParentItem" resultType="com.steelman.iot.platform.largescreen.vo.AlarmParentItemVo">
+        SELECT it.parent_item_id as id,it.parent_item as name
+        FROM iot_alarm_item it
+                 INNER JOIN iot_alarm_warn iaw on it.id = iaw.alarm_item_id AND iaw.project_id = #{projectId}
+        GROUP BY it.parent_item_id,it.parent_item
+        ORDER By it.parent_item_id ASC
+
+    </select>
+
+
+    <select id="getYear" resultType="string">
+        SELECT DISTINCT year
+        FROM iot_alarm_warn
+    </select>
+    <select id="getMonth" resultType="java.lang.String">
+        SELECT DISTINCT month
+        FROM iot_alarm_warn
+        WHERE project_id=#{projectId}
+        <if test="year != null">
+            AND year=#{year}
+        </if>
+    </select>
+    <select id="getAlarmInfoVo" resultType="com.steelman.iot.platform.largescreen.vo.AlarmWarnInfoVo">
+        SELECT wa.id as alarmWarnId,IFNULL(ar.name,'') as areaName,IFNULL(bu.name,'') as buildingName,
+        CONCAT(it.name,IFNULL(wa.alarm_value,'')) as info,wa.create_time as createTime ,wa.handle_flag as handlerFlag
+        FROM iot_alarm_warn wa
+        INNER JOIN iot_alarm_item it ON wa.alarm_item_id=it.id
+        <if test="alarmParentItemId != null">
+            AND it.parent_item_id=#{alarmParentItemId}
+        </if>
+        LEFT JOIN iot_region_area ar ON wa.area_id=ar.id AND ar.project_id=#{projectId}
+        LEFT JOIN iot_region_building bu ON wa.building_id=bu.id AND bu.project_id=#{projectId}
+        WHERE wa.project_id=#{projectId}
+        <if test="areaId != null">
+            AND wa.area_id=#{areaId}
+        </if>
+        <if test="buildingId != null">
+            AND wa.building_id=#{buildingId}
+        </if>
+        <if test="year != null">
+            AND wa.year=#{year}
+        </if>
+        <if test="month != null">
+            AND wa.month=#{year}
+        </if>
+        ORDER BY wa.create_time DESC
+    </select>
+    <select id="getAlarmCountInfo" resultType="map">
+        SELECT COUNT(wa.id) as count,wa.project_id as projectId,IFNULL(ar.id ,0) as areaId,IFNULL(ar.name,'')as
+        areaName,ifnull(bu.id,0 )as buildingId,IFNULL(bu.name,'') as buildingName,wa.year as year,wa.month as month
+        FROM iot_alarm_warn wa
+        LEFT JOIN iot_region_area ar ON ar.id=wa.area_id and ar.project_id=#{projectId}
+        LEFT JOIN iot_region_building bu ON bu.id=wa.building_id AND bu.project_id=#{projectId}
+        WHERE wa.project_id=#{projectId} AND wa.system_id=1000
+        <if test="areaId != null">
+            AND wa.area_id=#{areaId}
+        </if>
+        <if test="buildingId != null">
+            AND wa.building_id=#{buildingId}
+        </if>
+        <if test="year != null">
+            AND wa.year=#{year}
+        </if>
+        <if test="month != null">
+            AND wa.month=#{month}
+        </if>
+        GROUP BY wa.area_id,wa.building_id,wa.year,wa.month
+        ORDER BY wa.year,wa.month DESC
+    </select>
+    <select id="getAlarmTypeCountStatistic" resultType="map">
+        SELECT COUNT(wa.id) as num, it.parent_item as alarmTypeName
+        FROM iot_alarm_warn wa
+                 INNER JOIN iot_alarm_item it ON wa.alarm_item_id = it.id
+        WHERE wa.project_id = #{projectId}
+          and wa.system_id = #{systemId}
+          and (DATE_FORMAT(wa.create_time, '%Y-%m-%d') BETWEEN DATE_FORMAT(#{strDate}, '%Y-%m-%d') and DATE_FORMAT(#{endDate}, '%Y-%m-%d'))
+        GROUP BY it.parent_item
+    </select>
+    <select id="getDeviceTypeCountStatistic" resultType="map">
+        SELECT COUNT(wa.id) as num,dt.name as deviceTypeName
+        FROM iot_alarm_warn wa
+                 INNER JOIN iot_device de ON wa.device_id = de.id AND de.project_id = #{projectId}
+                 INNER JOIN iot_device_type dt ON dt.id = de.device_type_id
+        WHERE wa.project_id = #{projectId}
+          AND wa.system_id = #{systemId}
+          and (DATE_FORMAT(wa.create_time, '%Y-%m-%d') BETWEEN DATE_FORMAT(#{strDate}, '%Y-%m-%d') and DATE_FORMAT(#{endDate}, '%Y-%m-%d'))
+        GROUP BY dt.name
+    </select>
+    <select id="getOfflineInfo" resultType="map">
+        SELECT wa.id as alarmWarnId,wa.area_id as areaId,wa.building_id as buildingId,wa.storey_id as storeyId,
+        wa.room_id as roomId,wa.location as location,wa.create_time as createTime,
+        de.id as deviceId,de.serial_num as serialNum,de.status as status,de.name as deviceName
+        FROM iot_alarm_warn wa
+        INNER JOIN iot_device de ON wa.device_id=de.id AND de.project_id=#{projectId}
+        WHERE wa.project_id=#{projectId} AND wa.system_id=#{systemId} AND wa.alarm_item_id=21
+        ORDER BY wa.create_time DESC
+        <if test="flag != null">
+            LIMIT 10
+        </if>
+    </select>
+    <select id="getAlarmRiskByDate" resultType="map">
+        SELECT count(wa.id) as num, wa.device_id as deviceId , wa.alarm_item_id as alarmItemId, it.name as alarmItemName
+        ,de.name as deviceName,de.status as status,de.area_id as areaId,
+        de.building_id as buildingId,de.storey_id as storeyId,de.room_id as roomId,de.location as location
+        FROM iot_alarm_warn wa
+        INNER JOIN iot_device de ON wa.device_id= de.id AND de.project_id=#{projectId}
+        INNER JOIN iot_alarm_item it ON wa.alarm_item_id=it.id
+        WHERE wa.project_id=#{projectId} AND wa.system_id=#{systemId} and
+        (DATE_FORMAT(wa.create_time,'%Y-%m-%d') BETWEEN DATE_FORMAT(#{strDate},'%Y-%m-%d') and
+        DATE_FORMAT(#{endDate},'%Y-%m-%d'))
+        AND wa.handle_flag=0
+        GROUP BY wa.device_id , wa.alarm_item_id
+        <if test="flag != null">
+            LIMIT 10
+        </if>
+    </select>
+    <select id="statisticByAlarmItem" resultType="map">
+        SELECT COUNT(wa.id) as `count`,it.parent_item as alarmItemParentName
+        FROM iot_alarm_warn wa
+                 INNER JOIN
+                 iot_alarm_item it on wa.alarm_item_id = it.id
+        WHERE wa.device_id = #{deviceId}
+          AND wa.system_id = #{systemId}
+          AND wa.project_id = #{projectId}
+        GROUP BY it.parent_item
+    </select>
+
+    <select id="getAlarmInfoByDeviceId" resultType="map">
+        SELECT wa.device_id     as deviceId,
+               wa.id            as alarmWarnId,
+               wa.create_time   as alarmTime,
+               wa.alarm_item_id as alarmItemId,
+               it.name          as alarmItemName,
+               wa.handle_flag   as handleFlag,
+               de.status        as status
+        FROM iot_alarm_warn wa
+                 INNER JOIN iot_alarm_item it ON wa.alarm_item_id = it.id
+                 INNER JOIN iot_device de ON wa.device_id = de.id AND de.id = #{deviceId}
+        WHERE wa.device_id = #{deviceId}
+          AND wa.system_id = #{systemId}
+          AND wa.project_id = #{projectId}
+        ORDER BY wa.create_time DESC LIMIT 10
+    </select>
+
+    <select id="selectAlarmByProjectId" resultType="com.steelman.iot.platform.entity.vo.AlarmWarnVo">
+        select a.create_time,
+               a.alarm_value,
+               b.name as alarmItemName,
+               c.name as alarmTypeName,
+               a.location,
+               a.id
+        from iot_alarm_warn a
+                 inner join iot_alarm_item b on a.alarm_item_id = b.id
+                 inner join iot_alarm_type c on a.alarm_type_id = c.id
+                 inner join iot_device d on a.device_id = c.id
+        where d.binding_status = 1
+          and a.project_id = #{projectId}
+          and a.handle_flag = 0
+        order by a.create_time desc
+    </select>
+    <select id="selectAlarmScale" resultType="java.util.Map">
+        select count(wa.id) as num ,api.name as itemName
+        from iot_alarm_warn wa
+                 inner join iot_alarm_item ai on wa.alarm_item_id = ai.id
+                 inner join iot_alarm_parent_item  api  on  ai.parent_item_id=api.id
+                 inner join iot_device de on wa.device_id = de.id
+        where de.binding_status = 1  and de.binding_type != 6
+          and wa.project_id = #{projectId}
+          and wa.system_id = #{systemId}
+        group by api.id
+    </select>
+
+    <select id="selectProjectAlarm" resultType="com.steelman.iot.platform.entity.vo.AlarmWarnItemVo">
+        select a.id as id,
+               a.device_id as deviceId,
+               b.status as status,
+               a.create_time as createTime,
+               c.name as alarmItemName,
+               a.handle_flag as handleFlag,
+               b.binding_type as bindingType
+        from iot_alarm_warn a
+                 inner join iot_device b on a.device_id = b.id
+                 inner join iot_alarm_item c on a.alarm_item_id = c.id
+        where a.project_id = #{projectId}
+          and a.system_id = #{systemId}
+          and b.binding_status = 1 AND b.binding_type != 6  ORDER BY a.create_time desc
+        <if test="part != null">
+          LIMIT 10
+        </if>
+    </select>
+
+    <select id="selectIncomingDeviceAlarmCount" resultType="java.util.Map">
+        select count(a.id),b.name
+        from iot_alarm_warn a
+                 inner join iot_alarm_type b on a.alarm_type_id = b.id
+                 left join iot_device c on a.device_id = c.id
+                 left join iot_power_incoming_device e on c.id = e.device_id
+        where c.binding_status = 1
+          and e.incoming_id = #{incomingId}
+          and a.system_id = #{systemId}
+        group by b.id
+    </select>
+    <select id="selectIncomingDeviceAlarm" resultType="com.steelman.iot.platform.entity.vo.AlarmWarnItemVo">
+        select a.device_id,
+               f.status,
+               a.create_time,
+               c.name as alarmItemName,
+               b.name as alarmTypeName,
+               a.handle_flag,
+               f.binding_type
+        from iot_alarm_warn a
+                 inner join iot_alarm_type b on a.alarm_type_id = b.id
+                 inner join iot_alarm_item c on c.id = a.alarm_item_id
+                 inner join iot_device f on a.device_id = f.id
+                 left join iot_power_incoming_device e on c.id = e.device_id
+        where
+            e.incoming_id = #{incomingId}
+          and a.system_id = #{systemId}
+        order by a.create_time desc limit 10
+    </select>
+
+    <select id="selectCompensateDeviceAlarmCount" resultType="java.util.Map">
+        select count(a.id),b.name
+        from iot_alarm_warn a
+                 inner join iot_alarm_type b on a.alarm_type_id = b.id
+                 left join iot_device c on a.device_id = c.id
+                 left join iot_power_compensate_device e on c.id = e.device_id
+        where c.binding_status = 1
+          and e.compensate_id = #{compensateId}
+          and a.system_id = #{systemId}
+        group by b.id
+    </select>
+
+    <select id="selectCompensateDeviceAlarm" resultType="com.steelman.iot.platform.entity.vo.AlarmWarnItemVo">
+        select a.device_id,
+               f.status,
+               a.create_time,
+               c.name as alarmItemName,
+               b.name as alarmTypeName,
+               a.handle_flag,
+               f.binding_type
+        from iot_alarm_warn a
+                 inner join iot_alarm_type b on a.alarm_type_id = b.id
+                 inner join iot_alarm_item c on c.id = a.alarm_item_id
+                 inner join iot_device f on a.device_id = f.id
+                 left join iot_power_compensate_device e on c.id = e.device_id
+        where
+            e.compensate_id = #{compensateId}
+          and a.system_id = #{systemId}
+        order by a.create_time desc limit 10
+    </select>
+
+    <select id="selectWaveDeviceAlarm" resultType="com.steelman.iot.platform.entity.vo.AlarmWarnItemVo">
+        select a.device_id,
+               f.status,
+               a.create_time,
+               c.name as alarmItemName,
+               b.name as alarmTypeName,
+               a.handle_flag,
+               f.binding_type
+        from iot_alarm_warn a
+                 inner join iot_alarm_type b on a.alarm_type_id = b.id
+                 inner join iot_alarm_item c on c.id = a.alarm_item_id
+                 inner join iot_device f on a.device_id = f.id
+                 left join iot_power_wave_device e on c.id = e.device_id
+        where
+            e.wave_id = #{waveId}
+          and a.system_id = #{systemId}
+        order by a.create_time desc limit 10
+    </select>
+    <select id="selectWaveDeviceAlarmCount" resultType="java.util.Map">
+        select count(a.id),b.name
+        from iot_alarm_warn a
+                 inner join iot_alarm_type b on a.alarm_type_id = b.id
+                 left join iot_device c on a.device_id = c.id
+                 left join iot_power_wave_device e on c.id = e.device_id
+        where c.binding_status = 1
+          and e.wave_id = #{waveId}
+          and a.system_id = #{systemId}
+        group by b.id
+    </select>
+    <select id="selectFeederLoopDeviceAlarm" resultType="com.steelman.iot.platform.entity.vo.AlarmWarnItemVo">
+        select a.device_id,
+               f.status,
+               a.create_time,
+               c.name as alarmItemName,
+               b.name as alarmTypeName,
+               a.handle_flag,
+               f.binding_type
+        from iot_alarm_warn a
+                 inner join iot_alarm_type b on a.alarm_type_id = b.id
+                 inner join iot_alarm_item c on c.id = a.alarm_item_id
+                 inner join iot_device f on a.device_id = f.id
+                 left join iot_power_feeder_loop_device e on c.id = e.device_id
+        where
+            e.feeder_loop_id = #{loopId}
+          and a.system_id = #{systemId}
+        order by a.create_time desc limit 10
+    </select>
+
+    <select id="selectFeederLoopDeviceAlarmCount" resultType="java.util.Map">
+        select count(a.id),b.name
+        from iot_alarm_warn a
+                 inner join iot_alarm_type b on a.alarm_type_id = b.id
+                 left join iot_device c on a.device_id = c.id
+                 left join iot_power_feeder_loop_device e on c.id = e.device_id
+        where c.binding_status = 1
+          and e.feeder_loop_id = #{loopId}
+          and a.system_id = #{systemId}
+        group by b.id
+    </select>
+
+    <select id="selectDeviceAlarmInfo" resultType="com.steelman.iot.platform.entity.vo.AlarmWarnItemVo">
+        select a.device_id,
+               f.status,
+               a.create_time,
+               c.name as alarmItemName,
+               b.name as alarmTypeName,
+               a.handle_flag,
+               f.binding_type
+        from iot_alarm_warn a
+                 inner join iot_alarm_type b on a.alarm_type_id = b.id
+                 inner join iot_alarm_item c on c.id = a.alarm_item_id
+                 inner join iot_device f on a.device_id = f.id
+        where
+            a.project_id = #{projectId}
+          and a.device_id = #{deviceId}
+          and a.system_id = #{systemId}
+        order by a.create_time desc limit 10
+    </select>
+
+    <select id="selectDeviceAlarmCount" resultType="java.util.Map">
+        select count(a.id),b.name
+        from iot_alarm_warn a
+                 inner join iot_alarm_type b on a.alarm_type_id = b.id
+                 left join iot_device c on a.device_id = c.id
+        where c.binding_status = 1 and a.device_id = #{deviceId} and a.project_id = #{projectId}
+          and a.system_id = #{systemId}
+        group by b.id
+    </select>
+    <select id="getInHandlerSafeDevice" resultType="long">
+       SELECT DISTINCT device_id as devideId
+       FROM iot_alarm_warn
+       WHERE project_id=#{projectId} AND handle_flag=0 AND system_id=1000
+    </select>
+
+    <delete id="removeByDeviceSystem">
+        DELETE
+        FROM iot_alarm_warn
+        WHERE device_id = #{deviceId}
+          AND project_id = #{projectId}
+          AND system_id = #{systemId}
+    </delete>
+
+    <select id="getAlarmData" resultMap="BaseResultMap">
+        SELECT  serial_num,device_id,alarm_item_id,alarm_value,create_time
+        FROM iot_alarm_warn where device_id=#{deviceId} AND system_id=#{systemId} AND (create_time between #{strDate} and #{endDate})
+        ORDER BY create_time DESC
+    </select>
+
+    <delete id="removeByDeviceId">
+        DELETE FROM iot_alarm_warn
+        WHERE device_id = #{deviceId}
+    </delete>
+    <select id="getDeviceAlarmWarn" resultType="com.steelman.iot.platform.entity.dto.AlarmWarnPower">
+        SELECT  wa.id as id,wa.area_id as areaId,wa.building_id as buildingId ,wa.storey_id as storeyId,wa.room_id as roomId,
+        wa.location as location,wa.alarm_item_id as   alarmItemId, ai.name as alarmItemName,  wa.device_id as deviceId,wa.system_id as systemId,
+        wa.create_time as  createTime ,de.binding_status as bindingStatus,de.binding_type  as bindingType
+        FROM iot_alarm_warn wa
+        INNER JOIN iot_device de ON wa.device_id=de.id AND de.project_id=#{projectId}
+        INNER JOIN iot_alarm_item ai ON wa.alarm_item_id=ai.id
+        WHERE  wa.project_id=#{projectId} AND wa.system_id=#{systemId}
+        AND de.binding_status=1 AND de.binding_type !=6  AND wa.handle_flag=0
+    </select>
+    <select id="getAlaramWarnByDeviceId" resultType="com.steelman.iot.platform.entity.dto.AlarmWarnPower">
+        SELECT  wa.id as id,wa.area_id as areaId,wa.building_id as buildingId ,wa.storey_id as storeyId,wa.room_id as roomId,
+                wa.location as location,wa.alarm_item_id as   alarmItemId, ai.name as alarmItemName,  wa.device_id as deviceId,wa.system_id as systemId,
+                wa.create_time as  createTime ,de.binding_status as bindingStatus,de.binding_type  as bindingType
+        FROM iot_alarm_warn wa
+        INNER JOIN iot_device de ON wa.device_id=de.id
+        INNER JOIN iot_alarm_item ai ON wa.alarm_item_id=ai.id
+        WHERE  wa.device_id=#{deviceId} AND wa.system_id=#{systemId}
+        AND de.binding_status=1
+    </select>
+    <select id="getPowerAlarmCount" resultType="map">
+        select count(wa.id) as num ,api.name as itemName
+        from iot_alarm_warn wa
+                 inner join iot_alarm_item ai on wa.alarm_item_id = ai.id
+                 inner join iot_alarm_parent_item  api  on  ai.parent_item_id=api.id
+        where wa.system_id=2000 and wa.device_id in
+        <foreach collection="deviceList" open="(" close=")" separator="," item="item">
+            #{item.deviceId}
+        </foreach>
+        group by api.id
+    </select>
+    <select id="getPowerHistory" resultType="com.steelman.iot.platform.entity.vo.AlarmWarnItemVo">
+        select a.id as id,
+                a.device_id as deviceId,
+                b.status as status,
+                a.create_time as createTime,
+                c.name as alarmItemName,
+                a.handle_flag as handleFlag,
+                b.binding_type as bindingType
+        from iot_alarm_warn a
+        inner join iot_device b on a.device_id = b.id
+        inner join iot_alarm_item c on a.alarm_item_id = c.id
+        where a.system_id = 2000 AND b.id IN
+        <foreach collection="deviceList" open="(" close=")" separator="," item="item">
+            #{item.deviceId}
+        </foreach>
+        ORDER BY a.create_time desc  limit 10
+
+    </select>
+
+
+    <delete id="removePowerAlarm">
+       DELETE FROM  iot_alarm_warn
+       WHERE device_id=#{deviceId} AND system_id=2000
+    </delete>
+
+    <select id="getEnergyDayAndMonthAlarmCount" resultType="map">
+        SELECT COUNT(1)  as num,
+               ct.id as consumeTypeId
+        FROM iot_energy_equipment ee
+        INNER JOIN iot_energy_consume_type ct ON ee.consume_type_id=ct.id and ct.project_id=#{projectId}
+        INNER JOIN iot_energy_equipment_device eed ON ee.id=eed.equipment_id AND eed.project_id=#{projectId}
+        INNER JOIN iot_alarm_warn aw ON aw.device_id=eed.device_id AND aw.project_id=#{projectId}
+        WHERE ee.project_id=#{projectId} AND aw.year=#{year}
+        <if test="month != null">
+            AND aw.month=#{month}
+        </if>
+        <if test="day != null">
+            AND aw.day=#{day}
+        </if>
+        GROUP BY ct.id
+    </select>
+
+    <select id="getQuarterCount" resultType="map">
+        SELECT COUNT(1)  as num,
+        ct.id as consumeTypeId
+        FROM iot_energy_equipment ee
+        INNER JOIN iot_energy_consume_type ct ON ee.consume_type_id=ct.id and ct.project_id=#{projectId}
+        INNER JOIN iot_energy_equipment_device eed ON ee.id=eed.equipment_id AND eed.project_id=#{projectId}
+        INNER JOIN iot_alarm_warn aw ON aw.device_id=eed.device_id AND aw.project_id=#{projectId}
+        WHERE ee.project_id=#{projectId} AND aw.year=#{year}
+        AND aw.month in
+        <foreach collection="monthList" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+        GROUP BY ct.id
+    </select>
+    <select id="getByProjectId" resultMap="BaseResultMap">
+        SELECT * FROM iot_alarm_warn
+        WHERE project_id=#{projectId}
+    </select>
+    <update id="updateAlarmValue">
+        <foreach collection="alarmWarnList" open="" close="" separator=";" item="alarmWarn">
+            UPDATE iot_alarm_warn
+            SET alarm_value=#{alarmWarn.alarmValue}
+            WHERE id =#{alarmWarn.id}
+        </foreach>
+    </update>
+    <select id="getDayCount" resultType="int">
+        SELECT count(1)  as count
+        FROM iot_alarm_warn
+        WHERE project_id=#{projectId} AND system_id=1000 AND (DATE_FORMAT(create_time,'%Y-%m-%d')=#{yearMonthDay})
+        GROUP BY project_id
+    </select>
+
+    <select id="getBetweenCount" resultType="int">
+        SELECT count(1)  as count
+        FROM iot_alarm_warn
+        WHERE project_id=#{projectId} AND system_id=1000 AND
+              (DATE_FORMAT(create_time,'%Y-%m-%d') BETWEEN #{strDate} AND #{endDate})
+        GROUP BY project_id
+    </select>
+    <select id="getInHandlerCount" resultType="int">
+        SELECT count(1)  as count
+        FROM iot_alarm_warn
+        WHERE project_id=#{projectId} AND system_id=1000 AND handle_flag=0
+        GROUP BY project_id
+    </select>
+    <select id="getHandlerCount" resultType="int">
+        SELECT count(1)  as count
+        FROM iot_alarm_warn
+        WHERE project_id=#{projectId} AND system_id=1000 AND handle_flag=1
+        GROUP BY project_id
+    </select>
+    <select id="getAlarmItemData" resultType="map">
+        SELECT COUNT(wa.id) as count,it.parent_item as alarmItemParentName
+        FROM iot_alarm_warn wa
+        INNER JOIN iot_alarm_item it on wa.alarm_item_id = it.id
+        WHERE  wa.system_id = 1000 AND wa.project_id = #{projectId}
+        GROUP BY it.parent_item
+    </select>
+    <select id="getInHandlerAlarmWarnInfo" resultType="map">
+        SELECT wa.id as alarmWarnId,
+               wa.device_id as deviceId,
+               de.name as deviceName,
+               de.status as status,
+               wa.area_id as areaId,
+               wa.building_id as buildingId,
+               wa.storey_id as storeyId,
+               wa.room_id as roomId,
+               wa.location as location,
+               wa.alarm_item_id as alarmItemId,
+               it.name as alarmItemName,
+               wa.project_id as projectId,
+                DATE_FORMAT(wa.create_time,'%Y-%m-%d %H:%i:%S') as dateTime
+        FROM iot_alarm_warn wa
+        INNER JOIN iot_device de ON wa.device_id=de.id
+        INNER JOIN iot_alarm_item it ON wa.alarm_item_id=it.id
+        WHERE wa.project_id=#{projectId} AND wa.handle_flag=0 AND wa.system_id=1000
+        ORDER BY wa.create_time DESC
+    </select>
+    <select id="getAreaLocationInfo" resultType="map">
+        select IFNULL(area_id,0) as areaId,location as location
+        FROM iot_alarm_warn
+        where project_id=#{projectId} AND system_id=1000
+    </select>
+
+    <select id="getDeviceTypeStatistic" resultType="map">
+        SELECT COUNT(wa.id) as count,wa.alarm_item_id as alarmItemId,it.parent_item as alarmItemName
+        FROM iot_alarm_warn wa
+        INNER JOIN iot_alarm_item it ON wa.alarm_item_id=it.id
+        WHERE wa.system_id=2000 AND wa.device_id IN
+        <foreach collection="deviceSet" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        GROUP BY wa.alarm_item_id
+    </select>
+</mapper>

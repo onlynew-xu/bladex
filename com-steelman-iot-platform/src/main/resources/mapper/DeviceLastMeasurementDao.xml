@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.DeviceLastMeasureMentDao">
+    <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.DeviceMeasurement">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="device_id" jdbcType="BIGINT" property="deviceId"/>
+        <result column="serial_num" jdbcType="VARCHAR" property="serialNum"/>
+        <result column="project_id" jdbcType="VARCHAR" property="projectId"/>
+        <result column="day_spike" jdbcType="VARCHAR" property="daySpike"/>
+        <result column="day_peak" jdbcType="VARCHAR" property="dayPeak"/>
+        <result column="day_normal" jdbcType="VARCHAR" property="dayNormal"/>
+        <result column="day_valley" jdbcType="VARCHAR" property="dayValley"/>
+        <result column="day_total" jdbcType="VARCHAR" property="dayTotal"/>
+        <result column="day_spike_price" jdbcType="VARCHAR" property="daySpikePrice"/>
+        <result column="day_peak_price" jdbcType="VARCHAR" property="dayPeakPrice"/>
+        <result column="day_normal_price" jdbcType="VARCHAR" property="dayNormalPrice"/>
+        <result column="day_valley_price" jdbcType="VARCHAR" property="dayValleyPrice"/>
+        <result column="day_total_price" jdbcType="VARCHAR" property="dayTotalPrice"/>
+        <result column="month_spike" jdbcType="VARCHAR" property="monthSpike"/>
+        <result column="month_peak" jdbcType="VARCHAR" property="monthPeak"/>
+        <result column="month_normal" jdbcType="VARCHAR" property="monthNormal"/>
+        <result column="month_valley" jdbcType="VARCHAR" property="monthValley"/>
+        <result column="month_total" jdbcType="VARCHAR" property="monthTotal"/>
+        <result column="total_spike" jdbcType="VARCHAR" property="totalSpike"/>
+        <result column="total_peak" jdbcType="VARCHAR" property="totalPeak"/>
+        <result column="total_normal" jdbcType="VARCHAR" property="totalNormal"/>
+        <result column="total_valley" jdbcType="VARCHAR" property="totalValley"/>
+        <result column="total_total" jdbcType="VARCHAR" property="totalTotal"/>
+        <result column="reactive_day_spike" jdbcType="VARCHAR" property="reactiveDaySpike"/>
+        <result column="reactive_day_peak" jdbcType="VARCHAR" property="reactiveDayPeak"/>
+        <result column="reactive_day_normal" jdbcType="VARCHAR" property="reactiveDayNormal"/>
+        <result column="reactive_day_valley" jdbcType="VARCHAR" property="reactiveDayValley"/>
+        <result column="reactive_day_total" jdbcType="VARCHAR" property="reactiveDayTotal"/>
+        <result column="reactive_month_spike" jdbcType="VARCHAR" property="reactiveMonthSpike"/>
+        <result column="reactive_month_peak" jdbcType="VARCHAR" property="reactiveMonthPeak"/>
+        <result column="reactive_month_normal" jdbcType="VARCHAR" property="reactiveMonthNormal"/>
+        <result column="reactive_month_valley" jdbcType="VARCHAR" property="reactiveMonthValley"/>
+        <result column="reactive_month_total" jdbcType="VARCHAR" property="reactiveMonthTotal"/>
+        <result column="reactive_total_spike" jdbcType="VARCHAR" property="reactiveTotalSpike"/>
+        <result column="reactive_total_peak" jdbcType="VARCHAR" property="reactiveTotalPeak"/>
+        <result column="reactive_total_normal" jdbcType="VARCHAR" property="reactiveTotalNormal"/>
+        <result column="reactive_total_valley" jdbcType="VARCHAR" property="reactiveTotalValley"/>
+        <result column="reactive_total_total" jdbcType="VARCHAR" property="reactiveTotalTotal"/>
+        <result column="year" jdbcType="VARCHAR" property="year"/>
+        <result column="month" jdbcType="VARCHAR" property="month"/>
+        <result column="day" jdbcType="VARCHAR" property="day"/>
+        <result column="year_month_day" jdbcType="VARCHAR" property="yearMonthDay"/>
+        <result column="manual_flag" jdbcType="INTEGER" property="manualFlag"/>
+        <result column="month_last_day" jdbcType="INTEGER" property="monthLastDay"/>
+        <result column="day_last_min" jdbcType="INTEGER" property="dayLastMin"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id
+        ,
+        device_id,
+        serial_num,
+        project_id,
+        day_spike,
+        day_peak,
+        day_normal,
+        day_valley,
+        day_total,
+        day_spike_price,
+        day_peak_price,
+        day_normal_price,
+        day_valley_price,
+        day_total_price,
+        month_spike,
+        month_peak,
+        month_normal,
+        month_valley,
+        month_total,
+        total_spike,
+        total_peak,
+        total_normal,
+        total_valley,
+        total_total,
+        reactive_day_spike,
+        reactive_day_peak,
+        reactive_day_normal,
+        reactive_day_valley,
+        reactive_day_total,
+        reactive_month_spike,
+        reactive_month_peak,
+        reactive_month_normal,
+        reactive_month_valley,
+        reactive_month_total,
+        reactive_total_spike,
+        reactive_total_peak,
+        reactive_total_normal,
+        reactive_total_valley,
+        reactive_total_total,
+        `year`,
+        `month`,
+        `day`,
+        year_month_day,
+        manual_flag,
+        month_last_day,
+        day_last_min,
+        create_time
+    </sql>
+
+    <select id="getMeasureData" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM iot_device_last_measurement
+        WHERE device_id=#{deviceId} AND year_month_day IN
+        <foreach collection="pastDateStrArr" item="dataStr" open="(" close=")" separator=",">
+            #{dataStr}
+        </foreach>
+    </select>
+
+</mapper>

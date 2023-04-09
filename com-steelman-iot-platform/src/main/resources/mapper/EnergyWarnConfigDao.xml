@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.EnergyWarnConfigDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.EnergyWarnConfig">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="device_id" jdbcType="BIGINT" property="deviceId" />
+    <result column="energy_id" jdbcType="BIGINT" property="energyId" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="alarm_item_id" jdbcType="BIGINT" property="alarmItemId" />
+    <result column="stand" jdbcType="VARCHAR" property="stand" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, device_id, energy_id, `level`, alarm_item_id, stand, project_id, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_energy_warn_config
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_energy_warn_config
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.EnergyWarnConfig" useGeneratedKeys="true">
+    insert into iot_energy_warn_config (device_id, energy_id, `level`, 
+      alarm_item_id, stand, project_id, 
+      create_time, update_time)
+    values (#{deviceId,jdbcType=BIGINT}, #{energyId,jdbcType=BIGINT}, #{level,jdbcType=INTEGER}, 
+      #{alarmItemId,jdbcType=BIGINT}, #{stand,jdbcType=VARCHAR}, #{projectId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.EnergyWarnConfig" useGeneratedKeys="true">
+    insert into iot_energy_warn_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="energyId != null">
+        energy_id,
+      </if>
+      <if test="level != null">
+        `level`,
+      </if>
+      <if test="alarmItemId != null">
+        alarm_item_id,
+      </if>
+      <if test="stand != null">
+        stand,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="energyId != null">
+        #{energyId,jdbcType=BIGINT},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="alarmItemId != null">
+        #{alarmItemId,jdbcType=BIGINT},
+      </if>
+      <if test="stand != null">
+        #{stand,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.EnergyWarnConfig">
+    update iot_energy_warn_config
+    <set>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="energyId != null">
+        energy_id = #{energyId,jdbcType=BIGINT},
+      </if>
+      <if test="level != null">
+        `level` = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="alarmItemId != null">
+        alarm_item_id = #{alarmItemId,jdbcType=BIGINT},
+      </if>
+      <if test="stand != null">
+        stand = #{stand,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.EnergyWarnConfig">
+    update iot_energy_warn_config
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      energy_id = #{energyId,jdbcType=BIGINT},
+      `level` = #{level,jdbcType=INTEGER},
+      alarm_item_id = #{alarmItemId,jdbcType=BIGINT},
+      stand = #{stand,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

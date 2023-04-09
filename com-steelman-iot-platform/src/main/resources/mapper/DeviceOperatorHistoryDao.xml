@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.DeviceOperatorHistoryDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.DeviceOperatorHistory">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="serial_num" jdbcType="VARCHAR" property="serialNum" />
+    <result column="operation" jdbcType="VARCHAR" property="operation" />
+    <result column="return_code" jdbcType="INTEGER" property="returnCode" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, serial_num, `operation`, return_code, `status`, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_device_operator_history
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_device_operator_history
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.DeviceOperatorHistory" useGeneratedKeys="true">
+    insert into iot_device_operator_history (serial_num, `operation`, return_code, 
+      `status`, create_time, update_time
+      )
+    values (#{serialNum,jdbcType=VARCHAR}, #{operation,jdbcType=VARCHAR}, #{returnCode,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.DeviceOperatorHistory" useGeneratedKeys="true">
+    insert into iot_device_operator_history
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="serialNum != null">
+        serial_num,
+      </if>
+      <if test="operation != null">
+        `operation`,
+      </if>
+      <if test="returnCode != null">
+        return_code,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="serialNum != null">
+        #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="operation != null">
+        #{operation,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCode != null">
+        #{returnCode,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.DeviceOperatorHistory">
+    update iot_device_operator_history
+    <set>
+      <if test="serialNum != null">
+        serial_num = #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="operation != null">
+        `operation` = #{operation,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCode != null">
+        return_code = #{returnCode,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.DeviceOperatorHistory">
+    update iot_device_operator_history
+    set serial_num = #{serialNum,jdbcType=VARCHAR},
+      `operation` = #{operation,jdbcType=VARCHAR},
+      return_code = #{returnCode,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

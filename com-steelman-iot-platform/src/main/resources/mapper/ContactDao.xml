@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.ContactDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.Contact">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="mark" jdbcType="VARCHAR" property="mark" />
+    <result column="advice" jdbcType="INTEGER" property="advice" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="company" jdbcType="VARCHAR" property="company" />
+    <result column="dept" jdbcType="VARCHAR" property="dept" />
+    <result column="offer" jdbcType="VARCHAR" property="offer" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, tel, address, email, mark, advice, company_id, company, dept, offer,
+    project_id, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from iot_contact
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_contact
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.Contact" useGeneratedKeys="true">
+    insert into iot_contact (`name`, tel, address,
+      email, mark, advice,
+      company_id, company, dept,
+      offer, project_id, create_time,
+      update_time)
+    values (#{name,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{mark,jdbcType=VARCHAR}, #{advice,jdbcType=INTEGER},
+      #{companyId,jdbcType=BIGINT}, #{company,jdbcType=VARCHAR}, #{dept,jdbcType=VARCHAR},
+      #{offer,jdbcType=VARCHAR}, #{projectId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.Contact" useGeneratedKeys="true">
+    insert into iot_contact
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="tel != null">
+        tel,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+      <if test="advice != null">
+        advice,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="company != null">
+        company,
+      </if>
+      <if test="dept != null">
+        dept,
+      </if>
+      <if test="offer != null">
+        offer,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="advice != null">
+        #{advice,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="company != null">
+        #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="dept != null">
+        #{dept,jdbcType=VARCHAR},
+      </if>
+      <if test="offer != null">
+        #{offer,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.Contact">
+    update iot_contact
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null">
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="advice != null">
+        advice = #{advice,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="company != null">
+        company = #{company,jdbcType=VARCHAR},
+      </if>
+      <if test="dept != null">
+        dept = #{dept,jdbcType=VARCHAR},
+      </if>
+      <if test="offer != null">
+        offer = #{offer,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.Contact">
+    update iot_contact
+    set `name` = #{name,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      mark = #{mark,jdbcType=VARCHAR},
+      advice = #{advice,jdbcType=INTEGER},
+      company_id = #{companyId,jdbcType=BIGINT},
+      company = #{company,jdbcType=VARCHAR},
+      dept = #{dept,jdbcType=VARCHAR},
+      offer = #{offer,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByContact" parameterType="com.steelman.iot.platform.entity.Contact" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from iot_contact
+    where 1=1
+    <if test="name != null">
+      and `name` = #{name}
+    </if>
+    <if test="tel != null">
+      and tel = #{tel}
+    </if>
+    <if test="address != null">
+      and address = #{address}
+    </if>
+    <if test="email != null">
+      and email = #{email}
+    </if>
+    <if test="mark != null">
+      and mark = #{mark}
+    </if>
+    <if test="advice != null">
+      and advice = #{advice}
+    </if>
+    <if test="companyId != null">
+      and company_id = #{companyId}
+    </if>
+    <if test="company != null">
+      and company = #{company}
+    </if>
+    <if test="dept != null">
+      and dept = #{dept}
+    </if>
+    <if test="offer != null">
+      and offer = #{offer}
+    </if>
+    <if test="projectId != null">
+      and project_id = #{projectId}
+    </if>
+    <if test="createTime != null">
+      and create_time = #{createTime}
+    </if>
+    <if test="updateTime != null">
+      and update_time = #{updateTime}
+    </if>
+    order by id desc
+  </select>
+    <select id="selectProjectContact" resultType="com.steelman.iot.platform.entity.Contact">
+      select <include refid="Base_Column_List"/> from iot_contact where project_id = #{projectId} order by update_time desc limit 0,1
+    </select>
+</mapper>

@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.InspectionTaskDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.InspectionTask">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="inspection_id" jdbcType="BIGINT" property="inspectionId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="doing_time" jdbcType="TIMESTAMP" property="doingTime" />
+    <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime" />
+    <result column="finish_time" jdbcType="TIMESTAMP" property="finishTime" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, content, inspection_id, user_id, `status`, doing_time,begin_time,finish_time, project_id,
+    create_time,update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_inspection_task
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_inspection_task
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.InspectionTask" useGeneratedKeys="true">
+    insert into iot_inspection_task (title, content, inspection_id, 
+      user_id, `status`,
+      doing_time, begin_time,finish_time,project_id, create_time,update_time
+      )
+    values (#{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{inspectionId,jdbcType=BIGINT}, 
+      #{userId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{doingTime,jdbcType=TIMESTAMP},
+            #{beginTime},#{finishTime}
+            #{projectId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.InspectionTask" useGeneratedKeys="true">
+    insert into iot_inspection_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="inspectionId != null">
+        inspection_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="beginTime != null">
+        begin_time,
+      </if>
+      <if test="finishTime != null">
+        finish_time,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectionId != null">
+        #{inspectionId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="doingTime != null">
+        #{doingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null">
+        #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.InspectionTask">
+    update iot_inspection_task
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectionId != null">
+        inspection_id = #{inspectionId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+
+      <if test="doingTime != null">
+        doing_time = #{doingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginTime != null">
+        begin_time = #{beginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishTime != null">
+        finish_time = #{finishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.InspectionTask">
+    update iot_inspection_task
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      inspection_id = #{inspectionId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      `status` = #{status,jdbcType=INTEGER},
+      project_id = #{projectId,jdbcType=BIGINT},
+        doing_time=#{doingTime},
+        begin_time=#{beginTime},
+        finish_time=#{finishTime},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="getInHandlerCount" resultType="integer">
+    SELECT COUNT(1)
+    FROM iot_inspection_task
+    WHERE project_id=#{projectId} AND user_id=#{userId} AND (status=0||status=1)
+  </select>
+
+  <update id="updateStatus" parameterType="com.steelman.iot.platform.entity.InspectionTask">
+    UPDATE iot_inspection_task
+    SET
+      `status` = #{status,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    WHERE id=#{id,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteByPrimaryKeyAndUserId" parameterType="java.lang.Long">
+    DELETE FROM iot_inspection_task
+    WHERE id=#{taskId}
+  </delete>
+
+  <insert id="saveList" parameterType="java.util.List">
+    INSERT INTO iot_inspection_task(title, content, inspection_id, user_id,status,doing_time,project_id, create_time,update_time) VALUES
+    <foreach collection="inspectionTaskList" item="inspectionTask" separator=",">
+      (#{inspectionTask.title},#{inspectionTask.content},#{inspectionTask.inspectionId},#{inspectionTask.userId},#{inspectionTask.status},
+        #{inspectionTask.doingTime},#{inspectionTask.projectId},#{inspectionTask.createTime},#{inspectionTask.updateTime})
+    </foreach>
+  </insert>
+
+  <select id="getInitTask" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM iot_inspection_task
+    WHERE status=0
+  </select>
+  <update id="updateStatusList">
+    <foreach collection="taskList" separator=";" item="task">
+      UPDATE iot_inspection_task
+      SET status=#{task.status},
+      update_time = #{task.updateTime}
+      WHERE id=#{task.id}
+    </foreach>
+  </update>
+  <select id="getUserTask" resultType="com.steelman.iot.platform.entity.dto.InspectionTaskDto">
+    SELECT it.id,
+           it.title,
+           it.content,
+           it.inspection_id as inspectionId,
+           it.user_id as userId,
+           su.name as userName,
+           it.status as status ,
+           it.create_time as createTime ,
+           it.doing_time as doingTime,
+           it.finish_time as finishTime,
+           it.project_id as projectId,
+           it.begin_time as beginTime,
+           it.update_time as updateTime
+    FROM iot_inspection_task  it
+    INNER  JOIN sys_user su ON  it.user_id=su.id
+    WHERE  project_id=#{projectId}
+    <if test="status != null">
+      and it.status=#{status}
+    </if>
+    <if test="userId != null">
+      and it.user_id=#{userId}
+    </if>
+    ORDER BY it.status,it.create_time asc
+  </select>
+
+  <select id="getInHandlerCountNum" resultType="int">
+    SELECT COUNT(1)
+    FROM iot_inspection_task
+    WHERE project_id=#{projectId}  AND (status=0||status=1)
+  </select>
+</mapper>

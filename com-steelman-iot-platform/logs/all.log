@@ -1,0 +1,533 @@
+[INFO][2023-02-13 10:46:36.023][com.steelman.iot.platform.ComSteelmanIotPlatformApplication:55]Starting ComSteelmanIotPlatformApplication on DESKTOP-RQ0CB26 with PID 3656 (D:\Users\tang\Desktop\platform\classes started by Administrator in D:\kaiFa\iot\steelman_app_code-master\iot-platform\com-steelman-iot-platform)
+[INFO][2023-02-13 10:46:36.038][com.steelman.iot.platform.ComSteelmanIotPlatformApplication:655]The following profiles are active: dev
+[INFO][2023-02-13 10:46:38.087][org.springframework.data.repository.config.RepositoryConfigurationDelegate:246]Multiple Spring Data modules found, entering strict repository configuration mode!
+[INFO][2023-02-13 10:46:38.087][org.springframework.data.repository.config.RepositoryConfigurationDelegate:126]Bootstrapping Spring Data repositories in DEFAULT mode.
+[INFO][2023-02-13 10:46:38.243][org.springframework.data.repository.config.RepositoryConfigurationDelegate:184]Finished Spring Data repository scanning in 126ms. Found 0 repository interfaces.
+[INFO][2023-02-13 10:46:38.837][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330]Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO][2023-02-13 10:46:38.993][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330]Bean 'org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration' of type [org.springframework.security.config.annotation.configuration.ObjectPostProcessorConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO][2023-02-13 10:46:38.993][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330]Bean 'objectPostProcessor' of type [org.springframework.security.config.annotation.configuration.AutowireBeanFactoryObjectPostProcessor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO][2023-02-13 10:46:39.009][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330]Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@142213d5' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO][2023-02-13 10:46:39.009][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330]Bean 'org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration' of type [org.springframework.security.config.annotation.method.configuration.GlobalMethodSecurityConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO][2023-02-13 10:46:39.009][org.springframework.context.support.PostProcessorRegistrationDelegate$BeanPostProcessorChecker:330]Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+[INFO][2023-02-13 10:46:39.415][org.springframework.boot.web.embedded.tomcat.TomcatWebServer:92]Tomcat initialized with port(s): 8003 (http)
+[INFO][2023-02-13 10:46:39.430][org.apache.coyote.http11.Http11NioProtocol:173]Initializing ProtocolHandler ["http-nio-8003"]
+[INFO][2023-02-13 10:46:39.430][org.apache.catalina.core.StandardService:173]Starting service [Tomcat]
+[INFO][2023-02-13 10:46:39.430][org.apache.catalina.core.StandardEngine:173]Starting Servlet engine: [Apache Tomcat/9.0.27]
+[INFO][2023-02-13 10:46:39.555][org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:173]Initializing Spring embedded WebApplicationContext
+[INFO][2023-02-13 10:46:39.555][org.springframework.web.context.ContextLoader:284]Root WebApplicationContext: initialization completed in 3439 ms
+[INFO][2023-02-13 10:46:42.699][com.steelman.iot.platform.weather.webxml.WeatherWebService:38]Can not initialize the default wsdl from ../com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/weather/file/WeatherWebService.wsdl
+[INFO][2023-02-13 10:46:43.610][springfox.documentation.spring.web.WebMvcPropertySourcedRequestMappingHandlerMapping:69]Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2ControllerWebMvc#getDocumentation(String, HttpServletRequest)]
+[INFO][2023-02-13 10:46:43.814][org.springframework.security.web.DefaultSecurityFilterChain:43]Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61808ecd, org.springframework.security.web.context.SecurityContextPersistenceFilter@29dcdd1c, org.springframework.security.web.header.HeaderWriterFilter@4b476233, org.springframework.web.filter.CorsFilter@7f1f60a0, org.springframework.security.web.authentication.logout.LogoutFilter@40c76f5a, com.steelman.iot.platform.security.filter.JwtFilter@7f4596d0, com.steelman.iot.platform.security.filter.LoginFilter@390037e7, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5546e754, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@524f5ea5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7ead1d80, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@77ea806f, org.springframework.security.web.session.SessionManagementFilter@4f235e8e, org.springframework.security.web.access.ExceptionTranslationFilter@6d4a05f7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@73aaec54]
+[INFO][2023-02-13 10:46:44.001][org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor:171]Initializing ExecutorService 'applicationTaskExecutor'
+[INFO][2023-02-13 10:46:44.798][org.quartz.impl.StdSchedulerFactory:1220]Using default implementation for ThreadExecutor
+[INFO][2023-02-13 10:46:44.814][org.quartz.core.SchedulerSignalerImpl:61]Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+[INFO][2023-02-13 10:46:44.814][org.quartz.core.QuartzScheduler:229]Quartz Scheduler v.2.3.2 created.
+[INFO][2023-02-13 10:46:44.814][org.quartz.simpl.RAMJobStore:155]RAMJobStore initialized.
+[INFO][2023-02-13 10:46:44.814][org.quartz.core.QuartzScheduler:294]Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+[INFO][2023-02-13 10:46:44.814][org.quartz.impl.StdSchedulerFactory:1374]Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+[INFO][2023-02-13 10:46:44.814][org.quartz.impl.StdSchedulerFactory:1378]Quartz scheduler version: 2.3.2
+[INFO][2023-02-13 10:46:44.814][org.quartz.core.QuartzScheduler:2293]JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@214fba74
+[INFO][2023-02-13 10:46:44.829][org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler:171]Initializing ExecutorService 'taskScheduler'
+[INFO][2023-02-13 10:46:44.939][springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper:93]Documentation plugins bootstrapped
+[INFO][2023-02-13 10:46:44.954][springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper:79]Found 1 custom documentation plugin(s)
+[INFO][2023-02-13 10:46:45.095][springfox.documentation.spring.web.scanners.ApiListingReferenceScanner:44]Scanning for api listing references
+[INFO][2023-02-13 10:46:45.373][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: deviceRestorationUsingPOST_1
+[INFO][2023-02-13 10:46:45.373][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: deviceSelfInspectionUsingPOST_1
+[INFO][2023-02-13 10:46:45.466][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: equipmentInfoUsingPOST_1
+[INFO][2023-02-13 10:46:45.544][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: countConsumeDeviceUsingPOST_1
+[INFO][2023-02-13 10:46:45.748][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsListUsingPOST_1
+[INFO][2023-02-13 10:46:45.763][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsRemoveUsingPOST_1
+[INFO][2023-02-13 10:46:45.763][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsSaveUsingPOST_1
+[INFO][2023-02-13 10:46:45.763][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsUpdateUsingPOST_1
+[INFO][2023-02-13 10:46:45.763][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsUpdateInfoUsingPOST_1
+[INFO][2023-02-13 10:46:45.763][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: deviceListUsingPOST_1
+[INFO][2023-02-13 10:46:45.763][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: saveDeviceUsingPOST_1
+[INFO][2023-02-13 10:46:45.763][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsListUsingPOST_2
+[INFO][2023-02-13 10:46:45.763][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsRemoveUsingPOST_2
+[INFO][2023-02-13 10:46:45.779][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsSaveUsingPOST_2
+[INFO][2023-02-13 10:46:45.779][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsUpdateUsingPOST_2
+[INFO][2023-02-13 10:46:45.779][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsUpdateInfoUsingPOST_2
+[INFO][2023-02-13 10:46:45.779][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: loopDeviceListUsingPOST_1
+[INFO][2023-02-13 10:46:45.779][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: loopDeviceRemoveUsingPOST_1
+[INFO][2023-02-13 10:46:45.779][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: loopDeviceSaveUsingPOST_1
+[INFO][2023-02-13 10:46:45.779][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: loopListUsingPOST_1
+[INFO][2023-02-13 10:46:45.779][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: loopRemoveUsingPOST_1
+[INFO][2023-02-13 10:46:45.779][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: loopSaveUsingPOST_1
+[INFO][2023-02-13 10:46:45.779][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: loopUpdateUsingPOST_1
+[INFO][2023-02-13 10:46:45.794][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsListUsingPOST_3
+[INFO][2023-02-13 10:46:45.794][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsRemoveUsingPOST_3
+[INFO][2023-02-13 10:46:45.810][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsSaveUsingPOST_3
+[INFO][2023-02-13 10:46:45.810][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsUpdateUsingPOST_3
+[INFO][2023-02-13 10:46:45.810][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsUpdateInfoUsingPOST_3
+[INFO][2023-02-13 10:46:45.810][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: deleteDeviceUsingPOST_1
+[INFO][2023-02-13 10:46:45.810][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: deviceListUsingPOST_2
+[INFO][2023-02-13 10:46:45.810][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: saveDeviceUsingPOST_2
+[INFO][2023-02-13 10:46:45.826][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: updateUsingPOST_1
+[INFO][2023-02-13 10:46:45.826][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: updateStatusUsingPOST_1
+[INFO][2023-02-13 10:46:45.857][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: getPowerListUsingPOST_1
+[INFO][2023-02-13 10:46:45.888][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: compensateComponentsRemoveUsingPOST_1
+[INFO][2023-02-13 10:46:45.888][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: compensateComponentsUpdateUsingPOST_1
+[INFO][2023-02-13 10:46:45.888][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: compensateComponentsUpdateInfoUsingPOST_1
+[INFO][2023-02-13 10:46:45.888][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsListUsingPOST_4
+[INFO][2023-02-13 10:46:45.904][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsRemoveUsingPOST_4
+[INFO][2023-02-13 10:46:45.904][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsSaveUsingPOST_4
+[INFO][2023-02-13 10:46:45.904][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsUpdateUsingPOST_4
+[INFO][2023-02-13 10:46:45.904][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: componentsUpdateInfoUsingPOST_4
+[INFO][2023-02-13 10:46:45.904][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: deleteDeviceUsingPOST_2
+[INFO][2023-02-13 10:46:45.904][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: deviceListUsingPOST_3
+[INFO][2023-02-13 10:46:45.904][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: saveDeviceUsingPOST_3
+[INFO][2023-02-13 10:46:45.919][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: removeUsingPOST_1
+[INFO][2023-02-13 10:46:45.919][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: updateUsingPOST_2
+[INFO][2023-02-13 10:46:45.935][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: systemListUsingPOST_1
+[INFO][2023-02-13 10:46:45.951][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: storeyListUsingPOST_1
+[INFO][2023-02-13 10:46:45.966][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: buildingListUsingPOST_1
+[INFO][2023-02-13 10:46:45.966][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: deleteBuildingUsingPOST_1
+[INFO][2023-02-13 10:46:45.966][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: deleteRegionAreaUsingPOST_1
+[INFO][2023-02-13 10:46:45.966][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: deleteRoomUsingPOST_1
+[INFO][2023-02-13 10:46:45.966][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: deleteStoreyUsingPOST_1
+[INFO][2023-02-13 10:46:45.966][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: regionAreaListUsingPOST_1
+[INFO][2023-02-13 10:46:45.966][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: roomListUsingPOST_1
+[INFO][2023-02-13 10:46:45.966][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: saveBuildingUsingPOST_1
+[INFO][2023-02-13 10:46:45.966][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: saveRegionAreaUsingPOST_1
+[INFO][2023-02-13 10:46:45.966][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: saveStoreyUsingPOST_1
+[INFO][2023-02-13 10:46:45.966][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: storeyListUsingPOST_2
+[INFO][2023-02-13 10:46:45.966][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: updateBuildingUsingPOST_1
+[INFO][2023-02-13 10:46:45.966][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: updateRegionAreaUsingPOST_1
+[INFO][2023-02-13 10:46:45.982][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: updateRoomUsingPOST_1
+[INFO][2023-02-13 10:46:45.982][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: updateStoreyUsingPOST_1
+[INFO][2023-02-13 10:46:46.029][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: saveUsingPOST_1
+[INFO][2023-02-13 10:46:46.029][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: updateUsingPOST_3
+[INFO][2023-02-13 10:46:46.029][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: systemListUsingPOST_2
+[INFO][2023-02-13 10:46:46.044][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: saveUsingPOST_2
+[INFO][2023-02-13 10:46:46.044][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: updateInfoUsingPOST_1
+[INFO][2023-02-13 10:46:46.060][springfox.documentation.spring.web.readers.operation.CachingOperationNameGenerator:41]Generating unique operation named: updateUserUsingPOST_1
+[INFO][2023-02-13 10:46:46.326][org.springframework.scheduling.quartz.SchedulerFactoryBean:727]Starting Quartz Scheduler now
+[INFO][2023-02-13 10:46:46.326][org.quartz.core.QuartzScheduler:547]Scheduler quartzScheduler_$_NON_CLUSTERED started.
+[INFO][2023-02-13 10:46:46.341][org.apache.coyote.http11.Http11NioProtocol:173]Starting ProtocolHandler ["http-nio-8003"]
+[INFO][2023-02-13 10:46:46.373][org.springframework.boot.web.embedded.tomcat.TomcatWebServer:204]Tomcat started on port(s): 8003 (http) with context path ''
+[INFO][2023-02-13 10:46:46.373][com.steelman.iot.platform.ComSteelmanIotPlatformApplication:61]Started ComSteelmanIotPlatformApplication in 10.936 seconds (JVM running for 12.226)
+[INFO][2023-02-13 10:46:49.322][org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:173]Initializing Spring DispatcherServlet 'dispatcherServlet'
+[INFO][2023-02-13 10:46:49.322][org.springframework.web.servlet.DispatcherServlet:525]Initializing Servlet 'dispatcherServlet'
+[INFO][2023-02-13 10:46:49.333][org.springframework.web.servlet.DispatcherServlet:547]Completed initialization in 11 ms
+[INFO][2023-02-13 10:46:49.353][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/,method ===>GET
+[INFO][2023-02-13 10:46:49.461][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/favicon.ico,method ===>GET
+[INFO][2023-02-13 10:46:58.087][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/doc.html,method ===>GET
+[INFO][2023-02-13 10:46:58.120][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/css/app.56b4fde5.css,method ===>GET
+[INFO][2023-02-13 10:46:58.120][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/css/chunk-vendors.46fab8e1.css,method ===>GET
+[INFO][2023-02-13 10:46:58.122][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/app.58a914a0.js,method ===>GET
+[INFO][2023-02-13 10:46:58.122][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-vendors.c45f9828.js,method ===>GET
+[INFO][2023-02-13 10:46:58.129][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-0c58d94d.6bf494e7.js,method ===>GET
+[INFO][2023-02-13 10:46:58.129][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/css/chunk-183657a2.8ed15ee7.css,method ===>GET
+[INFO][2023-02-13 10:46:58.141][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-0fd67716.d57e2c41.js,method ===>GET
+[INFO][2023-02-13 10:46:58.144][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-183657a2.2ce62f61.js,method ===>GET
+[INFO][2023-02-13 10:46:58.144][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-214218f0.92c7a521.js,method ===>GET
+[INFO][2023-02-13 10:46:58.149][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-2d0af44e.81b7dfc1.js,method ===>GET
+[INFO][2023-02-13 10:46:58.152][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-2d0bd799.d162a2d5.js,method ===>GET
+[INFO][2023-02-13 10:46:58.156][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-2d0da532.b56aa8db.js,method ===>GET
+[INFO][2023-02-13 10:46:58.159][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-2d22269d.bb355f65.js,method ===>GET
+[INFO][2023-02-13 10:46:58.161][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-3b888a65.8737ce4f.js,method ===>GET
+[INFO][2023-02-13 10:46:58.163][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-589faee0.08c2fba5.js,method ===>GET
+[INFO][2023-02-13 10:46:58.164][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-735c675c.76398496.js,method ===>GET
+[INFO][2023-02-13 10:46:58.165][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-adb9e944.9e6584b5.js,method ===>GET
+[INFO][2023-02-13 10:46:58.605][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/favicon.ico,method ===>GET
+[INFO][2023-02-13 10:46:58.640][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/swagger-resources/configuration/ui,method ===>GET
+[INFO][2023-02-13 10:46:58.640][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/swagger-resources,method ===>GET
+[INFO][2023-02-13 10:46:58.701][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/v2/api-docs,method ===>GET
+[INFO][2023-02-13 10:49:48.600][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/doc.html,method ===>GET
+[INFO][2023-02-13 10:49:59.860][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/swagger-resources,method ===>GET
+[INFO][2023-02-13 10:50:21.903][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/v2/api-docs,method ===>GET
+[INFO][2023-02-13 11:02:44.242][com.alibaba.druid.pool.DruidDataSource:930]{dataSource-1} inited
+[DEBUG][2023-02-13 11:02:44.577][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, serial_num, device_model, device_type_id, trans_type, area_id, building_id, storey_id, room_id, `location`, project_id, erasure, `status`, switch_status, binding_status, binding_type, storey_x, storey_y, storey_cad_x, storey_cad_y, jd, wd, mark, ext_flag, video_url, version, hw_version, sw_version, manufacturer, product_date, useful_life, create_time, update_time from iot_device where id = ? 
+[DEBUG][2023-02-13 11:02:44.602][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==> Parameters: 230(Long)
+[DEBUG][2023-02-13 11:02:44.634][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:02:44.636][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, create_time, update_time from iot_device_type where id = ? 
+[DEBUG][2023-02-13 11:02:44.636][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==> Parameters: 6(Long)
+[DEBUG][2023-02-13 11:02:44.644][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:02:44.645][com.steelman.iot.platform.dao.AlarmItemDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, alarm_type_id,parent_item_id, parent_item, create_time, update_time from iot_alarm_item where id = ? 
+[DEBUG][2023-02-13 11:02:44.645][com.steelman.iot.platform.dao.AlarmItemDao.selectByPrimaryKey:143]==> Parameters: 39(Long)
+[DEBUG][2023-02-13 11:02:44.653][com.steelman.iot.platform.dao.AlarmItemDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:02:44.654][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==>  Preparing: select id, `name`, tel, address, email, mark, advice, company_id, company, dept, offer, project_id, create_time, update_time from iot_contact where project_id = ? order by update_time desc limit 0,1 
+[DEBUG][2023-02-13 11:02:44.654][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:02:44.662][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]<==      Total: 0
+[DEBUG][2023-02-13 11:02:44.663][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==>  Preparing: select b.username from sys_user_project_role a inner join sys_user b on a.user_id = b.id where a.project_id = ? and a.role_id !=6 
+[DEBUG][2023-02-13 11:02:44.664][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:02:44.672][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]<==      Total: 1
+[DEBUG][2023-02-13 11:02:44.674][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, `comment`, jd, wd, done, `type`, active, province, city, district, `location`, bim, pic, create_time, update_time from iot_project where id = ? 
+[DEBUG][2023-02-13 11:02:44.675][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:02:44.684][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]<==      Total: 1
+[INFO][2023-02-13 11:02:44.684][com.steelman.iot.platform.service.impl.MessageServiceImpl:132]body ==>在测试项目3中,IOTDAE-3000类型的新TEST0001在2023-02-13 11:02:43发生了告警B相缺相报警
+[INFO][2023-02-13 11:02:45.209][com.steelman.iot.platform.service.impl.MessageServiceImpl:142]aliasList ===>[admin_1646385811694, admin_1634117071238, admin_1638848499492, admin_1668067893855, admin_1675434218508, admin_1654911300762, admin_1659457737799, admin_1659058500703, admin_1676012420571, admin_1668138339665, admin_1659324740723, admin_1666434723663, admin_1636600214862, admin_1632359830506, admin_1666165252456, admin_1675342630706, admin_1646296427771, admin_1632717585774, admin_1640675345579, admin_1675081885553, admin_1634119044351, admin_1666345258174, admin_1666946778394, admin_1671294937889, admin_1675412709948, admin_1636421584014, admin_1667231538587, admin_1666094773161, admin_1632718817334, admin_1658972469434, admin_1670763518018]
+[INFO][2023-02-13 11:02:45.209][com.steelman.iot.platform.service.impl.MessageServiceImpl:143]taskId ===>RASL_0213_13d888feb3ae4dd0a61285b0dc7b0079
+[INFO][2023-02-13 11:02:45.265][com.steelman.iot.platform.push.GtPushApi:112]pushApiResult ===>ApiResult{code=0, msg='success', data={RASL_0213_13d888feb3ae4dd0a61285b0dc7b0079={9b6b73dbd742d4a9c1130db9ba57b9d2=successed_offline, 8c17df78fa02195b2dc08f7f701f8c1f=successed_ignore, f85b0892c829b51379cb2e6a1b5813f3=successed_offline, a5ffb7b0dcd31f839556e7af47e65dbc=successed_ignore, 2cfb7b18ffe747361d6cb1b0aae14ef7=successed_ignore, 485b35129a07213967165d9d87649deb=successed_offline, 869e043182672506230068eff6d3920d=successed_offline, 9f24bf9c913d3ac1504d15f82476d32d=successed_ignore}}}
+[INFO][2023-02-13 11:06:55.063][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-183657a2.2ce62f61.js,method ===>GET
+[INFO][2023-02-13 11:06:55.063][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/css/chunk-183657a2.8ed15ee7.css,method ===>GET
+[INFO][2023-02-13 11:06:55.064][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-0c58d94d.6bf494e7.js,method ===>GET
+[INFO][2023-02-13 11:06:55.064][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-adb9e944.9e6584b5.js,method ===>GET
+[INFO][2023-02-13 11:06:55.174][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-3b888a65.8737ce4f.js,method ===>GET
+[INFO][2023-02-13 11:06:55.174][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-214218f0.92c7a521.js,method ===>GET
+[INFO][2023-02-13 11:06:55.175][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-2d0af44e.81b7dfc1.js,method ===>GET
+[INFO][2023-02-13 11:06:55.210][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-2d0bd799.d162a2d5.js,method ===>GET
+[INFO][2023-02-13 11:06:55.297][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/favicon.ico,method ===>GET
+[INFO][2023-02-13 11:12:29.719][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/favicon.ico,method ===>GET
+[INFO][2023-02-13 11:14:38.076][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-0fd67716.d57e2c41.js,method ===>GET
+[INFO][2023-02-13 11:14:38.076][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-589faee0.08c2fba5.js,method ===>GET
+[INFO][2023-02-13 11:14:38.076][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-2d22269d.bb355f65.js,method ===>GET
+[INFO][2023-02-13 11:14:38.154][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/webjars/js/chunk-735c675c.76398496.js,method ===>GET
+[INFO][2023-02-13 11:14:45.631][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/favicon.ico,method ===>GET
+[INFO][2023-02-13 11:21:33.699][org.apache.coyote.http11.Http11Processor:175]Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:468)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:292)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:861)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1579)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.lang.Thread.run(Thread.java:748)
+[INFO][2023-02-13 11:23:22.593][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/api/energy/week/energy/statistic,method ===>POST
+[WARN][2023-02-13 11:23:22.657][org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver:199]Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('p' (code 112)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('p' (code 112)): was expecting double-quote to start field name
+ at [Source: (PushbackInputStream); line: 2, column: 6]]
+[INFO][2023-02-13 11:24:08.940][com.steelman.iot.platform.security.filter.JwtFilter:39]url ===>/api/energy/week/energy/statistic,method ===>POST
+[WARN][2023-02-13 11:24:08.963][org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver:199]Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character ('p' (code 112)): was expecting double-quote to start field name; nested exception is com.fasterxml.jackson.core.JsonParseException: Unexpected character ('p' (code 112)): was expecting double-quote to start field name
+ at [Source: (PushbackInputStream); line: 2, column: 6]]
+[DEBUG][2023-02-13 11:27:29.247][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, serial_num, device_model, device_type_id, trans_type, area_id, building_id, storey_id, room_id, `location`, project_id, erasure, `status`, switch_status, binding_status, binding_type, storey_x, storey_y, storey_cad_x, storey_cad_y, jd, wd, mark, ext_flag, video_url, version, hw_version, sw_version, manufacturer, product_date, useful_life, create_time, update_time from iot_device where id = ? 
+[DEBUG][2023-02-13 11:27:29.248][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==> Parameters: 230(Long)
+[DEBUG][2023-02-13 11:27:29.259][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:27:29.259][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, create_time, update_time from iot_device_type where id = ? 
+[DEBUG][2023-02-13 11:27:29.260][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==> Parameters: 6(Long)
+[DEBUG][2023-02-13 11:27:29.268][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:27:29.269][com.steelman.iot.platform.dao.AlarmItemDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, alarm_type_id,parent_item_id, parent_item, create_time, update_time from iot_alarm_item where id = ? 
+[DEBUG][2023-02-13 11:27:29.269][com.steelman.iot.platform.dao.AlarmItemDao.selectByPrimaryKey:143]==> Parameters: 38(Long)
+[DEBUG][2023-02-13 11:27:29.278][com.steelman.iot.platform.dao.AlarmItemDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:27:29.279][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==>  Preparing: select id, `name`, tel, address, email, mark, advice, company_id, company, dept, offer, project_id, create_time, update_time from iot_contact where project_id = ? order by update_time desc limit 0,1 
+[DEBUG][2023-02-13 11:27:29.279][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:27:29.287][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]<==      Total: 0
+[DEBUG][2023-02-13 11:27:29.288][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==>  Preparing: select b.username from sys_user_project_role a inner join sys_user b on a.user_id = b.id where a.project_id = ? and a.role_id !=6 
+[DEBUG][2023-02-13 11:27:29.288][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:27:29.296][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]<==      Total: 1
+[DEBUG][2023-02-13 11:27:29.297][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, `comment`, jd, wd, done, `type`, active, province, city, district, `location`, bim, pic, create_time, update_time from iot_project where id = ? 
+[DEBUG][2023-02-13 11:27:29.297][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:27:29.306][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]<==      Total: 1
+[INFO][2023-02-13 11:27:29.306][com.steelman.iot.platform.service.impl.MessageServiceImpl:132]body ==>在测试项目3中,IOTDAE-3000类型的新TEST0001在2023-02-13 11:27:27发生了告警A相缺相报警
+[INFO][2023-02-13 11:27:29.379][com.steelman.iot.platform.service.impl.MessageServiceImpl:142]aliasList ===>[admin_1636421584014, admin_1634117071238, admin_1658972469434, admin_1632717585774, admin_1646385811694, admin_1675081885553, admin_1671294937889, admin_1670763518018, admin_1659324740723, admin_1667231538587, admin_1675434218508, admin_1668138339665, admin_1659457737799, admin_1634119044351, admin_1666946778394, admin_1675342630706, admin_1654911300762, admin_1632359830506, admin_1666165252456, admin_1638848499492, admin_1666434723663, admin_1632718817334, admin_1659058500703, admin_1646296427771, admin_1666345258174, admin_1668067893855, admin_1676257433323, admin_1636600214862, admin_1640675345579, admin_1666094773161, admin_1675412709948]
+[INFO][2023-02-13 11:27:29.379][com.steelman.iot.platform.service.impl.MessageServiceImpl:143]taskId ===>RASL_0213_4896308da35741a3ad7d6e7c10371d40
+[INFO][2023-02-13 11:27:29.433][com.steelman.iot.platform.push.GtPushApi:112]pushApiResult ===>ApiResult{code=0, msg='success', data={RASL_0213_4896308da35741a3ad7d6e7c10371d40={9b6b73dbd742d4a9c1130db9ba57b9d2=successed_offline, 8c17df78fa02195b2dc08f7f701f8c1f=successed_ignore, f85b0892c829b51379cb2e6a1b5813f3=successed_offline, a5ffb7b0dcd31f839556e7af47e65dbc=successed_ignore, 2cfb7b18ffe747361d6cb1b0aae14ef7=successed_ignore, 485b35129a07213967165d9d87649deb=successed_offline, 869e043182672506230068eff6d3920d=successed_offline, 9f24bf9c913d3ac1504d15f82476d32d=successed_ignore}}}
+[DEBUG][2023-02-13 11:27:29.445][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, serial_num, device_model, device_type_id, trans_type, area_id, building_id, storey_id, room_id, `location`, project_id, erasure, `status`, switch_status, binding_status, binding_type, storey_x, storey_y, storey_cad_x, storey_cad_y, jd, wd, mark, ext_flag, video_url, version, hw_version, sw_version, manufacturer, product_date, useful_life, create_time, update_time from iot_device where id = ? 
+[DEBUG][2023-02-13 11:27:29.446][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==> Parameters: 230(Long)
+[DEBUG][2023-02-13 11:27:29.455][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:27:29.456][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, create_time, update_time from iot_device_type where id = ? 
+[DEBUG][2023-02-13 11:27:29.456][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==> Parameters: 6(Long)
+[DEBUG][2023-02-13 11:27:29.463][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:27:29.464][com.steelman.iot.platform.dao.AlarmItemDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, alarm_type_id,parent_item_id, parent_item, create_time, update_time from iot_alarm_item where id = ? 
+[DEBUG][2023-02-13 11:27:29.465][com.steelman.iot.platform.dao.AlarmItemDao.selectByPrimaryKey:143]==> Parameters: 40(Long)
+[DEBUG][2023-02-13 11:27:29.472][com.steelman.iot.platform.dao.AlarmItemDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:27:29.473][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==>  Preparing: select id, `name`, tel, address, email, mark, advice, company_id, company, dept, offer, project_id, create_time, update_time from iot_contact where project_id = ? order by update_time desc limit 0,1 
+[DEBUG][2023-02-13 11:27:29.474][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:27:29.483][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]<==      Total: 0
+[DEBUG][2023-02-13 11:27:29.485][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==>  Preparing: select b.username from sys_user_project_role a inner join sys_user b on a.user_id = b.id where a.project_id = ? and a.role_id !=6 
+[DEBUG][2023-02-13 11:27:29.486][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:27:29.493][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]<==      Total: 1
+[DEBUG][2023-02-13 11:27:29.494][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, `comment`, jd, wd, done, `type`, active, province, city, district, `location`, bim, pic, create_time, update_time from iot_project where id = ? 
+[DEBUG][2023-02-13 11:27:29.495][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:27:29.502][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]<==      Total: 1
+[INFO][2023-02-13 11:27:29.503][com.steelman.iot.platform.service.impl.MessageServiceImpl:132]body ==>在测试项目3中,IOTDAE-3000类型的新TEST0001在2023-02-13 11:27:27发生了告警C相缺相报警
+[INFO][2023-02-13 11:27:29.548][com.steelman.iot.platform.service.impl.MessageServiceImpl:142]aliasList ===>[admin_1666094773161, admin_1666946778394, admin_1666434723663, admin_1646296427771, admin_1634117071238, admin_1634119044351, admin_1632359830506, admin_1659457737799, admin_1646385811694, admin_1670763518018, admin_1640675345579, admin_1659324740723, admin_1636600214862, admin_1668067893855, admin_1658972469434, admin_1667231538587, admin_1654911300762, admin_1668138339665, admin_1675434218508, admin_1636421584014, admin_1638848499492, admin_1675081885553, admin_1675412709948, admin_1671294937889, admin_1666165252456, admin_1675342630706, admin_1659058500703, admin_1676257433323, admin_1632718817334, admin_1666345258174, admin_1632717585774]
+[INFO][2023-02-13 11:27:29.548][com.steelman.iot.platform.service.impl.MessageServiceImpl:143]taskId ===>RASL_0213_80336a00011b4b769483ee5e8835429a
+[INFO][2023-02-13 11:27:29.598][com.steelman.iot.platform.push.GtPushApi:112]pushApiResult ===>ApiResult{code=0, msg='success', data={RASL_0213_80336a00011b4b769483ee5e8835429a={9b6b73dbd742d4a9c1130db9ba57b9d2=successed_offline, 8c17df78fa02195b2dc08f7f701f8c1f=successed_ignore, f85b0892c829b51379cb2e6a1b5813f3=successed_offline, 2cfb7b18ffe747361d6cb1b0aae14ef7=successed_ignore, a5ffb7b0dcd31f839556e7af47e65dbc=successed_ignore, 485b35129a07213967165d9d87649deb=successed_offline, 869e043182672506230068eff6d3920d=successed_offline, 9f24bf9c913d3ac1504d15f82476d32d=successed_ignore}}}
+[DEBUG][2023-02-13 11:32:59.617][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, serial_num, device_model, device_type_id, trans_type, area_id, building_id, storey_id, room_id, `location`, project_id, erasure, `status`, switch_status, binding_status, binding_type, storey_x, storey_y, storey_cad_x, storey_cad_y, jd, wd, mark, ext_flag, video_url, version, hw_version, sw_version, manufacturer, product_date, useful_life, create_time, update_time from iot_device where id = ? 
+[DEBUG][2023-02-13 11:32:59.618][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==> Parameters: 230(Long)
+[DEBUG][2023-02-13 11:32:59.627][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:32:59.627][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, create_time, update_time from iot_device_type where id = ? 
+[DEBUG][2023-02-13 11:32:59.628][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==> Parameters: 6(Long)
+[DEBUG][2023-02-13 11:32:59.636][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:32:59.637][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, `comment`, jd, wd, done, `type`, active, province, city, district, `location`, bim, pic, create_time, update_time from iot_project where id = ? 
+[DEBUG][2023-02-13 11:32:59.637][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:32:59.646][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]<==      Total: 1
+[INFO][2023-02-13 11:32:59.647][com.steelman.iot.platform.service.impl.MessageServiceImpl:178]body ==>
+[DEBUG][2023-02-13 11:32:59.647][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==>  Preparing: select id, `name`, tel, address, email, mark, advice, company_id, company, dept, offer, project_id, create_time, update_time from iot_contact where project_id = ? order by update_time desc limit 0,1 
+[DEBUG][2023-02-13 11:32:59.647][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:32:59.655][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]<==      Total: 0
+[DEBUG][2023-02-13 11:32:59.655][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==>  Preparing: select b.username from sys_user_project_role a inner join sys_user b on a.user_id = b.id where a.project_id = ? and a.role_id !=6 
+[DEBUG][2023-02-13 11:32:59.656][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:32:59.663][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]<==      Total: 1
+[WARN][2023-02-13 11:32:59.727][org.springframework.jms.listener.DefaultMessageListenerContainer:929]Execution of JMS message listener failed, and no ErrorHandler has been set.
+org.springframework.jms.listener.adapter.ListenerExecutionFailedException: Listener method 'public void com.steelman.iot.platform.activemq.ActiveMQConsumer.receiveOfflineQueue(java.lang.String)' threw exception; nested exception is java.lang.NullPointerException
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:122)
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:77)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:736)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:696)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:674)
+	at org.springframework.jms.listener.AbstractPollingMessageListenerContainer.doReceiveAndExecute(AbstractPollingMessageListenerContainer.java:318)
+	at org.springframework.jms.listener.AbstractPollingMessageListenerContainer.receiveAndExecute(AbstractPollingMessageListenerContainer.java:257)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.invokeListener(DefaultMessageListenerContainer.java:1189)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.executeOngoingLoop(DefaultMessageListenerContainer.java:1179)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.run(DefaultMessageListenerContainer.java:1076)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.NullPointerException: null
+	at com.steelman.iot.platform.push.GtPushApi.createTask(GtPushApi.java:102)
+	at com.steelman.iot.platform.service.impl.MessageServiceImpl.sendOfflineMsg(MessageServiceImpl.java:196)
+	at com.steelman.iot.platform.activemq.ActiveMQConsumer.receiveOfflineQueue(ActiveMQConsumer.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:114)
+	... 10 common frames omitted
+[DEBUG][2023-02-13 11:33:00.736][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, serial_num, device_model, device_type_id, trans_type, area_id, building_id, storey_id, room_id, `location`, project_id, erasure, `status`, switch_status, binding_status, binding_type, storey_x, storey_y, storey_cad_x, storey_cad_y, jd, wd, mark, ext_flag, video_url, version, hw_version, sw_version, manufacturer, product_date, useful_life, create_time, update_time from iot_device where id = ? 
+[DEBUG][2023-02-13 11:33:00.737][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==> Parameters: 230(Long)
+[DEBUG][2023-02-13 11:33:00.746][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:33:00.747][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, create_time, update_time from iot_device_type where id = ? 
+[DEBUG][2023-02-13 11:33:00.747][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==> Parameters: 6(Long)
+[DEBUG][2023-02-13 11:33:00.758][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:33:00.758][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, `comment`, jd, wd, done, `type`, active, province, city, district, `location`, bim, pic, create_time, update_time from iot_project where id = ? 
+[DEBUG][2023-02-13 11:33:00.759][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:00.768][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]<==      Total: 1
+[INFO][2023-02-13 11:33:00.768][com.steelman.iot.platform.service.impl.MessageServiceImpl:178]body ==>
+[DEBUG][2023-02-13 11:33:00.769][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==>  Preparing: select id, `name`, tel, address, email, mark, advice, company_id, company, dept, offer, project_id, create_time, update_time from iot_contact where project_id = ? order by update_time desc limit 0,1 
+[DEBUG][2023-02-13 11:33:00.769][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:00.777][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]<==      Total: 0
+[DEBUG][2023-02-13 11:33:00.778][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==>  Preparing: select b.username from sys_user_project_role a inner join sys_user b on a.user_id = b.id where a.project_id = ? and a.role_id !=6 
+[DEBUG][2023-02-13 11:33:00.778][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:00.787][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]<==      Total: 1
+[WARN][2023-02-13 11:33:00.840][org.springframework.jms.listener.DefaultMessageListenerContainer:929]Execution of JMS message listener failed, and no ErrorHandler has been set.
+org.springframework.jms.listener.adapter.ListenerExecutionFailedException: Listener method 'public void com.steelman.iot.platform.activemq.ActiveMQConsumer.receiveOfflineQueue(java.lang.String)' threw exception; nested exception is java.lang.NullPointerException
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:122)
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:77)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:736)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:696)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:674)
+	at org.springframework.jms.listener.AbstractPollingMessageListenerContainer.doReceiveAndExecute(AbstractPollingMessageListenerContainer.java:318)
+	at org.springframework.jms.listener.AbstractPollingMessageListenerContainer.receiveAndExecute(AbstractPollingMessageListenerContainer.java:257)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.invokeListener(DefaultMessageListenerContainer.java:1189)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.executeOngoingLoop(DefaultMessageListenerContainer.java:1179)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.run(DefaultMessageListenerContainer.java:1076)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.NullPointerException: null
+	at com.steelman.iot.platform.push.GtPushApi.createTask(GtPushApi.java:102)
+	at com.steelman.iot.platform.service.impl.MessageServiceImpl.sendOfflineMsg(MessageServiceImpl.java:196)
+	at com.steelman.iot.platform.activemq.ActiveMQConsumer.receiveOfflineQueue(ActiveMQConsumer.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:114)
+	... 10 common frames omitted
+[DEBUG][2023-02-13 11:33:01.851][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, serial_num, device_model, device_type_id, trans_type, area_id, building_id, storey_id, room_id, `location`, project_id, erasure, `status`, switch_status, binding_status, binding_type, storey_x, storey_y, storey_cad_x, storey_cad_y, jd, wd, mark, ext_flag, video_url, version, hw_version, sw_version, manufacturer, product_date, useful_life, create_time, update_time from iot_device where id = ? 
+[DEBUG][2023-02-13 11:33:01.852][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==> Parameters: 230(Long)
+[DEBUG][2023-02-13 11:33:01.862][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:33:01.863][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, create_time, update_time from iot_device_type where id = ? 
+[DEBUG][2023-02-13 11:33:01.864][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==> Parameters: 6(Long)
+[DEBUG][2023-02-13 11:33:01.874][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:33:01.875][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, `comment`, jd, wd, done, `type`, active, province, city, district, `location`, bim, pic, create_time, update_time from iot_project where id = ? 
+[DEBUG][2023-02-13 11:33:01.875][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:01.888][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]<==      Total: 1
+[INFO][2023-02-13 11:33:01.889][com.steelman.iot.platform.service.impl.MessageServiceImpl:178]body ==>
+[DEBUG][2023-02-13 11:33:01.890][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==>  Preparing: select id, `name`, tel, address, email, mark, advice, company_id, company, dept, offer, project_id, create_time, update_time from iot_contact where project_id = ? order by update_time desc limit 0,1 
+[DEBUG][2023-02-13 11:33:01.891][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:01.901][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]<==      Total: 0
+[DEBUG][2023-02-13 11:33:01.902][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==>  Preparing: select b.username from sys_user_project_role a inner join sys_user b on a.user_id = b.id where a.project_id = ? and a.role_id !=6 
+[DEBUG][2023-02-13 11:33:01.903][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:01.911][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]<==      Total: 1
+[WARN][2023-02-13 11:33:01.970][org.springframework.jms.listener.DefaultMessageListenerContainer:929]Execution of JMS message listener failed, and no ErrorHandler has been set.
+org.springframework.jms.listener.adapter.ListenerExecutionFailedException: Listener method 'public void com.steelman.iot.platform.activemq.ActiveMQConsumer.receiveOfflineQueue(java.lang.String)' threw exception; nested exception is java.lang.NullPointerException
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:122)
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:77)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:736)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:696)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:674)
+	at org.springframework.jms.listener.AbstractPollingMessageListenerContainer.doReceiveAndExecute(AbstractPollingMessageListenerContainer.java:318)
+	at org.springframework.jms.listener.AbstractPollingMessageListenerContainer.receiveAndExecute(AbstractPollingMessageListenerContainer.java:257)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.invokeListener(DefaultMessageListenerContainer.java:1189)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.executeOngoingLoop(DefaultMessageListenerContainer.java:1179)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.run(DefaultMessageListenerContainer.java:1076)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.NullPointerException: null
+	at com.steelman.iot.platform.push.GtPushApi.createTask(GtPushApi.java:102)
+	at com.steelman.iot.platform.service.impl.MessageServiceImpl.sendOfflineMsg(MessageServiceImpl.java:196)
+	at com.steelman.iot.platform.activemq.ActiveMQConsumer.receiveOfflineQueue(ActiveMQConsumer.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:114)
+	... 10 common frames omitted
+[DEBUG][2023-02-13 11:33:02.979][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, serial_num, device_model, device_type_id, trans_type, area_id, building_id, storey_id, room_id, `location`, project_id, erasure, `status`, switch_status, binding_status, binding_type, storey_x, storey_y, storey_cad_x, storey_cad_y, jd, wd, mark, ext_flag, video_url, version, hw_version, sw_version, manufacturer, product_date, useful_life, create_time, update_time from iot_device where id = ? 
+[DEBUG][2023-02-13 11:33:02.980][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==> Parameters: 230(Long)
+[DEBUG][2023-02-13 11:33:02.989][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:33:02.990][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, create_time, update_time from iot_device_type where id = ? 
+[DEBUG][2023-02-13 11:33:02.990][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==> Parameters: 6(Long)
+[DEBUG][2023-02-13 11:33:02.998][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:33:02.999][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, `comment`, jd, wd, done, `type`, active, province, city, district, `location`, bim, pic, create_time, update_time from iot_project where id = ? 
+[DEBUG][2023-02-13 11:33:02.999][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:03.007][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]<==      Total: 1
+[INFO][2023-02-13 11:33:03.007][com.steelman.iot.platform.service.impl.MessageServiceImpl:178]body ==>
+[DEBUG][2023-02-13 11:33:03.008][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==>  Preparing: select id, `name`, tel, address, email, mark, advice, company_id, company, dept, offer, project_id, create_time, update_time from iot_contact where project_id = ? order by update_time desc limit 0,1 
+[DEBUG][2023-02-13 11:33:03.008][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:03.016][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]<==      Total: 0
+[DEBUG][2023-02-13 11:33:03.016][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==>  Preparing: select b.username from sys_user_project_role a inner join sys_user b on a.user_id = b.id where a.project_id = ? and a.role_id !=6 
+[DEBUG][2023-02-13 11:33:03.017][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:03.024][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]<==      Total: 1
+[WARN][2023-02-13 11:33:03.076][org.springframework.jms.listener.DefaultMessageListenerContainer:929]Execution of JMS message listener failed, and no ErrorHandler has been set.
+org.springframework.jms.listener.adapter.ListenerExecutionFailedException: Listener method 'public void com.steelman.iot.platform.activemq.ActiveMQConsumer.receiveOfflineQueue(java.lang.String)' threw exception; nested exception is java.lang.NullPointerException
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:122)
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:77)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:736)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:696)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:674)
+	at org.springframework.jms.listener.AbstractPollingMessageListenerContainer.doReceiveAndExecute(AbstractPollingMessageListenerContainer.java:318)
+	at org.springframework.jms.listener.AbstractPollingMessageListenerContainer.receiveAndExecute(AbstractPollingMessageListenerContainer.java:257)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.invokeListener(DefaultMessageListenerContainer.java:1189)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.executeOngoingLoop(DefaultMessageListenerContainer.java:1179)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.run(DefaultMessageListenerContainer.java:1076)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.NullPointerException: null
+	at com.steelman.iot.platform.push.GtPushApi.createTask(GtPushApi.java:102)
+	at com.steelman.iot.platform.service.impl.MessageServiceImpl.sendOfflineMsg(MessageServiceImpl.java:196)
+	at com.steelman.iot.platform.activemq.ActiveMQConsumer.receiveOfflineQueue(ActiveMQConsumer.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:114)
+	... 10 common frames omitted
+[DEBUG][2023-02-13 11:33:04.084][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, serial_num, device_model, device_type_id, trans_type, area_id, building_id, storey_id, room_id, `location`, project_id, erasure, `status`, switch_status, binding_status, binding_type, storey_x, storey_y, storey_cad_x, storey_cad_y, jd, wd, mark, ext_flag, video_url, version, hw_version, sw_version, manufacturer, product_date, useful_life, create_time, update_time from iot_device where id = ? 
+[DEBUG][2023-02-13 11:33:04.085][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==> Parameters: 230(Long)
+[DEBUG][2023-02-13 11:33:04.094][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:33:04.095][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, create_time, update_time from iot_device_type where id = ? 
+[DEBUG][2023-02-13 11:33:04.096][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==> Parameters: 6(Long)
+[DEBUG][2023-02-13 11:33:04.104][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:33:04.106][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, `comment`, jd, wd, done, `type`, active, province, city, district, `location`, bim, pic, create_time, update_time from iot_project where id = ? 
+[DEBUG][2023-02-13 11:33:04.107][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:04.115][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]<==      Total: 1
+[INFO][2023-02-13 11:33:04.116][com.steelman.iot.platform.service.impl.MessageServiceImpl:178]body ==>
+[DEBUG][2023-02-13 11:33:04.117][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==>  Preparing: select id, `name`, tel, address, email, mark, advice, company_id, company, dept, offer, project_id, create_time, update_time from iot_contact where project_id = ? order by update_time desc limit 0,1 
+[DEBUG][2023-02-13 11:33:04.117][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:04.125][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]<==      Total: 0
+[DEBUG][2023-02-13 11:33:04.126][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==>  Preparing: select b.username from sys_user_project_role a inner join sys_user b on a.user_id = b.id where a.project_id = ? and a.role_id !=6 
+[DEBUG][2023-02-13 11:33:04.127][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:04.135][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]<==      Total: 1
+[WARN][2023-02-13 11:33:04.187][org.springframework.jms.listener.DefaultMessageListenerContainer:929]Execution of JMS message listener failed, and no ErrorHandler has been set.
+org.springframework.jms.listener.adapter.ListenerExecutionFailedException: Listener method 'public void com.steelman.iot.platform.activemq.ActiveMQConsumer.receiveOfflineQueue(java.lang.String)' threw exception; nested exception is java.lang.NullPointerException
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:122)
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:77)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:736)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:696)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:674)
+	at org.springframework.jms.listener.AbstractPollingMessageListenerContainer.doReceiveAndExecute(AbstractPollingMessageListenerContainer.java:318)
+	at org.springframework.jms.listener.AbstractPollingMessageListenerContainer.receiveAndExecute(AbstractPollingMessageListenerContainer.java:257)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.invokeListener(DefaultMessageListenerContainer.java:1189)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.executeOngoingLoop(DefaultMessageListenerContainer.java:1179)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.run(DefaultMessageListenerContainer.java:1076)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.NullPointerException: null
+	at com.steelman.iot.platform.push.GtPushApi.createTask(GtPushApi.java:102)
+	at com.steelman.iot.platform.service.impl.MessageServiceImpl.sendOfflineMsg(MessageServiceImpl.java:196)
+	at com.steelman.iot.platform.activemq.ActiveMQConsumer.receiveOfflineQueue(ActiveMQConsumer.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:114)
+	... 10 common frames omitted
+[DEBUG][2023-02-13 11:33:05.199][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, serial_num, device_model, device_type_id, trans_type, area_id, building_id, storey_id, room_id, `location`, project_id, erasure, `status`, switch_status, binding_status, binding_type, storey_x, storey_y, storey_cad_x, storey_cad_y, jd, wd, mark, ext_flag, video_url, version, hw_version, sw_version, manufacturer, product_date, useful_life, create_time, update_time from iot_device where id = ? 
+[DEBUG][2023-02-13 11:33:05.200][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==> Parameters: 230(Long)
+[DEBUG][2023-02-13 11:33:05.209][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:33:05.209][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, create_time, update_time from iot_device_type where id = ? 
+[DEBUG][2023-02-13 11:33:05.209][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==> Parameters: 6(Long)
+[DEBUG][2023-02-13 11:33:05.217][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:33:05.218][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, `comment`, jd, wd, done, `type`, active, province, city, district, `location`, bim, pic, create_time, update_time from iot_project where id = ? 
+[DEBUG][2023-02-13 11:33:05.218][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:05.226][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]<==      Total: 1
+[INFO][2023-02-13 11:33:05.226][com.steelman.iot.platform.service.impl.MessageServiceImpl:178]body ==>
+[DEBUG][2023-02-13 11:33:05.227][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==>  Preparing: select id, `name`, tel, address, email, mark, advice, company_id, company, dept, offer, project_id, create_time, update_time from iot_contact where project_id = ? order by update_time desc limit 0,1 
+[DEBUG][2023-02-13 11:33:05.227][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:05.234][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]<==      Total: 0
+[DEBUG][2023-02-13 11:33:05.235][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==>  Preparing: select b.username from sys_user_project_role a inner join sys_user b on a.user_id = b.id where a.project_id = ? and a.role_id !=6 
+[DEBUG][2023-02-13 11:33:05.235][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:05.243][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]<==      Total: 1
+[WARN][2023-02-13 11:33:05.296][org.springframework.jms.listener.DefaultMessageListenerContainer:929]Execution of JMS message listener failed, and no ErrorHandler has been set.
+org.springframework.jms.listener.adapter.ListenerExecutionFailedException: Listener method 'public void com.steelman.iot.platform.activemq.ActiveMQConsumer.receiveOfflineQueue(java.lang.String)' threw exception; nested exception is java.lang.NullPointerException
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:122)
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:77)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:736)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:696)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:674)
+	at org.springframework.jms.listener.AbstractPollingMessageListenerContainer.doReceiveAndExecute(AbstractPollingMessageListenerContainer.java:318)
+	at org.springframework.jms.listener.AbstractPollingMessageListenerContainer.receiveAndExecute(AbstractPollingMessageListenerContainer.java:257)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.invokeListener(DefaultMessageListenerContainer.java:1189)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.executeOngoingLoop(DefaultMessageListenerContainer.java:1179)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.run(DefaultMessageListenerContainer.java:1076)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.NullPointerException: null
+	at com.steelman.iot.platform.push.GtPushApi.createTask(GtPushApi.java:102)
+	at com.steelman.iot.platform.service.impl.MessageServiceImpl.sendOfflineMsg(MessageServiceImpl.java:196)
+	at com.steelman.iot.platform.activemq.ActiveMQConsumer.receiveOfflineQueue(ActiveMQConsumer.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:114)
+	... 10 common frames omitted
+[DEBUG][2023-02-13 11:33:06.297][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, serial_num, device_model, device_type_id, trans_type, area_id, building_id, storey_id, room_id, `location`, project_id, erasure, `status`, switch_status, binding_status, binding_type, storey_x, storey_y, storey_cad_x, storey_cad_y, jd, wd, mark, ext_flag, video_url, version, hw_version, sw_version, manufacturer, product_date, useful_life, create_time, update_time from iot_device where id = ? 
+[DEBUG][2023-02-13 11:33:06.298][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]==> Parameters: 230(Long)
+[DEBUG][2023-02-13 11:33:06.307][com.steelman.iot.platform.dao.DeviceDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:33:06.308][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, create_time, update_time from iot_device_type where id = ? 
+[DEBUG][2023-02-13 11:33:06.308][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]==> Parameters: 6(Long)
+[DEBUG][2023-02-13 11:33:06.316][com.steelman.iot.platform.dao.DeviceTypeDao.selectByPrimaryKey:143]<==      Total: 1
+[DEBUG][2023-02-13 11:33:06.317][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==>  Preparing: select id, `name`, `comment`, jd, wd, done, `type`, active, province, city, district, `location`, bim, pic, create_time, update_time from iot_project where id = ? 
+[DEBUG][2023-02-13 11:33:06.317][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:06.325][com.steelman.iot.platform.dao.ProjectDao.selectByPrimaryKey:143]<==      Total: 1
+[INFO][2023-02-13 11:33:06.325][com.steelman.iot.platform.service.impl.MessageServiceImpl:178]body ==>
+[DEBUG][2023-02-13 11:33:06.326][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==>  Preparing: select id, `name`, tel, address, email, mark, advice, company_id, company, dept, offer, project_id, create_time, update_time from iot_contact where project_id = ? order by update_time desc limit 0,1 
+[DEBUG][2023-02-13 11:33:06.326][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:06.334][com.steelman.iot.platform.dao.ContactDao.selectProjectContact:143]<==      Total: 0
+[DEBUG][2023-02-13 11:33:06.334][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==>  Preparing: select b.username from sys_user_project_role a inner join sys_user b on a.user_id = b.id where a.project_id = ? and a.role_id !=6 
+[DEBUG][2023-02-13 11:33:06.335][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]==> Parameters: 11(Long)
+[DEBUG][2023-02-13 11:33:06.342][com.steelman.iot.platform.dao.UserProjectRoleDao.findUserNameByProjectId:143]<==      Total: 1
+[WARN][2023-02-13 11:33:06.395][org.springframework.jms.listener.DefaultMessageListenerContainer:929]Execution of JMS message listener failed, and no ErrorHandler has been set.
+org.springframework.jms.listener.adapter.ListenerExecutionFailedException: Listener method 'public void com.steelman.iot.platform.activemq.ActiveMQConsumer.receiveOfflineQueue(java.lang.String)' threw exception; nested exception is java.lang.NullPointerException
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:122)
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:77)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:736)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:696)
+	at org.springframework.jms.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:674)
+	at org.springframework.jms.listener.AbstractPollingMessageListenerContainer.doReceiveAndExecute(AbstractPollingMessageListenerContainer.java:318)
+	at org.springframework.jms.listener.AbstractPollingMessageListenerContainer.receiveAndExecute(AbstractPollingMessageListenerContainer.java:257)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.invokeListener(DefaultMessageListenerContainer.java:1189)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.executeOngoingLoop(DefaultMessageListenerContainer.java:1179)
+	at org.springframework.jms.listener.DefaultMessageListenerContainer$AsyncMessageListenerInvoker.run(DefaultMessageListenerContainer.java:1076)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.NullPointerException: null
+	at com.steelman.iot.platform.push.GtPushApi.createTask(GtPushApi.java:102)
+	at com.steelman.iot.platform.service.impl.MessageServiceImpl.sendOfflineMsg(MessageServiceImpl.java:196)
+	at com.steelman.iot.platform.activemq.ActiveMQConsumer.receiveOfflineQueue(ActiveMQConsumer.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:171)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:120)
+	at org.springframework.jms.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:114)
+	... 10 common frames omitted

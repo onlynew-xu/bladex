@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.energyManager.dao.DeviceHourDifferMeasurementDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.energyManager.entity.DeviceHourDifferMeasurement">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="device_id" jdbcType="BIGINT" property="deviceId" />
+    <result column="serial_num" jdbcType="VARCHAR" property="serialNum" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="hour_spike" jdbcType="VARCHAR" property="hourSpike" />
+    <result column="hour_peak" jdbcType="VARCHAR" property="hourPeak" />
+    <result column="hour_normal" jdbcType="VARCHAR" property="hourNormal" />
+    <result column="hour_valley" jdbcType="VARCHAR" property="hourValley" />
+    <result column="hour_total" jdbcType="VARCHAR" property="hourTotal" />
+    <result column="year" jdbcType="VARCHAR" property="year" />
+    <result column="month" jdbcType="VARCHAR" property="month" />
+    <result column="day" jdbcType="VARCHAR" property="day" />
+    <result column="year_month_day" jdbcType="VARCHAR" property="yearMonthDay" />
+    <result column="date_time_begin" jdbcType="VARCHAR" property="dateTimeBegin" />
+    <result column="date_time_end" jdbcType="VARCHAR" property="dateTimeEnd" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, device_id, serial_num, project_id, hour_spike, hour_peak, hour_normal, hour_valley, 
+    hour_total, `year`, `month`, `day`, year_month_day, date_time_begin, date_time_end, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_device_hour_differ_measurement
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_device_hour_differ_measurement
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.energyManager.entity.DeviceHourDifferMeasurement" useGeneratedKeys="true">
+    insert into iot_device_hour_differ_measurement (device_id, serial_num, project_id, 
+      hour_spike, hour_peak, hour_normal, 
+      hour_valley, hour_total, `year`, 
+      `month`, `day`, year_month_day, 
+      date_time_begin, date_time_end, create_time
+      )
+    values (#{deviceId,jdbcType=BIGINT}, #{serialNum,jdbcType=VARCHAR}, #{projectId,jdbcType=BIGINT}, 
+      #{hourSpike,jdbcType=VARCHAR}, #{hourPeak,jdbcType=VARCHAR}, #{hourNormal,jdbcType=VARCHAR}, 
+      #{hourValley,jdbcType=VARCHAR}, #{hourTotal,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR}, 
+      #{month,jdbcType=VARCHAR}, #{day,jdbcType=VARCHAR}, #{yearMonthDay,jdbcType=VARCHAR}, 
+      #{dateTimeBegin,jdbcType=VARCHAR}, #{dateTimeEnd,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.energyManager.entity.DeviceHourDifferMeasurement" useGeneratedKeys="true">
+    insert into iot_device_hour_differ_measurement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="serialNum != null">
+        serial_num,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="hourSpike != null">
+        hour_spike,
+      </if>
+      <if test="hourPeak != null">
+        hour_peak,
+      </if>
+      <if test="hourNormal != null">
+        hour_normal,
+      </if>
+      <if test="hourValley != null">
+        hour_valley,
+      </if>
+      <if test="hourTotal != null">
+        hour_total,
+      </if>
+      <if test="year != null">
+        `year`,
+      </if>
+      <if test="month != null">
+        `month`,
+      </if>
+      <if test="day != null">
+        `day`,
+      </if>
+      <if test="yearMonthDay != null">
+        year_month_day,
+      </if>
+      <if test="dateTimeBegin != null">
+        date_time_begin,
+      </if>
+      <if test="dateTimeEnd != null">
+        date_time_end,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="serialNum != null">
+        #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="hourSpike != null">
+        #{hourSpike,jdbcType=VARCHAR},
+      </if>
+      <if test="hourPeak != null">
+        #{hourPeak,jdbcType=VARCHAR},
+      </if>
+      <if test="hourNormal != null">
+        #{hourNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="hourValley != null">
+        #{hourValley,jdbcType=VARCHAR},
+      </if>
+      <if test="hourTotal != null">
+        #{hourTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="yearMonthDay != null">
+        #{yearMonthDay,jdbcType=VARCHAR},
+      </if>
+      <if test="dateTimeBegin != null">
+        #{dateTimeBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="dateTimeEnd != null">
+        #{dateTimeEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.energyManager.entity.DeviceHourDifferMeasurement">
+    update iot_device_hour_differ_measurement
+    <set>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="serialNum != null">
+        serial_num = #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="hourSpike != null">
+        hour_spike = #{hourSpike,jdbcType=VARCHAR},
+      </if>
+      <if test="hourPeak != null">
+        hour_peak = #{hourPeak,jdbcType=VARCHAR},
+      </if>
+      <if test="hourNormal != null">
+        hour_normal = #{hourNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="hourValley != null">
+        hour_valley = #{hourValley,jdbcType=VARCHAR},
+      </if>
+      <if test="hourTotal != null">
+        hour_total = #{hourTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        `year` = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        `month` = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null">
+        `day` = #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="yearMonthDay != null">
+        year_month_day = #{yearMonthDay,jdbcType=VARCHAR},
+      </if>
+      <if test="dateTimeBegin != null">
+        date_time_begin = #{dateTimeBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="dateTimeEnd != null">
+        date_time_end = #{dateTimeEnd,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.energyManager.entity.DeviceHourDifferMeasurement">
+    update iot_device_hour_differ_measurement
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      serial_num = #{serialNum,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=BIGINT},
+      hour_spike = #{hourSpike,jdbcType=VARCHAR},
+      hour_peak = #{hourPeak,jdbcType=VARCHAR},
+      hour_normal = #{hourNormal,jdbcType=VARCHAR},
+      hour_valley = #{hourValley,jdbcType=VARCHAR},
+      hour_total = #{hourTotal,jdbcType=VARCHAR},
+      `year` = #{year,jdbcType=VARCHAR},
+      `month` = #{month,jdbcType=VARCHAR},
+      `day` = #{day,jdbcType=VARCHAR},
+      year_month_day = #{yearMonthDay,jdbcType=VARCHAR},
+      date_time_begin = #{dateTimeBegin,jdbcType=VARCHAR},
+      date_time_end = #{dateTimeEnd,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+
+  <select id="selectByDeviceId" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"></include> FROM iot_device_hour_differ_measurement
+    WHERE device_id=#{deviceId}
+  </select>
+
+  <update id="updateNormal" >
+    <foreach collection="updateDeviceHourDiff" separator=";" item="item">
+      UPDATE  iot_device_hour_differ_measurement
+      SET hour_normal=#{item.hourNormal},hour_valley=#{item.hourValley}
+      WHERE id=#{item.id}
+    </foreach>
+
+  </update>
+</mapper>

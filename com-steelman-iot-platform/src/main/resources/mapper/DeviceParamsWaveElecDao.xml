@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.DeviceParamsWaveElecDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.DeviceParamsWaveElec">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="device_id" jdbcType="BIGINT" property="deviceId" />
+    <result column="serial_num" jdbcType="VARCHAR" property="serialNum" />
+    <result column="report_interval" jdbcType="VARCHAR" property="reportInterval" />
+    <result column="trans_capacity" jdbcType="VARCHAR" property="transCapacity" />
+    <result column="trans_load" jdbcType="VARCHAR" property="transLoad" />
+    <result column="modbus_address" jdbcType="VARCHAR" property="modbusAddress" />
+    <result column="modbus_baudrate" jdbcType="VARCHAR" property="modbusBaudrate" />
+    <result column="peak_report_time" jdbcType="VARCHAR" property="peakReportTime" />
+    <result column="normal_report_time" jdbcType="VARCHAR" property="normalReportTime" />
+    <result column="valley_report_time" jdbcType="VARCHAR" property="valleyReportTime" />
+    <result column="ct_ratio_a" jdbcType="VARCHAR" property="ctRatioA" />
+    <result column="ct_ratio_b" jdbcType="VARCHAR" property="ctRatioB" />
+    <result column="ct_ratio_c" jdbcType="VARCHAR" property="ctRatioC" />
+    <result column="ct_ratio_d" jdbcType="VARCHAR" property="ctRatioD" />
+    <result column="power_factor_a" jdbcType="VARCHAR" property="powerFactorA" />
+    <result column="power_factor_b" jdbcType="VARCHAR" property="powerFactorB" />
+    <result column="power_factor_c" jdbcType="VARCHAR" property="powerFactorC" />
+    <result column="over_voltage_a" jdbcType="VARCHAR" property="overVoltageA" />
+    <result column="over_voltage_b" jdbcType="VARCHAR" property="overVoltageB" />
+    <result column="over_voltage_c" jdbcType="VARCHAR" property="overVoltageC" />
+    <result column="under_voltage_a" jdbcType="VARCHAR" property="underVoltageA" />
+    <result column="under_voltage_b" jdbcType="VARCHAR" property="underVoltageB" />
+    <result column="under_voltage_c" jdbcType="VARCHAR" property="underVoltageC" />
+    <result column="lack_phase_a" jdbcType="VARCHAR" property="lackPhaseA" />
+    <result column="lack_phase_b" jdbcType="VARCHAR" property="lackPhaseB" />
+    <result column="lack_phase_c" jdbcType="VARCHAR" property="lackPhaseC" />
+    <result column="over_current_a" jdbcType="VARCHAR" property="overCurrentA" />
+    <result column="over_current_b" jdbcType="VARCHAR" property="overCurrentB" />
+    <result column="over_current_c" jdbcType="VARCHAR" property="overCurrentC" />
+    <result column="current_thd_a" jdbcType="VARCHAR" property="currentThdA" />
+    <result column="current_thd_b" jdbcType="VARCHAR" property="currentThdB" />
+    <result column="current_thd_c" jdbcType="VARCHAR" property="currentThdC" />
+    <result column="voltage_thd_a" jdbcType="VARCHAR" property="voltageThdA" />
+    <result column="voltage_thd_b" jdbcType="VARCHAR" property="voltageThdB" />
+    <result column="voltage_thd_c" jdbcType="VARCHAR" property="voltageThdC" />
+    <result column="dido_set" jdbcType="VARCHAR" property="didoSet" />
+    <result column="system_sw" jdbcType="VARCHAR" property="systemSw" />
+    <result column="alarm_sw" jdbcType="VARCHAR" property="alarmSw" />
+    <result column="peak" jdbcType="VARCHAR" property="peak" />
+    <result column="normal" jdbcType="VARCHAR" property="normal" />
+    <result column="valley" jdbcType="VARCHAR" property="valley" />
+    <result column="peak_price" jdbcType="VARCHAR" property="peakPrice" />
+    <result column="normal_price" jdbcType="VARCHAR" property="normalPrice" />
+    <result column="valley_price" jdbcType="VARCHAR" property="valleyPrice" />
+    <result column="return_code" jdbcType="VARCHAR" property="returnCode" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, device_id, serial_num, report_interval, trans_capacity, trans_load, modbus_address, 
+    modbus_baudrate, peak_report_time, normal_report_time, valley_report_time, ct_ratio_a, 
+    ct_ratio_b, ct_ratio_c, ct_ratio_d, power_factor_a, power_factor_b, power_factor_c, 
+    over_voltage_a, over_voltage_b, over_voltage_c, under_voltage_a, under_voltage_b, 
+    under_voltage_c, lack_phase_a, lack_phase_b, lack_phase_c, over_current_a, over_current_b, 
+    over_current_c, current_thd_a, current_thd_b, current_thd_c, voltage_thd_a, voltage_thd_b, 
+    voltage_thd_c, dido_set, system_sw, alarm_sw, peak, normal, valley, peak_price, normal_price, 
+    valley_price, return_code, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_device_params_wave_elec
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_device_params_wave_elec
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.DeviceParamsWaveElec" useGeneratedKeys="true">
+    insert into iot_device_params_wave_elec (device_id, serial_num, report_interval, 
+      trans_capacity, trans_load, modbus_address, 
+      modbus_baudrate, peak_report_time, normal_report_time, 
+      valley_report_time, ct_ratio_a, ct_ratio_b, 
+      ct_ratio_c, ct_ratio_d, power_factor_a, 
+      power_factor_b, power_factor_c, over_voltage_a, 
+      over_voltage_b, over_voltage_c, under_voltage_a, 
+      under_voltage_b, under_voltage_c, lack_phase_a, 
+      lack_phase_b, lack_phase_c, over_current_a, 
+      over_current_b, over_current_c, current_thd_a, 
+      current_thd_b, current_thd_c, voltage_thd_a, 
+      voltage_thd_b, voltage_thd_c, dido_set, 
+      system_sw, alarm_sw, peak, 
+      normal, valley, peak_price, 
+      normal_price, valley_price, return_code, 
+      create_time, update_time)
+    values (#{deviceId,jdbcType=BIGINT}, #{serialNum,jdbcType=VARCHAR}, #{reportInterval,jdbcType=VARCHAR}, 
+      #{transCapacity,jdbcType=VARCHAR}, #{transLoad,jdbcType=VARCHAR}, #{modbusAddress,jdbcType=VARCHAR}, 
+      #{modbusBaudrate,jdbcType=VARCHAR}, #{peakReportTime,jdbcType=VARCHAR}, #{normalReportTime,jdbcType=VARCHAR}, 
+      #{valleyReportTime,jdbcType=VARCHAR}, #{ctRatioA,jdbcType=VARCHAR}, #{ctRatioB,jdbcType=VARCHAR}, 
+      #{ctRatioC,jdbcType=VARCHAR}, #{ctRatioD,jdbcType=VARCHAR}, #{powerFactorA,jdbcType=VARCHAR}, 
+      #{powerFactorB,jdbcType=VARCHAR}, #{powerFactorC,jdbcType=VARCHAR}, #{overVoltageA,jdbcType=VARCHAR}, 
+      #{overVoltageB,jdbcType=VARCHAR}, #{overVoltageC,jdbcType=VARCHAR}, #{underVoltageA,jdbcType=VARCHAR}, 
+      #{underVoltageB,jdbcType=VARCHAR}, #{underVoltageC,jdbcType=VARCHAR}, #{lackPhaseA,jdbcType=VARCHAR}, 
+      #{lackPhaseB,jdbcType=VARCHAR}, #{lackPhaseC,jdbcType=VARCHAR}, #{overCurrentA,jdbcType=VARCHAR}, 
+      #{overCurrentB,jdbcType=VARCHAR}, #{overCurrentC,jdbcType=VARCHAR}, #{currentThdA,jdbcType=VARCHAR}, 
+      #{currentThdB,jdbcType=VARCHAR}, #{currentThdC,jdbcType=VARCHAR}, #{voltageThdA,jdbcType=VARCHAR}, 
+      #{voltageThdB,jdbcType=VARCHAR}, #{voltageThdC,jdbcType=VARCHAR}, #{didoSet,jdbcType=VARCHAR}, 
+      #{systemSw,jdbcType=VARCHAR}, #{alarmSw,jdbcType=VARCHAR}, #{peak,jdbcType=VARCHAR}, 
+      #{normal,jdbcType=VARCHAR}, #{valley,jdbcType=VARCHAR}, #{peakPrice,jdbcType=VARCHAR}, 
+      #{normalPrice,jdbcType=VARCHAR}, #{valleyPrice,jdbcType=VARCHAR}, #{returnCode,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.DeviceParamsWaveElec" useGeneratedKeys="true">
+    insert into iot_device_params_wave_elec
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="serialNum != null">
+        serial_num,
+      </if>
+      <if test="reportInterval != null">
+        report_interval,
+      </if>
+      <if test="transCapacity != null">
+        trans_capacity,
+      </if>
+      <if test="transLoad != null">
+        trans_load,
+      </if>
+      <if test="modbusAddress != null">
+        modbus_address,
+      </if>
+      <if test="modbusBaudrate != null">
+        modbus_baudrate,
+      </if>
+      <if test="peakReportTime != null">
+        peak_report_time,
+      </if>
+      <if test="normalReportTime != null">
+        normal_report_time,
+      </if>
+      <if test="valleyReportTime != null">
+        valley_report_time,
+      </if>
+      <if test="ctRatioA != null">
+        ct_ratio_a,
+      </if>
+      <if test="ctRatioB != null">
+        ct_ratio_b,
+      </if>
+      <if test="ctRatioC != null">
+        ct_ratio_c,
+      </if>
+      <if test="ctRatioD != null">
+        ct_ratio_d,
+      </if>
+      <if test="powerFactorA != null">
+        power_factor_a,
+      </if>
+      <if test="powerFactorB != null">
+        power_factor_b,
+      </if>
+      <if test="powerFactorC != null">
+        power_factor_c,
+      </if>
+      <if test="overVoltageA != null">
+        over_voltage_a,
+      </if>
+      <if test="overVoltageB != null">
+        over_voltage_b,
+      </if>
+      <if test="overVoltageC != null">
+        over_voltage_c,
+      </if>
+      <if test="underVoltageA != null">
+        under_voltage_a,
+      </if>
+      <if test="underVoltageB != null">
+        under_voltage_b,
+      </if>
+      <if test="underVoltageC != null">
+        under_voltage_c,
+      </if>
+      <if test="lackPhaseA != null">
+        lack_phase_a,
+      </if>
+      <if test="lackPhaseB != null">
+        lack_phase_b,
+      </if>
+      <if test="lackPhaseC != null">
+        lack_phase_c,
+      </if>
+      <if test="overCurrentA != null">
+        over_current_a,
+      </if>
+      <if test="overCurrentB != null">
+        over_current_b,
+      </if>
+      <if test="overCurrentC != null">
+        over_current_c,
+      </if>
+      <if test="currentThdA != null">
+        current_thd_a,
+      </if>
+      <if test="currentThdB != null">
+        current_thd_b,
+      </if>
+      <if test="currentThdC != null">
+        current_thd_c,
+      </if>
+      <if test="voltageThdA != null">
+        voltage_thd_a,
+      </if>
+      <if test="voltageThdB != null">
+        voltage_thd_b,
+      </if>
+      <if test="voltageThdC != null">
+        voltage_thd_c,
+      </if>
+      <if test="didoSet != null">
+        dido_set,
+      </if>
+      <if test="systemSw != null">
+        system_sw,
+      </if>
+      <if test="alarmSw != null">
+        alarm_sw,
+      </if>
+      <if test="peak != null">
+        peak,
+      </if>
+      <if test="normal != null">
+        normal,
+      </if>
+      <if test="valley != null">
+        valley,
+      </if>
+      <if test="peakPrice != null">
+        peak_price,
+      </if>
+      <if test="normalPrice != null">
+        normal_price,
+      </if>
+      <if test="valleyPrice != null">
+        valley_price,
+      </if>
+      <if test="returnCode != null">
+        return_code,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="serialNum != null">
+        #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="reportInterval != null">
+        #{reportInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="transCapacity != null">
+        #{transCapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="transLoad != null">
+        #{transLoad,jdbcType=VARCHAR},
+      </if>
+      <if test="modbusAddress != null">
+        #{modbusAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="modbusBaudrate != null">
+        #{modbusBaudrate,jdbcType=VARCHAR},
+      </if>
+      <if test="peakReportTime != null">
+        #{peakReportTime,jdbcType=VARCHAR},
+      </if>
+      <if test="normalReportTime != null">
+        #{normalReportTime,jdbcType=VARCHAR},
+      </if>
+      <if test="valleyReportTime != null">
+        #{valleyReportTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ctRatioA != null">
+        #{ctRatioA,jdbcType=VARCHAR},
+      </if>
+      <if test="ctRatioB != null">
+        #{ctRatioB,jdbcType=VARCHAR},
+      </if>
+      <if test="ctRatioC != null">
+        #{ctRatioC,jdbcType=VARCHAR},
+      </if>
+      <if test="ctRatioD != null">
+        #{ctRatioD,jdbcType=VARCHAR},
+      </if>
+      <if test="powerFactorA != null">
+        #{powerFactorA,jdbcType=VARCHAR},
+      </if>
+      <if test="powerFactorB != null">
+        #{powerFactorB,jdbcType=VARCHAR},
+      </if>
+      <if test="powerFactorC != null">
+        #{powerFactorC,jdbcType=VARCHAR},
+      </if>
+      <if test="overVoltageA != null">
+        #{overVoltageA,jdbcType=VARCHAR},
+      </if>
+      <if test="overVoltageB != null">
+        #{overVoltageB,jdbcType=VARCHAR},
+      </if>
+      <if test="overVoltageC != null">
+        #{overVoltageC,jdbcType=VARCHAR},
+      </if>
+      <if test="underVoltageA != null">
+        #{underVoltageA,jdbcType=VARCHAR},
+      </if>
+      <if test="underVoltageB != null">
+        #{underVoltageB,jdbcType=VARCHAR},
+      </if>
+      <if test="underVoltageC != null">
+        #{underVoltageC,jdbcType=VARCHAR},
+      </if>
+      <if test="lackPhaseA != null">
+        #{lackPhaseA,jdbcType=VARCHAR},
+      </if>
+      <if test="lackPhaseB != null">
+        #{lackPhaseB,jdbcType=VARCHAR},
+      </if>
+      <if test="lackPhaseC != null">
+        #{lackPhaseC,jdbcType=VARCHAR},
+      </if>
+      <if test="overCurrentA != null">
+        #{overCurrentA,jdbcType=VARCHAR},
+      </if>
+      <if test="overCurrentB != null">
+        #{overCurrentB,jdbcType=VARCHAR},
+      </if>
+      <if test="overCurrentC != null">
+        #{overCurrentC,jdbcType=VARCHAR},
+      </if>
+      <if test="currentThdA != null">
+        #{currentThdA,jdbcType=VARCHAR},
+      </if>
+      <if test="currentThdB != null">
+        #{currentThdB,jdbcType=VARCHAR},
+      </if>
+      <if test="currentThdC != null">
+        #{currentThdC,jdbcType=VARCHAR},
+      </if>
+      <if test="voltageThdA != null">
+        #{voltageThdA,jdbcType=VARCHAR},
+      </if>
+      <if test="voltageThdB != null">
+        #{voltageThdB,jdbcType=VARCHAR},
+      </if>
+      <if test="voltageThdC != null">
+        #{voltageThdC,jdbcType=VARCHAR},
+      </if>
+      <if test="didoSet != null">
+        #{didoSet,jdbcType=VARCHAR},
+      </if>
+      <if test="systemSw != null">
+        #{systemSw,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmSw != null">
+        #{alarmSw,jdbcType=VARCHAR},
+      </if>
+      <if test="peak != null">
+        #{peak,jdbcType=VARCHAR},
+      </if>
+      <if test="normal != null">
+        #{normal,jdbcType=VARCHAR},
+      </if>
+      <if test="valley != null">
+        #{valley,jdbcType=VARCHAR},
+      </if>
+      <if test="peakPrice != null">
+        #{peakPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="normalPrice != null">
+        #{normalPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="valleyPrice != null">
+        #{valleyPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCode != null">
+        #{returnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.DeviceParamsWaveElec">
+    update iot_device_params_wave_elec
+    <set>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="serialNum != null">
+        serial_num = #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="reportInterval != null">
+        report_interval = #{reportInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="transCapacity != null">
+        trans_capacity = #{transCapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="transLoad != null">
+        trans_load = #{transLoad,jdbcType=VARCHAR},
+      </if>
+      <if test="modbusAddress != null">
+        modbus_address = #{modbusAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="modbusBaudrate != null">
+        modbus_baudrate = #{modbusBaudrate,jdbcType=VARCHAR},
+      </if>
+      <if test="peakReportTime != null">
+        peak_report_time = #{peakReportTime,jdbcType=VARCHAR},
+      </if>
+      <if test="normalReportTime != null">
+        normal_report_time = #{normalReportTime,jdbcType=VARCHAR},
+      </if>
+      <if test="valleyReportTime != null">
+        valley_report_time = #{valleyReportTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ctRatioA != null">
+        ct_ratio_a = #{ctRatioA,jdbcType=VARCHAR},
+      </if>
+      <if test="ctRatioB != null">
+        ct_ratio_b = #{ctRatioB,jdbcType=VARCHAR},
+      </if>
+      <if test="ctRatioC != null">
+        ct_ratio_c = #{ctRatioC,jdbcType=VARCHAR},
+      </if>
+      <if test="ctRatioD != null">
+        ct_ratio_d = #{ctRatioD,jdbcType=VARCHAR},
+      </if>
+      <if test="powerFactorA != null">
+        power_factor_a = #{powerFactorA,jdbcType=VARCHAR},
+      </if>
+      <if test="powerFactorB != null">
+        power_factor_b = #{powerFactorB,jdbcType=VARCHAR},
+      </if>
+      <if test="powerFactorC != null">
+        power_factor_c = #{powerFactorC,jdbcType=VARCHAR},
+      </if>
+      <if test="overVoltageA != null">
+        over_voltage_a = #{overVoltageA,jdbcType=VARCHAR},
+      </if>
+      <if test="overVoltageB != null">
+        over_voltage_b = #{overVoltageB,jdbcType=VARCHAR},
+      </if>
+      <if test="overVoltageC != null">
+        over_voltage_c = #{overVoltageC,jdbcType=VARCHAR},
+      </if>
+      <if test="underVoltageA != null">
+        under_voltage_a = #{underVoltageA,jdbcType=VARCHAR},
+      </if>
+      <if test="underVoltageB != null">
+        under_voltage_b = #{underVoltageB,jdbcType=VARCHAR},
+      </if>
+      <if test="underVoltageC != null">
+        under_voltage_c = #{underVoltageC,jdbcType=VARCHAR},
+      </if>
+      <if test="lackPhaseA != null">
+        lack_phase_a = #{lackPhaseA,jdbcType=VARCHAR},
+      </if>
+      <if test="lackPhaseB != null">
+        lack_phase_b = #{lackPhaseB,jdbcType=VARCHAR},
+      </if>
+      <if test="lackPhaseC != null">
+        lack_phase_c = #{lackPhaseC,jdbcType=VARCHAR},
+      </if>
+      <if test="overCurrentA != null">
+        over_current_a = #{overCurrentA,jdbcType=VARCHAR},
+      </if>
+      <if test="overCurrentB != null">
+        over_current_b = #{overCurrentB,jdbcType=VARCHAR},
+      </if>
+      <if test="overCurrentC != null">
+        over_current_c = #{overCurrentC,jdbcType=VARCHAR},
+      </if>
+      <if test="currentThdA != null">
+        current_thd_a = #{currentThdA,jdbcType=VARCHAR},
+      </if>
+      <if test="currentThdB != null">
+        current_thd_b = #{currentThdB,jdbcType=VARCHAR},
+      </if>
+      <if test="currentThdC != null">
+        current_thd_c = #{currentThdC,jdbcType=VARCHAR},
+      </if>
+      <if test="voltageThdA != null">
+        voltage_thd_a = #{voltageThdA,jdbcType=VARCHAR},
+      </if>
+      <if test="voltageThdB != null">
+        voltage_thd_b = #{voltageThdB,jdbcType=VARCHAR},
+      </if>
+      <if test="voltageThdC != null">
+        voltage_thd_c = #{voltageThdC,jdbcType=VARCHAR},
+      </if>
+      <if test="didoSet != null">
+        dido_set = #{didoSet,jdbcType=VARCHAR},
+      </if>
+      <if test="systemSw != null">
+        system_sw = #{systemSw,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmSw != null">
+        alarm_sw = #{alarmSw,jdbcType=VARCHAR},
+      </if>
+      <if test="peak != null">
+        peak = #{peak,jdbcType=VARCHAR},
+      </if>
+      <if test="normal != null">
+        normal = #{normal,jdbcType=VARCHAR},
+      </if>
+      <if test="valley != null">
+        valley = #{valley,jdbcType=VARCHAR},
+      </if>
+      <if test="peakPrice != null">
+        peak_price = #{peakPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="normalPrice != null">
+        normal_price = #{normalPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="valleyPrice != null">
+        valley_price = #{valleyPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="returnCode != null">
+        return_code = #{returnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.DeviceParamsWaveElec">
+    update iot_device_params_wave_elec
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      serial_num = #{serialNum,jdbcType=VARCHAR},
+      report_interval = #{reportInterval,jdbcType=VARCHAR},
+      trans_capacity = #{transCapacity,jdbcType=VARCHAR},
+      trans_load = #{transLoad,jdbcType=VARCHAR},
+      modbus_address = #{modbusAddress,jdbcType=VARCHAR},
+      modbus_baudrate = #{modbusBaudrate,jdbcType=VARCHAR},
+      peak_report_time = #{peakReportTime,jdbcType=VARCHAR},
+      normal_report_time = #{normalReportTime,jdbcType=VARCHAR},
+      valley_report_time = #{valleyReportTime,jdbcType=VARCHAR},
+      ct_ratio_a = #{ctRatioA,jdbcType=VARCHAR},
+      ct_ratio_b = #{ctRatioB,jdbcType=VARCHAR},
+      ct_ratio_c = #{ctRatioC,jdbcType=VARCHAR},
+      ct_ratio_d = #{ctRatioD,jdbcType=VARCHAR},
+      power_factor_a = #{powerFactorA,jdbcType=VARCHAR},
+      power_factor_b = #{powerFactorB,jdbcType=VARCHAR},
+      power_factor_c = #{powerFactorC,jdbcType=VARCHAR},
+      over_voltage_a = #{overVoltageA,jdbcType=VARCHAR},
+      over_voltage_b = #{overVoltageB,jdbcType=VARCHAR},
+      over_voltage_c = #{overVoltageC,jdbcType=VARCHAR},
+      under_voltage_a = #{underVoltageA,jdbcType=VARCHAR},
+      under_voltage_b = #{underVoltageB,jdbcType=VARCHAR},
+      under_voltage_c = #{underVoltageC,jdbcType=VARCHAR},
+      lack_phase_a = #{lackPhaseA,jdbcType=VARCHAR},
+      lack_phase_b = #{lackPhaseB,jdbcType=VARCHAR},
+      lack_phase_c = #{lackPhaseC,jdbcType=VARCHAR},
+      over_current_a = #{overCurrentA,jdbcType=VARCHAR},
+      over_current_b = #{overCurrentB,jdbcType=VARCHAR},
+      over_current_c = #{overCurrentC,jdbcType=VARCHAR},
+      current_thd_a = #{currentThdA,jdbcType=VARCHAR},
+      current_thd_b = #{currentThdB,jdbcType=VARCHAR},
+      current_thd_c = #{currentThdC,jdbcType=VARCHAR},
+      voltage_thd_a = #{voltageThdA,jdbcType=VARCHAR},
+      voltage_thd_b = #{voltageThdB,jdbcType=VARCHAR},
+      voltage_thd_c = #{voltageThdC,jdbcType=VARCHAR},
+      dido_set = #{didoSet,jdbcType=VARCHAR},
+      system_sw = #{systemSw,jdbcType=VARCHAR},
+      alarm_sw = #{alarmSw,jdbcType=VARCHAR},
+      peak = #{peak,jdbcType=VARCHAR},
+      normal = #{normal,jdbcType=VARCHAR},
+      valley = #{valley,jdbcType=VARCHAR},
+      peak_price = #{peakPrice,jdbcType=VARCHAR},
+      normal_price = #{normalPrice,jdbcType=VARCHAR},
+      valley_price = #{valleyPrice,jdbcType=VARCHAR},
+      return_code = #{returnCode,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateVariableParams" parameterType="com.steelman.iot.platform.entity.DeviceParamsWaveElec">
+    update iot_device_params_wave_elec
+    <set>
+      <if test="reportInterval != null">
+        report_interval = #{reportInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="transCapacity != null">
+        trans_capacity = #{transCapacity,jdbcType=VARCHAR},
+      </if>
+      <if test="transLoad != null">
+        trans_load = #{transLoad,jdbcType=VARCHAR},
+      </if>
+      <if test="ctRatioA != null">
+        ct_ratio_a = #{ctRatioA,jdbcType=VARCHAR},
+      </if>
+      <if test="ctRatioB != null">
+        ct_ratio_b = #{ctRatioB,jdbcType=VARCHAR},
+      </if>
+      <if test="ctRatioC != null">
+        ct_ratio_c = #{ctRatioC,jdbcType=VARCHAR},
+      </if>
+      <if test="ctRatioD != null">
+        ct_ratio_d = #{ctRatioD,jdbcType=VARCHAR},
+      </if>
+      <if test="powerFactorA != null">
+        power_factor_a = #{powerFactorA,jdbcType=VARCHAR},
+      </if>
+      <if test="powerFactorB != null">
+        power_factor_b = #{powerFactorB,jdbcType=VARCHAR},
+      </if>
+      <if test="powerFactorC != null">
+        power_factor_c = #{powerFactorC,jdbcType=VARCHAR},
+      </if>
+      <if test="overVoltageA != null">
+        over_voltage_a = #{overVoltageA,jdbcType=VARCHAR},
+      </if>
+      <if test="overVoltageB != null">
+        over_voltage_b = #{overVoltageB,jdbcType=VARCHAR},
+      </if>
+      <if test="overVoltageC != null">
+        over_voltage_c = #{overVoltageC,jdbcType=VARCHAR},
+      </if>
+      <if test="underVoltageA != null">
+        under_voltage_a = #{underVoltageA,jdbcType=VARCHAR},
+      </if>
+      <if test="underVoltageB != null">
+        under_voltage_b = #{underVoltageB,jdbcType=VARCHAR},
+      </if>
+      <if test="underVoltageC != null">
+        under_voltage_c = #{underVoltageC,jdbcType=VARCHAR},
+      </if>
+      <if test="lackPhaseA != null">
+        lack_phase_a = #{lackPhaseA,jdbcType=VARCHAR},
+      </if>
+      <if test="lackPhaseB != null">
+        lack_phase_b = #{lackPhaseB,jdbcType=VARCHAR},
+      </if>
+      <if test="lackPhaseC != null">
+        lack_phase_c = #{lackPhaseC,jdbcType=VARCHAR},
+      </if>
+      <if test="overCurrentA != null">
+        over_current_a = #{overCurrentA,jdbcType=VARCHAR},
+      </if>
+      <if test="overCurrentB != null">
+        over_current_b = #{overCurrentB,jdbcType=VARCHAR},
+      </if>
+      <if test="overCurrentC != null">
+        over_current_c = #{overCurrentC,jdbcType=VARCHAR},
+      </if>
+      <if test="currentThdA != null">
+        current_thd_a = #{currentThdA,jdbcType=VARCHAR},
+      </if>
+      <if test="currentThdB != null">
+        current_thd_b = #{currentThdB,jdbcType=VARCHAR},
+      </if>
+      <if test="currentThdC != null">
+        current_thd_c = #{currentThdC,jdbcType=VARCHAR},
+      </if>
+      <if test="voltageThdA != null">
+        voltage_thd_a = #{voltageThdA,jdbcType=VARCHAR},
+      </if>
+      <if test="voltageThdB != null">
+        voltage_thd_b = #{voltageThdB,jdbcType=VARCHAR},
+      </if>
+      <if test="voltageThdC != null">
+        voltage_thd_c = #{voltageThdC,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where device_id = #{deviceId,jdbcType=BIGINT}
+  </update>
+  <select id="findByDeviceId" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM iot_device_params_wave_elec
+    WHERE device_id = #{deviceId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByDeviceId">
+    delete  from iot_device_params_wave_elec
+    where device_id=#{deviceId}
+  </delete>
+</mapper>

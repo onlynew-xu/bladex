@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.ProjectContactDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.ProjectContact">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="contact_id" jdbcType="BIGINT" property="contactId" />
+    <result column="notice" jdbcType="INTEGER" property="notice" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, project_id, contact_id, notice, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_project_contact
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_project_contact
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.ProjectContact" useGeneratedKeys="true">
+    insert into iot_project_contact (project_id, contact_id, notice, 
+      create_time, update_time)
+    values (#{projectId,jdbcType=BIGINT}, #{contactId,jdbcType=BIGINT}, #{notice,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.ProjectContact" useGeneratedKeys="true">
+    insert into iot_project_contact
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="contactId != null">
+        contact_id,
+      </if>
+      <if test="notice != null">
+        notice,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="contactId != null">
+        #{contactId,jdbcType=BIGINT},
+      </if>
+      <if test="notice != null">
+        #{notice,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.ProjectContact">
+    update iot_project_contact
+    <set>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="contactId != null">
+        contact_id = #{contactId,jdbcType=BIGINT},
+      </if>
+      <if test="notice != null">
+        notice = #{notice,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.ProjectContact">
+    update iot_project_contact
+    set project_id = #{projectId,jdbcType=BIGINT},
+      contact_id = #{contactId,jdbcType=BIGINT},
+      notice = #{notice,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

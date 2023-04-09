@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.LogLoginDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.LogLogin">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="login_time" jdbcType="VARCHAR" property="loginTime" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, user_id, login_time, ip, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_log_login
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+    <select id="selectByUserId" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List"/> from iot_log_login where user_id order by id desc LIMIT 200
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_log_login
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.LogLogin" useGeneratedKeys="true">
+    insert into iot_log_login (username, user_id, login_time, 
+      ip, create_time, update_time
+      )
+    values (#{username,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{loginTime,jdbcType=VARCHAR}, 
+      #{ip,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.LogLogin" useGeneratedKeys="true">
+    insert into iot_log_login
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        username,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="loginTime != null">
+        login_time,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+    <insert id="saveLoginLog" parameterType="com.steelman.iot.platform.entity.LogLogin">
+      INSERT  INTO  iot_log_login (id,username,user_id,login_time,ip,create_time,update_time)
+      VALUES (#{id},#{username},#{userId},#{loginTime},#{ip},#{createTime},#{updateTime})
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.LogLogin">
+    update iot_log_login
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="loginTime != null">
+        login_time = #{loginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.LogLogin">
+    update iot_log_login
+    set username = #{username,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      login_time = #{loginTime,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

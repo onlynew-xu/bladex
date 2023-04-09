@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.EnergyEquipmentFourthDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.EnergyEquipmentFourth">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="rated_power" jdbcType="VARCHAR" property="ratedPower" />
+    <result column="production_date" jdbcType="TIMESTAMP" property="productionDate" />
+    <result column="company_id" jdbcType="BIGINT" property="companyId" />
+    <result column="area_id" jdbcType="BIGINT" property="areaId" />
+    <result column="building_id" jdbcType="BIGINT" property="buildingId" />
+    <result column="storey_id" jdbcType="BIGINT" property="storeyId" />
+    <result column="room_id" jdbcType="BIGINT" property="roomId" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="energy_type_id" jdbcType="BIGINT" property="energyTypeId" />
+    <result column="consume_type_id" jdbcType="BIGINT" property="consumeTypeId" />
+    <result column="energy_third_id" jdbcType="BIGINT" property="energyThirdId" />
+    <result column="system_id" jdbcType="BIGINT" property="systemId" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, brand, rated_power, production_date, company_id, area_id, building_id, 
+    storey_id, room_id, `location`, energy_type_id, consume_type_id, energy_third_id, 
+    system_id, project_id, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_energy_equipment_fourth
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_energy_equipment_fourth
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.EnergyEquipmentFourth" useGeneratedKeys="true">
+    insert into iot_energy_equipment_fourth (`name`, brand, rated_power, 
+      production_date, company_id, area_id, 
+      building_id, storey_id, room_id, 
+      `location`, energy_type_id, consume_type_id, 
+      energy_third_id, system_id, project_id, 
+      create_time, update_time)
+    values (#{name,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, #{ratedPower,jdbcType=VARCHAR}, 
+      #{productionDate,jdbcType=TIMESTAMP}, #{companyId,jdbcType=BIGINT}, #{areaId,jdbcType=BIGINT}, 
+      #{buildingId,jdbcType=BIGINT}, #{storeyId,jdbcType=BIGINT}, #{roomId,jdbcType=BIGINT}, 
+      #{location,jdbcType=VARCHAR}, #{energyTypeId,jdbcType=BIGINT}, #{consumeTypeId,jdbcType=BIGINT}, 
+      #{energyThirdId,jdbcType=BIGINT}, #{systemId,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.EnergyEquipmentFourth" useGeneratedKeys="true">
+    insert into iot_energy_equipment_fourth
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="ratedPower != null">
+        rated_power,
+      </if>
+      <if test="productionDate != null">
+        production_date,
+      </if>
+      <if test="companyId != null">
+        company_id,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="storeyId != null">
+        storey_id,
+      </if>
+      <if test="roomId != null">
+        room_id,
+      </if>
+      <if test="location != null">
+        `location`,
+      </if>
+      <if test="energyTypeId != null">
+        energy_type_id,
+      </if>
+      <if test="consumeTypeId != null">
+        consume_type_id,
+      </if>
+      <if test="energyThirdId != null">
+        energy_third_id,
+      </if>
+      <if test="systemId != null">
+        system_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="ratedPower != null">
+        #{ratedPower,jdbcType=VARCHAR},
+      </if>
+      <if test="productionDate != null">
+        #{productionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyId != null">
+        #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=BIGINT},
+      </if>
+      <if test="storeyId != null">
+        #{storeyId,jdbcType=BIGINT},
+      </if>
+      <if test="roomId != null">
+        #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="energyTypeId != null">
+        #{energyTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="consumeTypeId != null">
+        #{consumeTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="energyThirdId != null">
+        #{energyThirdId,jdbcType=BIGINT},
+      </if>
+      <if test="systemId != null">
+        #{systemId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.EnergyEquipmentFourth">
+    update iot_energy_equipment_fourth
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="ratedPower != null">
+        rated_power = #{ratedPower,jdbcType=VARCHAR},
+      </if>
+      <if test="productionDate != null">
+        production_date = #{productionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="companyId != null">
+        company_id = #{companyId,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=BIGINT},
+      </if>
+      <if test="storeyId != null">
+        storey_id = #{storeyId,jdbcType=BIGINT},
+      </if>
+      <if test="roomId != null">
+        room_id = #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="location != null">
+        `location` = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="energyTypeId != null">
+        energy_type_id = #{energyTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="consumeTypeId != null">
+        consume_type_id = #{consumeTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="energyThirdId != null">
+        energy_third_id = #{energyThirdId,jdbcType=BIGINT},
+      </if>
+      <if test="systemId != null">
+        system_id = #{systemId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.EnergyEquipmentFourth">
+    update iot_energy_equipment_fourth
+    set `name` = #{name,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      rated_power = #{ratedPower,jdbcType=VARCHAR},
+      production_date = #{productionDate,jdbcType=TIMESTAMP},
+      company_id = #{companyId,jdbcType=BIGINT},
+      area_id = #{areaId,jdbcType=BIGINT},
+      building_id = #{buildingId,jdbcType=BIGINT},
+      storey_id = #{storeyId,jdbcType=BIGINT},
+      room_id = #{roomId,jdbcType=BIGINT},
+      `location` = #{location,jdbcType=VARCHAR},
+      energy_type_id = #{energyTypeId,jdbcType=BIGINT},
+      consume_type_id = #{consumeTypeId,jdbcType=BIGINT},
+      energy_third_id = #{energyThirdId,jdbcType=BIGINT},
+      system_id = #{systemId,jdbcType=BIGINT},
+      project_id = #{projectId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="getEnergyStatistic" resultType="com.steelman.iot.platform.largescreen.vo.EnergyStatus">
+    SELECT ef.id as equipmentId,
+           ef.name as equipmentName,
+           IFNULL(de.status,2) as status,
+           4 as level
+    FROM iot_energy_equipment_fourth ef
+           LEFT JOIN  iot_energy_equipment_fourth_device efd ON ef.id = efd.equipment_fourth_id  AND efd.project_id=#{projectId}
+           LEFT JOIN  iot_device de ON de.id=efd.device_id AND de.project_id=#{projectId}
+    WHERE ef.project_id=#{projectId}
+
+  </select>
+
+  <select id="consumeStatistic" resultType="map">
+    SELECT count(1) as num,ect.id as consumeTypeId,ect.name as consumeTypeName
+    FROM iot_energy_equipment_fourth ef
+           INNER JOIN iot_energy_consume_type ect ON ef.consume_type_id=ect.id
+    WHERE  ef.project_id=#{projectId}
+    GROUP BY ef.consume_type_id
+  </select>
+  <select id="getEquipmentTotal" resultType="map">
+    SELECT eq.id as equipmentId,
+           eq.name as equipmentName,
+           IFNULL(mea.total_total,'0') as totalTotal
+    FROM iot_energy_equipment_fourth eq
+           LEFT JOIN iot_energy_equipment_fourth_device ede ON eq.id=ede.equipment_fourth_id AND ede.project_id=#{projectId}
+           LEFT JOIN ( SELECT max(me.id) as measure_id,me.device_id as device_id
+                       FROM iot_device_measurement me
+                       WHERE me.project_id=#{projectId}
+                       GROUP BY me.device_id )as mme ON ede.device_id=mme.device_id
+           LEFT JOIN iot_device_measurement mea On mea.id=mme.measure_id
+    where eq.project_id=#{projectId}
+  </select>
+</mapper>

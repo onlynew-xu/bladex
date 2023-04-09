@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.PowerBoxLoopDeviceDao">
+    <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.PowerBoxLoopDevice">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="box_id" jdbcType="BIGINT" property="boxId"/>
+        <result column="box_loop_id" jdbcType="BIGINT" property="boxLoopId"/>
+        <result column="device_id" jdbcType="BIGINT" property="deviceId"/>
+        <result column="power_id" jdbcType="BIGINT" property="powerId"/>
+        <result column="project_id" jdbcType="BIGINT" property="projectId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+        ,
+        box_id,
+        box_loop_id,
+        device_id,
+        power_id,
+        project_id,
+        create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from iot_power_box_loop_device
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectByLoopId" resultType="com.steelman.iot.platform.entity.vo.PowerDeviceInfo">
+        select a.id,
+               ds.name as deviceName,
+               a.device_id as deviceId,
+               b.status as status,
+               b.serial_num as serialNum,
+               b.device_type_id as deviceTypeId,
+               c.name as deviceTypeName
+        from iot_power_box_loop_device a
+                 inner join iot_device b on a.device_id = b.id
+                 inner join iot_device_type c on b.device_type_id = c.id
+                 inner join iot_device_system ds ON ds.device_id=b.id
+        where a.box_loop_id = #{loopId} AND ds.system_id=2000
+        order by a.id desc
+    </select>
+    <select id="selectByDeviceId"  resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from iot_power_box_loop_device where device_id = #{deviceId}
+    </select>
+    <select id="selectLoopDevice" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from iot_power_box_loop_device where box_loop_id = #{loopId}
+    </select>
+    <select id="selectBoxWhetherAlarm" resultType="java.lang.Boolean">
+        select count(0)
+        from iot_power_box_loop_device a
+                 inner join iot_device b on a.device_id = b.id
+        where a.box_id = #{boxId}
+          and b.status = 1
+    </select>
+    <select id="selectBoxWhetherOffLine" resultType="java.lang.Boolean">
+        select count(0)
+        from iot_power_box_loop_device a
+                 inner join iot_device b on a.device_id = b.id
+        where a.box_id = #{boxId}
+          and b.status int(2,4)
+    </select>
+    <select id="selectBoxLoopByDeviceId" resultType="com.steelman.iot.platform.entity.PowerBoxLoop">
+        select b.* from iot_power_box_loop_device a inner join  iot_power_box_loop b on a.box_loop_id = b.id where a.device_id = #{id}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from iot_power_box_loop_device
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id"
+            parameterType="com.steelman.iot.platform.entity.PowerBoxLoopDevice" useGeneratedKeys="true">
+        insert into iot_power_box_loop_device (box_id, box_loop_id, device_id,
+                                               power_id, project_id, create_time,
+                                               update_time)
+        values (#{boxId,jdbcType=BIGINT}, #{boxLoopId,jdbcType=BIGINT}, #{deviceId,jdbcType=BIGINT},
+                #{powerId,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+                #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.steelman.iot.platform.entity.PowerBoxLoopDevice" useGeneratedKeys="true">
+        insert into iot_power_box_loop_device
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="boxId != null">
+                box_id,
+            </if>
+            <if test="boxLoopId != null">
+                box_loop_id,
+            </if>
+            <if test="deviceId != null">
+                device_id,
+            </if>
+            <if test="powerId != null">
+                power_id,
+            </if>
+            <if test="projectId != null">
+                project_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="boxId != null">
+                #{boxId,jdbcType=BIGINT},
+            </if>
+            <if test="boxLoopId != null">
+                #{boxLoopId,jdbcType=BIGINT},
+            </if>
+            <if test="deviceId != null">
+                #{deviceId,jdbcType=BIGINT},
+            </if>
+            <if test="powerId != null">
+                #{powerId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.PowerBoxLoopDevice">
+        update iot_power_box_loop_device
+        <set>
+            <if test="boxId != null">
+                box_id = #{boxId,jdbcType=BIGINT},
+            </if>
+            <if test="boxLoopId != null">
+                box_loop_id = #{boxLoopId,jdbcType=BIGINT},
+            </if>
+            <if test="deviceId != null">
+                device_id = #{deviceId,jdbcType=BIGINT},
+            </if>
+            <if test="powerId != null">
+                power_id = #{powerId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.PowerBoxLoopDevice">
+        update iot_power_box_loop_device
+        set box_id      = #{boxId,jdbcType=BIGINT},
+            box_loop_id = #{boxLoopId,jdbcType=BIGINT},
+            device_id   = #{deviceId,jdbcType=BIGINT},
+            power_id    = #{powerId,jdbcType=BIGINT},
+            project_id  = #{projectId,jdbcType=BIGINT},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="removeByDeviceId">
+        UPDATE iot_power_box_loop_device
+        SET device_id=null
+        WHERE device_id=#{deviceId}
+    </update>
+    <select id="findByDeviceSet" resultType="com.steelman.iot.platform.entity.dto.PowerDeviceDto">
+       SELECT pbld.device_id as deviceId,p.id  as powerId,p.name as powerName, 5 as type,
+              pb.id as powerDeviceId,pb.name as powerDeviceName,pbl.id as loopId,pbl.name as loopName
+       FROM iot_power_box_loop_device pbld
+       INNER JOIN iot_power_box_loop pbl ON pbld.box_loop_id=pbl.id
+       INNER JOIN iot_power_box pb ON pbld.box_id=pb.id
+       INNER JOIN iot_power p ON pbld.power_id=p.id
+       WHERE    pbld.project_id=#{projectId} AND pbld.device_id IN
+       <foreach collection="deviceIdSet" item="deviceId" separator="," open="(" close=")">
+           #{deviceId}
+       </foreach>
+    </select>
+
+    <select id="getDeviceByBoxId" resultType="com.steelman.iot.platform.entity.vo.PowerDeviceInfo">
+        select a.id,
+               ds.name as deviceName,
+               a.device_id as deviceId,
+               b.serial_num as serialNum,
+               b.device_type_id as deviceTypeId,
+               c.name as deviceTypeName
+        from iot_power_box_loop_device a
+                 inner join iot_device b on a.device_id = b.id
+                 inner join iot_device_type c on b.device_type_id = c.id
+                 inner join iot_device_system ds ON ds.device_id=b.id
+        where a.box_id = #{boxId}
+        order by a.id desc
+    </select>
+    <select id="getPowerDeviceList" resultType="long">
+        select device_id
+        from iot_power_box_loop_device
+        where project_id=#{projectId} AND power_id=#{powerId}
+    </select>
+</mapper>

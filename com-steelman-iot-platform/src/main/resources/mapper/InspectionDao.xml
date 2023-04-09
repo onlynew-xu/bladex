@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.InspectionDao">
+    <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.Inspection">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="even_type" jdbcType="INTEGER" property="evenType"/>
+        <result column="even_week" jdbcType="VARCHAR" property="evenWeek"/>
+        <result column="even_month" jdbcType="VARCHAR" property="evenMonth"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="project_id" jdbcType="BIGINT" property="projectId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <resultMap id="InspectionResultMap" type="com.steelman.iot.platform.entity.vo.InspectionInfo">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="content" jdbcType="VARCHAR" property="content"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="even_week" jdbcType="VARCHAR" property="evenWeek"/>
+        <result column="even_month" jdbcType="VARCHAR" property="evenMonth"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="begin_time" jdbcType="TIMESTAMP" property="beginTime"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id,
+        title,
+        even_type,
+        even_week,
+        even_month,
+        content,
+        user_id,
+        begin_time,
+        end_time,
+        `status`,
+        project_id,
+        create_time,
+        update_time
+    </sql>
+    <select id="selectByAll" resultMap="InspectionResultMap">
+        select a.id,
+               a.content,
+               a.begin_time,
+               a.status,
+               a.content,
+               a.title,
+               a.even_type,
+               a.even_month,
+               a.even_week,
+               b.username
+        from iot_inspection a
+                 left join sys_user b on a.user_id = b.id
+        where a.project_id = #{projectId} and user_id = #{userId}
+        ORDER BY id desc limit #{page},#{size}
+    </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from iot_inspection
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectInfo" resultMap="BaseResultMap">
+        select a.id,
+               a.content,
+               a.begin_time,
+               a.status,
+               a.content,
+               a.title,
+               a.even_type,
+               a.even_month,
+               a.even_week,
+               b.username,
+               a.end_time
+        from iot_inspection a
+                 left join sys_user b on a.user_id = b.id
+        where a.project_id = #{projectId}
+        order by a.id desc
+    </select>
+
+    <select id="selectByProjectId" resultType="com.steelman.iot.platform.entity.vo.InspectionInfo">
+        select a.id,
+               a.content,
+               a.begin_time,
+               a.status,
+               a.content,
+               a.title,
+               a.even_type,
+               a.even_month,
+               a.even_week,
+               b.username,
+               a.end_time
+        from iot_inspection a
+                 left join sys_user b on a.user_id = b.id
+        where a.project_id = #{projectId}
+        order by a.id desc
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from iot_inspection
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.Inspection"
+            useGeneratedKeys="true">
+        insert into iot_inspection (title, even_type, even_week,
+                                    even_month, content, user_id,
+                                    begin_time, end_time, `status`,
+                                    project_id, create_time, update_time)
+        values (#{title,jdbcType=VARCHAR}, #{evenType,jdbcType=INTEGER}, #{evenWeek,jdbcType=VARCHAR},
+                #{evenMonth,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT},
+                #{beginTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER},
+                #{projectId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.steelman.iot.platform.entity.Inspection" useGeneratedKeys="true">
+        insert into iot_inspection
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                title,
+            </if>
+            <if test="evenType != null">
+                even_type,
+            </if>
+            <if test="evenWeek != null">
+                even_week,
+            </if>
+            <if test="evenMonth != null">
+                even_month,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="beginTime != null">
+                begin_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="projectId != null">
+                project_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="evenType != null">
+                #{evenType,jdbcType=INTEGER},
+            </if>
+            <if test="evenWeek != null">
+                #{evenWeek,jdbcType=VARCHAR},
+            </if>
+            <if test="evenMonth != null">
+                #{evenMonth,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="beginTime != null">
+                #{beginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="projectId != null">
+                #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.Inspection">
+        update iot_inspection
+        <set>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="evenType != null">
+                even_type = #{evenType,jdbcType=INTEGER},
+            </if>
+            <if test="evenWeek != null">
+                even_week = #{evenWeek,jdbcType=VARCHAR},
+            </if>
+            <if test="evenMonth != null">
+                even_month = #{evenMonth,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId,jdbcType=BIGINT},
+            </if>
+            <if test="beginTime != null">
+                begin_time = #{beginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.Inspection">
+        update iot_inspection
+        set title       = #{title,jdbcType=VARCHAR},
+            even_type   = #{evenType,jdbcType=INTEGER},
+            even_week   = #{evenWeek,jdbcType=VARCHAR},
+            even_month  = #{evenMonth,jdbcType=VARCHAR},
+            content     = #{content,jdbcType=VARCHAR},
+            user_id     = #{userId,jdbcType=BIGINT},
+            begin_time  = #{beginTime,jdbcType=TIMESTAMP},
+            end_time    = #{endTime,jdbcType=TIMESTAMP},
+            `status`    = #{status,jdbcType=INTEGER},
+            project_id  = #{projectId,jdbcType=BIGINT},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="getActiveInspectionInfo" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"></include>
+        from iot_inspection
+        where status=1
+    </select>
+    <select id="getDtoList" resultType="com.steelman.iot.platform.entity.dto.InspectionDto">
+        SELECT  ins.id as id,
+                ins.title as title,
+                ins.even_type as evenType,
+                ins.even_week as evenWeek,
+                ins.even_month as evenMonth ,
+                ins.content as content,
+                ins.user_id as userId,
+                DATE_FORMAT(ins.begin_time,'%Y-%m-%d') as beginTime,
+                DATE_FORMAT(ins.end_time,'%Y-%m-%d') as endTime,
+                ins.status as status,
+                us.name as username
+        FROM iot_inspection ins
+        INNER JOIN sys_user us On ins.user_id=us.id
+        WHERE ins.project_id=#{projectId} AND ins.status != 3
+        ORDER BY ins.create_time
+    </select>
+    <select id="getDtoById" resultType="com.steelman.iot.platform.entity.dto.InspectionDto">
+        SELECT  ins.id as id,
+                ins.title as title,
+                ins.even_type as evenType,
+                ins.even_week as evenWeek,
+                ins.even_month as evenMonth ,
+                ins.content as content,
+                ins.user_id as userId,
+                DATE_FORMAT(ins.begin_time,'%Y-%m-%d') as beginTime,
+                DATE_FORMAT(ins.end_time,'%Y-%m-%d') as endTime,
+                ins.status as status,
+                us.name as username
+        FROM iot_inspection ins
+                 INNER JOIN sys_user us On ins.user_id=us.id
+        WHERE ins.id=#{inspectionId}
+    </select>
+</mapper>

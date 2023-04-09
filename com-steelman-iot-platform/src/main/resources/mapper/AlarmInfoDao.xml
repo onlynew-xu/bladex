@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.AlarmInfoDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.AlarmInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="device_id" jdbcType="BIGINT" property="deviceId" />
+    <result column="serial_num" jdbcType="VARCHAR" property="serialNum" />
+    <result column="system_id" jdbcType="BIGINT" property="systemId" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="area_id" jdbcType="BIGINT" property="areaId" />
+    <result column="building_id" jdbcType="BIGINT" property="buildingId" />
+    <result column="storey_id" jdbcType="BIGINT" property="storeyId" />
+    <result column="room_id" jdbcType="BIGINT" property="roomId" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="alarm_type_id" jdbcType="BIGINT" property="alarmTypeId" />
+    <result column="alarm_item_id" jdbcType="BIGINT" property="alarmItemId" />
+    <result column="alarm_level_id" jdbcType="BIGINT" property="alarmLevelId" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="alarm_warn_id" jdbcType="BIGINT" property="alarmWarnId" />
+    <result column="alarm_value" jdbcType="VARCHAR" property="alarmValue" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, device_id, serial_num, system_id, project_id, area_id, building_id, storey_id, 
+    room_id, `location`, alarm_type_id, alarm_item_id, alarm_level_id, remark,
+    `status`, alarm_warn_id, alarm_value, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_alarm_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_alarm_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.AlarmInfo" useGeneratedKeys="true">
+    insert into iot_alarm_info (device_id, serial_num, system_id, 
+      project_id, area_id, building_id, 
+      storey_id, room_id, `location`, 
+       alarm_type_id, alarm_item_id,
+      alarm_level_id, remark, `status`, 
+      alarm_warn_id, alarm_value, create_time, 
+      update_time)
+    values (#{deviceId,jdbcType=BIGINT}, #{serialNum,jdbcType=VARCHAR}, #{systemId,jdbcType=BIGINT}, 
+      #{projectId,jdbcType=BIGINT}, #{areaId,jdbcType=BIGINT}, #{buildingId,jdbcType=BIGINT}, 
+      #{storeyId,jdbcType=BIGINT}, #{roomId,jdbcType=BIGINT}, #{location,jdbcType=VARCHAR}, 
+      #{alarmTypeId,jdbcType=BIGINT}, #{alarmItemId,jdbcType=BIGINT},
+      #{alarmLevelId,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{alarmWarnId,jdbcType=BIGINT}, #{alarmValue,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.AlarmInfo" useGeneratedKeys="true">
+    insert into iot_alarm_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="serialNum != null">
+        serial_num,
+      </if>
+      <if test="systemId != null">
+        system_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="storeyId != null">
+        storey_id,
+      </if>
+      <if test="roomId != null">
+        room_id,
+      </if>
+      <if test="location != null">
+        `location`,
+      </if>
+      <if test="alarmTypeId != null">
+        alarm_type_id,
+      </if>
+      <if test="alarmItemId != null">
+        alarm_item_id,
+      </if>
+      <if test="alarmLevelId != null">
+        alarm_level_id,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="alarmWarnId != null">
+        alarm_warn_id,
+      </if>
+      <if test="alarmValue != null">
+        alarm_value,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="serialNum != null">
+        #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        #{systemId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=BIGINT},
+      </if>
+      <if test="storeyId != null">
+        #{storeyId,jdbcType=BIGINT},
+      </if>
+      <if test="roomId != null">
+        #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmTypeId != null">
+        #{alarmTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="alarmItemId != null">
+        #{alarmItemId,jdbcType=BIGINT},
+      </if>
+      <if test="alarmLevelId != null">
+        #{alarmLevelId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="alarmWarnId != null">
+        #{alarmWarnId,jdbcType=BIGINT},
+      </if>
+      <if test="alarmValue != null">
+        #{alarmValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.AlarmInfo">
+    update iot_alarm_info
+    <set>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="serialNum != null">
+        serial_num = #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        system_id = #{systemId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=BIGINT},
+      </if>
+      <if test="storeyId != null">
+        storey_id = #{storeyId,jdbcType=BIGINT},
+      </if>
+      <if test="roomId != null">
+        room_id = #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="location != null">
+        `location` = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmTypeId != null">
+        alarm_type_id = #{alarmTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="alarmItemId != null">
+        alarm_item_id = #{alarmItemId,jdbcType=BIGINT},
+      </if>
+      <if test="alarmLevelId != null">
+        alarm_level_id = #{alarmLevelId,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="alarmWarnId != null">
+        alarm_warn_id = #{alarmWarnId,jdbcType=BIGINT},
+      </if>
+      <if test="alarmValue != null">
+        alarm_value = #{alarmValue,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.AlarmInfo">
+    update iot_alarm_info
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      serial_num = #{serialNum,jdbcType=VARCHAR},
+      system_id = #{systemId,jdbcType=BIGINT},
+      project_id = #{projectId,jdbcType=BIGINT},
+      area_id = #{areaId,jdbcType=BIGINT},
+      building_id = #{buildingId,jdbcType=BIGINT},
+      storey_id = #{storeyId,jdbcType=BIGINT},
+      room_id = #{roomId,jdbcType=BIGINT},
+      `location` = #{location,jdbcType=VARCHAR},
+      alarm_type_id = #{alarmTypeId,jdbcType=BIGINT},
+      alarm_item_id = #{alarmItemId,jdbcType=BIGINT},
+      alarm_level_id = #{alarmLevelId,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=INTEGER},
+      alarm_warn_id = #{alarmWarnId,jdbcType=BIGINT},
+      alarm_value = #{alarmValue,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="removeDeviceSystem">
+    DELETE FROM iot_alarm_info
+    WHERE project_id=#{projectId} AND device_id=#{deviceId} AND system_id=#{systemId}
+  </delete>
+
+  <delete id="removeDeviceId">
+    DELETE FROM iot_alarm_info
+    WHERE device_id=#{deviceId}
+  </delete>
+</mapper>

@@ -1,0 +1,1303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.EnergyEquipmentDao">
+    <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.EnergyEquipment">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="brand" jdbcType="VARCHAR" property="brand"/>
+        <result column="rated_power" jdbcType="VARCHAR" property="ratedPower"/>
+        <result column="production_date" jdbcType="TIMESTAMP" property="productionDate"/>
+        <result column="company_id" jdbcType="BIGINT" property="companyId"/>
+        <result column="area_id" jdbcType="BIGINT" property="areaId"/>
+        <result column="building_id" jdbcType="BIGINT" property="buildingId"/>
+        <result column="storey_id" jdbcType="BIGINT" property="storeyId"/>
+        <result column="room_id" jdbcType="BIGINT" property="roomId"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
+        <result column="energy_type_id" jdbcType="BIGINT" property="energyTypeId"/>
+        <result column="consume_type_id" jdbcType="BIGINT" property="consumeTypeId"/>
+        <result column="system_id" jdbcType="BIGINT" property="systemId"/>
+        <result column="project_id" jdbcType="BIGINT" property="projectId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <resultMap id="measureMap" type="com.steelman.iot.platform.entity.DeviceMeasurement">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="device_id" jdbcType="BIGINT" property="deviceId"/>
+        <result column="serial_num" jdbcType="VARCHAR" property="serialNum"/>
+        <result column="day_peak" jdbcType="VARCHAR" property="dayPeak"/>
+        <result column="day_spike" jdbcType="VARCHAR" property="daySpike"/>
+        <result column="day_normal" jdbcType="VARCHAR" property="dayNormal"/>
+        <result column="day_valley" jdbcType="VARCHAR" property="dayValley"/>
+        <result column="day_total" jdbcType="VARCHAR" property="dayTotal"/>
+        <result column="day_peak_price" jdbcType="VARCHAR" property="dayPeakPrice"/>
+        <result column="day_spike_price" jdbcType="VARCHAR" property="daySpikePrice"/>
+        <result column="day_normal_price" jdbcType="VARCHAR" property="dayNormalPrice"/>
+        <result column="day_valley_price" jdbcType="VARCHAR" property="dayValleyPrice"/>
+        <result column="day_total_price" jdbcType="VARCHAR" property="dayTotalPrice"/>
+        <result column="month_peak" jdbcType="VARCHAR" property="monthPeak"/>
+        <result column="month_spike" jdbcType="VARCHAR" property="monthSpike"/>
+        <result column="month_normal" jdbcType="VARCHAR" property="monthNormal"/>
+        <result column="month_valley" jdbcType="VARCHAR" property="monthValley"/>
+        <result column="month_total" jdbcType="VARCHAR" property="monthTotal"/>
+        <result column="total_peak" jdbcType="VARCHAR" property="totalPeak"/>
+        <result column="total_spike" jdbcType="VARCHAR" property="totalSpike"/>
+        <result column="total_normal" jdbcType="VARCHAR" property="totalNormal"/>
+        <result column="total_valley" jdbcType="VARCHAR" property="totalValley"/>
+        <result column="total_total" jdbcType="VARCHAR" property="totalTotal"/>
+        <result column="reactive_day_peak" jdbcType="VARCHAR" property="reactiveDayPeak"/>
+        <result column="reactive_day_spike" jdbcType="VARCHAR" property="reactiveDaySpike"/>
+        <result column="reactive_day_normal" jdbcType="VARCHAR" property="reactiveDayNormal"/>
+        <result column="reactive_day_valley" jdbcType="VARCHAR" property="reactiveDayValley"/>
+        <result column="reactive_day_total" jdbcType="VARCHAR" property="reactiveDayTotal"/>
+        <result column="reactive_month_peak" jdbcType="VARCHAR" property="reactiveMonthPeak"/>
+        <result column="reactive_month_spike" jdbcType="VARCHAR" property="reactiveMonthSpike"/>
+        <result column="reactive_month_normal" jdbcType="VARCHAR" property="reactiveMonthNormal"/>
+        <result column="reactive_month_valley" jdbcType="VARCHAR" property="reactiveMonthValley"/>
+        <result column="reactive_month_total" jdbcType="VARCHAR" property="reactiveMonthTotal"/>
+        <result column="reactive_total_spike" jdbcType="VARCHAR" property="reactiveTotalSpike"/>
+        <result column="reactive_total_peak" jdbcType="VARCHAR" property="reactiveTotalPeak"/>
+        <result column="reactive_total_normal" jdbcType="VARCHAR" property="reactiveTotalNormal"/>
+        <result column="reactive_total_valley" jdbcType="VARCHAR" property="reactiveTotalValley"/>
+        <result column="reactive_total_total" jdbcType="VARCHAR" property="reactiveTotalTotal"/>
+        <result column="year" jdbcType="VARCHAR" property="year"/>
+        <result column="month" jdbcType="VARCHAR" property="month"/>
+        <result column="day" jdbcType="VARCHAR" property="day"/>
+        <result column="year_month_day" jdbcType="VARCHAR" property="yearMonthDay"/>
+        <result column="manual_flag" jdbcType="INTEGER" property="manualFlag"/>
+        <result column="month_last_day" jdbcType="INTEGER" property="monthLastDay"/>
+        <result column="day_last_min" jdbcType="INTEGER" property="dayLastMin"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id
+        ,
+        `name`,
+        brand,
+        rated_power,
+        production_date,
+        company_id,
+        area_id,
+        building_id,
+        storey_id,
+        room_id,
+        `location`,
+        energy_type_id,
+        consume_type_id,
+        system_id,
+        project_id,
+        create_time,
+        update_time
+    </sql>
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from iot_energy_equipment
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByLoop" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from iot_energy_equipment where box_loop_id = #{boxLoopId} and energy_type_id = #{energyTypeId} order by id desc
+
+    </select>
+    <select id="selectCountGroupEnergyType" resultType="java.util.Map">
+        select a.id, a.name, count(b.id) as `count`
+        from iot_energy_type a
+                 left join iot_energy_equipment b on a.id = b.energy_type_id
+        where a.project_id = #{projectId}
+        group by a.id
+    </select>
+    <select id="selectCountGroupConsumeType" resultType="java.util.Map">
+        select a.id, a.name, count(b.id) as `count`
+        from iot_energy_consume_type a
+                 left join iot_energy_equipment b on a.id = b.consume_type_id
+        where a.project_id = #{projectId}
+        group by a.id
+    </select>
+    <select id="selectProjectEnergyType" resultType="com.steelman.iot.platform.entity.vo.EquipmentItemVo">
+        select a.id, a.create_time, b.url
+        from iot_energy_equipment a
+                 left join iot_energy_equipment_picture b on a.id = b.equipment_id
+        where a.project_id = #{projectId}
+          and a.energy_type_id = #{energyTypeId}
+    </select>
+
+    <select id="selectProjectConsumeType" resultType="com.steelman.iot.platform.entity.vo.EquipmentItemVo">
+        select a.id, a.create_time, b.url
+        from iot_energy_equipment a
+                 left join iot_energy_equipment_picture b on a.id = b.equipment_id
+        where a.project_id = #{projectId}
+          and a.consume_type_id = #{consumeTypeId}
+    </select>
+
+    <select id="selectCenterInfo" resultType="com.steelman.iot.platform.entity.vo.EquipmentInfoVo">
+        select a.id,
+               a.name,
+               b.name as consumeTypeName,
+               c.name as energyTypeName,
+               a.location,
+               b,
+               url
+        from iot_energy_equipment a
+                 left join iot_energy_consume_type b on a.consume_type_id = b.id
+                 left join iot_energy_type c on a.energy_type_id = c.id
+                 left join iot_energy_equipment_picture b on a.id = b.id
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from iot_energy_equipment
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.EnergyEquipment"
+            useGeneratedKeys="true">
+        insert into iot_energy_equipment (`name`, brand, rated_power,
+                                          production_date, company_id, area_id,
+                                          building_id, storey_id, room_id,
+                                          `location`, energy_type_id, consume_type_id, system_id, project_id,
+                                          create_time, update_time)
+        values (#{name,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, #{ratedPower,jdbcType=VARCHAR},
+                #{productionDate,jdbcType=TIMESTAMP}, #{companyId,jdbcType=BIGINT}, #{areaId,jdbcType=BIGINT},
+                #{buildingId,jdbcType=BIGINT}, #{storeyId,jdbcType=BIGINT}, #{roomId,jdbcType=BIGINT},
+                #{location,jdbcType=VARCHAR}, #{energyTypeId,jdbcType=BIGINT}, #{consumeTypeId,jdbcType=BIGINT},
+                 #{systemId,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT},
+                #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.steelman.iot.platform.entity.EnergyEquipment" useGeneratedKeys="true">
+        insert into iot_energy_equipment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="brand != null">
+                brand,
+            </if>
+            <if test="ratedPower != null">
+                rated_power,
+            </if>
+            <if test="productionDate != null">
+                production_date,
+            </if>
+            <if test="companyId != null">
+                company_id,
+            </if>
+            <if test="areaId != null">
+                area_id,
+            </if>
+            <if test="buildingId != null">
+                building_id,
+            </if>
+            <if test="storeyId != null">
+                storey_id,
+            </if>
+            <if test="roomId != null">
+                room_id,
+            </if>
+            <if test="location != null">
+                `location`,
+            </if>
+            <if test="energyTypeId != null">
+                energy_type_id,
+            </if>
+            <if test="consumeTypeId != null">
+                consume_type_id,
+            </if>
+            <if test="systemId != null">
+                system_id,
+            </if>
+            <if test="projectId != null">
+                project_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="brand != null">
+                #{brand,jdbcType=VARCHAR},
+            </if>
+            <if test="ratedPower != null">
+                #{ratedPower,jdbcType=VARCHAR},
+            </if>
+            <if test="productionDate != null">
+                #{productionDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="companyId != null">
+                #{companyId,jdbcType=BIGINT},
+            </if>
+            <if test="areaId != null">
+                #{areaId,jdbcType=BIGINT},
+            </if>
+            <if test="buildingId != null">
+                #{buildingId,jdbcType=BIGINT},
+            </if>
+            <if test="storeyId != null">
+                #{storeyId,jdbcType=BIGINT},
+            </if>
+            <if test="roomId != null">
+                #{roomId,jdbcType=BIGINT},
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="energyTypeId != null">
+                #{energyTypeId,jdbcType=BIGINT},
+            </if>
+            <if test="consumeTypeId != null">
+                #{consumeTypeId,jdbcType=BIGINT},
+            </if>
+            <if test="systemId != null">
+                #{systemId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.EnergyEquipment">
+        update iot_energy_equipment
+        <set>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="brand != null">
+                brand = #{brand,jdbcType=VARCHAR},
+            </if>
+            <if test="ratedPower != null">
+                rated_power = #{ratedPower,jdbcType=VARCHAR},
+            </if>
+            <if test="productionDate != null">
+                production_date = #{productionDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId,jdbcType=BIGINT},
+            </if>
+            <if test="areaId != null">
+                area_id = #{areaId,jdbcType=BIGINT},
+            </if>
+            <if test="buildingId != null">
+                building_id = #{buildingId,jdbcType=BIGINT},
+            </if>
+            <if test="storeyId != null">
+                storey_id = #{storeyId,jdbcType=BIGINT},
+            </if>
+            <if test="roomId != null">
+                room_id = #{roomId,jdbcType=BIGINT},
+            </if>
+            <if test="location != null">
+                `location` = #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="energyTypeId != null">
+                energy_type_id = #{energyTypeId,jdbcType=BIGINT},
+            </if>
+            <if test="consumeTypeId != null">
+                consume_type_id = #{consumeTypeId,jdbcType=BIGINT},
+            </if>
+            <if test="systemId != null">
+                system_id = #{systemId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.EnergyEquipment">
+        update iot_energy_equipment
+        set `name`          = #{name,jdbcType=VARCHAR},
+            brand           = #{brand,jdbcType=VARCHAR},
+            rated_power     = #{ratedPower,jdbcType=VARCHAR},
+            production_date = #{productionDate,jdbcType=TIMESTAMP},
+            company_id      = #{companyId,jdbcType=BIGINT},
+            area_id         = #{areaId,jdbcType=BIGINT},
+            building_id     = #{buildingId,jdbcType=BIGINT},
+            storey_id       = #{storeyId,jdbcType=BIGINT},
+            room_id         = #{roomId,jdbcType=BIGINT},
+            `location`      = #{location,jdbcType=VARCHAR},
+            energy_type_id  = #{energyTypeId,jdbcType=BIGINT},
+            consume_type_id = #{consumeTypeId,jdbcType=BIGINT},
+            system_id       = #{systemId,jdbcType=BIGINT},
+            project_id      = #{projectId,jdbcType=BIGINT},
+            create_time     = #{createTime,jdbcType=TIMESTAMP},
+            update_time     = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateAreaNull">
+        UPDATE iot_energy_equipment
+        SET area_id =null
+        WHERE id=#{id}
+    </update>
+
+    <update id="updateCompanyIdNull">
+        UPDATE iot_energy_equipment
+        SET company_id =null
+        WHERE id=#{id}
+    </update>
+
+    <select id="getByEnergyConsumeTypeId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM iot_energy_equipment
+        where project_id=#{projectId} AND consume_type_id=#{consumeTypeId}
+    </select>
+    <select id="getByEnergyTypeId" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"></include>
+        FROM iot_energy_equipment
+        WHERE project_id=#{projectId} AND energy_type_id=#{energyTypeId}
+    </select>
+
+    <select id="getAllEnergyEquitmentMeausure" resultMap="measureMap">
+        select mea.total_total,mea.total_spike,mea.total_peak,mea.total_normal,mea.total_valley
+        from iot_energy_equipment  as eq
+        inner join  iot_energy_equipment_device  as ed  on eq.id=ed.equipment_id AND ed.project_id=#{projectId}
+        inner join
+            (select max(me.id) as measureId, me.device_id as device_id
+                from iot_device_measurement me
+                WHERE me.project_id=#{projectId} AND me.year_month_day=#{yearMonthDay}
+                GROUP BY me.device_id) as mes on ed.device_id=mes.device_id
+        inner join iot_device_measurement mea on mes.measureId= mea.id
+        where eq.project_id=#{projectId}
+    </select>
+    <select id="countEnergyTypeNum" resultType="map">
+       SELECT count(id) as num,energy_type_id as typeId
+       FROM iot_energy_equipment
+       WHERE project_id=#{projectId}
+       GROUP BY energy_type_id
+    </select>
+    <select id="consumeStatistic" resultType="map">
+        SELECT count(id) as num,consume_type_id as typeId
+        FROM iot_energy_equipment
+        WHERE project_id=#{projectId}
+        GROUP BY consume_type_id
+    </select>
+    <select id="getWeekCousume" resultType="com.steelman.iot.platform.entity.dto.MeasureIntegerDate">
+        SELECT mea.year_month_day as yearMonthDay,
+               SUM(CONVERT(IFNULL(mea.day_spike,'0'),SIGNED)) as spike,
+               SUM(CONVERT(IFNULL(mea.day_total,'0'),SIGNED)) as total,
+               SUM(CONVERT(IFNULL(mea.day_peak,'0'),SIGNED)) as peak,
+               SUM(CONVERT(IFNULL(mea.day_normal,'0'),SIGNED)) as normal,
+               SUM(CONVERT(IFNULL(mea.day_valley,'0'),SIGNED)) as valley
+        FROM iot_energy_equipment equ
+        INNER JOIN iot_energy_equipment_device eqd on equ.id=eqd.equipment_id AND eqd.project_id=#{projectId}
+        INNER JOIN iot_device de ON eqd.device_id=de.id AND de.project_id=#{projectId}
+        INNER JOIN iot_device_last_measurement mea on de.id=mea.device_id AND mea.project_id=#{projectId}
+        WHERE equ.project_id=#{projectId} and mea.day_last_min=1  AND (mea.create_time BETWEEN #{begDate} AND #{endDate})
+        GROUP BY mea.year_month_day
+    </select>
+    <select id="getTodayMeasure" resultType="com.steelman.iot.platform.entity.dto.MeasureIntegerDate">
+        select mea.year_month_day as yearMonthDay,
+               SUM(CONVERT(IFNULL(mea.day_spike,'0'),SIGNED)) as spike,
+               SUM(CONVERT(IFNULL(mea.day_normal,'0'),SIGNED)) as normal,
+               SUM(CONVERT(IFNULL(mea.day_peak,'0'),SIGNED)) as peak,
+               SUM(CONVERT(IFNULL(mea.day_valley,'0'),SIGNED)) as valley,
+               SUM(CONVERT(IFNULL(mea.day_total,'0'),SIGNED)) as total
+        from iot_energy_equipment  as eq
+        inner join  iot_energy_equipment_device  as ed  on eq.id=ed.equipment_id AND ed.project_id=#{projectId}
+        inner join (select max(me.id) as measure_id, me.device_id as device_id
+        from iot_device_measurement me
+        WHERE me.project_id=#{projectId} AND me.year_month_day=#{todayDate}
+        GROUP BY me.device_id )as mes on mes.device_id=ed.device_id
+        inner join iot_device_measurement mea on mes.measure_id= mea.id
+        where eq.project_id=#{projectId}
+        GROUP BY mea.year_month_day
+    </select>
+    <select id="getEquipmentSimpleInfo" resultType="com.steelman.iot.platform.entity.dto.EquipmentSimpleInfo">
+       select eq.id as equipmentId,eq.name as equipmentName,et.id as typeId,et.name as typeName,ct.id as consumeId,ct.name as consumeName,
+        DATE_FORMAT(eq.create_time,'%m-%d %H:%i') as createTime,IFNULL(de.status,4) as status
+       from iot_energy_equipment  as eq
+       INNER JOIN iot_energy_type as et ON eq.energy_type_id=et.id AND et.project_id=#{projectId}
+       INNER JOIN iot_energy_consume_type as ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+       LEFT JOIN iot_energy_equipment_device ed ON eq.id=ed.equipment_id AND ed.project_id=#{projectId}
+       LEFT JOIN iot_device de ON de.id=ed.device_id  AND de.project_id=#{projectId}
+       WHERE eq.project_id=#{projectId}
+    </select>
+    <select id="getAreaEquipment" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM iot_energy_equipment where area_id=#{areaId} AND project_id=#{projectId}
+    </select>
+
+    <select id="selectByEnergyTypeId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM iot_energy_equipment
+        WHERE energy_type_id=#{energyTypeId} AND project_id=#{projectId}
+    </select>
+    <select id="getEnergyDateStatistic" resultType="com.steelman.iot.platform.entity.dto.EnergyMeasureDateData">
+        SELECT eq.id as equipmentId,eq.name as equipmentName, eq.location as location,
+               eq.area_id as areaId,eq.building_id as buildingId,eq.storey_id as storeyId,eq.room_id as roomId,
+               et.id as energyTypeId,et.name as energyTypeName,ct.id as consumeId,ct.name as consumeName,
+               IFNULL(mea.total_total,'0') as total, IFNULL(mea.total_valley,'0') as valley, IFNULL(mea.total_normal,'0') as normal,IFNULL(mea.total_peak,'0') as peak,IFNULL(mea.total_spike,'0') as spike,#{beginTime} as yearMonthDay
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+        INNER JOIN  iot_energy_type et ON eq.energy_type_id = et.id AND et.project_id=#{projectId}
+        LEFT JOIN  iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        LEFT JOIN  iot_device_last_measurement mea ON ede.device_id=mea.device_id  AND mea.year_month_day=#{beginTime}
+        where eq.project_id=#{projectId}
+        <if test="consumeTypeId != null">
+            AND eq.consume_type_id=#{consumeTypeId}
+        </if>
+        <if test="energyTypeId != null">
+            AND eq.energy_type_id=#{energyTypeId}
+        </if>
+    </select>
+    <select id="getYearMonthData" resultType="com.steelman.iot.platform.entity.dto.MeasureIntegerDate">
+        SELECT CONCAT(me.year,'-',me.month) as yearMonth,
+        SUM(IFNULL(convert(me.month_total,SIGNED),0)) as total,
+        SUM(IFNULL(convert(me.month_spike,SIGNED),0))as spike ,
+        SUM(IFNULL(convert(me.month_peak,SIGNED),0)) as peak,
+        SUM(IFNULL(convert(me.month_normal,SIGNED),0)) as normal,
+        SUM(IFNULL(convert(me.month_valley,SIGNED),0)) as valley
+        FROM iot_energy_equipment ee
+        INNER JOIN iot_energy_equipment_device eed on ee.id =eed.equipment_id
+        INNER JOIN iot_device de ON eed.device_id=de.id
+        INNER JOIN iot_device_last_measurement me on me.device_id=de.id
+        WHERE ee.project_id=#{projectId} AND  (me.create_time BETWEEN #{strDate} AND #{endDate}) AND me.month_last_day=1 AND day_last_min=1
+        GROUP BY me.year,me.month
+    </select>
+    <select id="getMonthData" resultType="com.steelman.iot.platform.entity.dto.MeasureIntegerDate">
+        SELECT CONCAT(me.year,'-',me.month) as yearMonth,
+        SUM(IFNULL(convert(me.month_total,SIGNED),0)) as total,
+        SUM(IFNULL(convert(me.month_spike,SIGNED),0))as spike ,
+        SUM(IFNULL(convert(me.month_peak,SIGNED),0)) as peak,
+        SUM(IFNULL(convert(me.month_normal,SIGNED),0)) as normal,
+        SUM(IFNULL(convert(me.month_valley,SIGNED),0)) as valley
+        FROM iot_energy_equipment ee
+        INNER JOIN iot_energy_equipment_device eed on ee.id =eed.equipment_id
+        INNER JOIN (SELECT max(mme.id) as measure_id,mme.device_id
+                    FROM iot_device_measurement mme
+                    WHERE mme.project_id=#{projectId} AND  mme.year_month_day=#{yearMonthDay}
+                    GROUP BY mme.device_id
+                    ) as mmme ON eed.device_id=mmme.device_id
+        INNER JOIN iot_device_measurement me ON mmme.measure_id=me.id
+        WHERE ee.project_id=#{projectId}
+        GROUP BY me.year,me.month
+    </select>
+    <select id="getTodayMeasureDate" resultType="com.steelman.iot.platform.entity.dto.EnergyMeasureDateData">
+        SELECT eq.id as equipmentId,eq.name as equipmentName, eq.location as location,ede.id as deviceId,
+        eq.area_id as areaId,eq.building_id as buildingId,eq.storey_id as storeyId,eq.room_id as roomId,
+        et.id as energyTypeId,et.name as energyTypeName,ct.id as consumeId,ct.name as consumeName,
+        IFNULL(mea.total_total,'0') as total,
+        IFNULL(mea.total_valley,'0') as valley,
+        IFNULL(mea.total_normal,'0')as normal,
+        IFNULL(mea.total_peak,'0') as peak,
+        IFNULL(mea.total_spike,'0') as spike,
+        IFNULL(mea.month_total,'0') as monthTotal,
+        IFNULL(mea.month_spike,'0') as monthSpike,
+        IFNULL(mea.month_peak,'0') as monthPeak,
+        IFNULL(mea.month_normal,'0') as monthNormal,
+        IFNULL(mea.month_valley,'0') as monthValley,
+        #{yearMonthDay} as yearMonthDay
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+        INNER JOIN iot_energy_type et ON eq.energy_type_id = et.id AND et.project_id=#{projectId}
+        LEFT JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        LEFT JOIN ( SELECT max(me.id) as measure_id,me.device_id as device_id
+                    FROM iot_device_measurement me
+                    WHERE me.project_id=#{projectId} AND  me.year_month_day=#{yearMonthDay}
+                    GROUP BY me.device_id )as mme ON ede.device_id=mme.device_id
+        LEFT JOIN iot_device_measurement mea On mea.id=mme.measure_id
+        where eq.project_id=#{projectId}
+        <if test="consumeTypeId != null">
+            AND eq.consume_type_id=#{consumeTypeId}
+        </if>
+        <if test="energyTypeId != null">
+            AND eq.energy_type_id=#{energyTypeId}
+        </if>
+    </select>
+    <select id="findByName" resultType="com.steelman.iot.platform.entity.EnergyEquipment">
+        SELECT  <include refid="Base_Column_List"></include>
+        FROM iot_energy_equipment
+        WHERE name=#{name} AND project_id=#{projectId}
+    </select>
+    <select id="getVariableParam" resultType="com.steelman.iot.platform.entity.dto.EquipmentVariable">
+        SELECT eq.id  as id,eq.name as name,eq.brand as brand,eq.production_date as productionDate,eq.rated_power as ratedPower,
+               eq.area_id as areaId,eq.building_id as buildingId,eq.storey_id as storeyId,eq.room_id as roomId,eq.location as location,
+               ty.id as energyTypeId ,ty.name as energyTypeName,ct.id as consumeTypeId,ct.name as consumeTypeName,IFNULL(com.id,0) as companyId,IFNULL(com.name,'') as companyName
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_type ty ON eq.energy_type_id=ty.id AND ty.project_id=#{projectId}
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+        LEFT JOIN  iot_company com ON eq.company_id=com.id
+        WHERE eq.id=#{equipmentId}
+    </select>
+    <select id="getByProjectId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM iot_energy_equipment
+        WHERE project_id=#{projectId}
+    </select>
+    <select id="getDayMonthStatistic" resultType="map">
+        select
+               SUM(CONVERT(IFNULL(mea.day_total,'0'),DECIMAL(50))) as dayTotal,
+               SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as monthTotal
+        from iot_energy_equipment  as eq
+        inner join  iot_energy_equipment_device  as ed  on eq.id=ed.equipment_id AND ed.project_id=#{projectId}
+        inner join (select max(me.id) as measure_id, me.device_id as device_id
+                             from iot_device_measurement me
+                             WHERE me.project_id=#{projectId} AND me.year_month_day=#{yearMonthDay}
+                             GROUP BY me.device_id )as mes on mes.device_id=ed.device_id
+                 inner join iot_device_measurement mea on mes.measure_id= mea.id
+        where eq.project_id=#{projectId}
+        GROUP BY mea.year_month_day
+    </select>
+    <select id="getPastStatistic" resultType="int">
+        SELECT
+               SUM(IFNULL(convert(me.day_total,SIGNED),0)) as dayTotal
+        FROM iot_energy_equipment ee
+        INNER JOIN iot_energy_equipment_device eed on ee.id =eed.equipment_id
+        INNER JOIN iot_device de ON eed.device_id=de.id
+        INNER JOIN iot_device_last_measurement me on me.device_id=de.id
+        WHERE ee.project_id=#{projectId}  AND me.year_month_day=#{yearMonthDay}
+        GROUP BY me.year_month_day
+    </select>
+    <select id="getDayHourMeasure" resultType="map">
+        SELECT
+            SUM(convert(IFNULL(me.day_spike,'0'),DECIMAL(40))) as daySpike,
+            SUM(convert(IFNULL(me.day_peak,'0'),DECIMAL(40))) as dayPeak,
+            SUM(convert(IFNULL(me.day_normal,'0'),DECIMAL(40))) as dayNormal,
+            SUM(convert(IFNULL(me.day_valley,'0'),DECIMAL(40))) as dayValley,
+            SUM(convert(IFNULL(me.day_total,'0'),DECIMAL(40))) as dayTotal,
+            me.date_time_begin as dateTime,
+            me.year_month_day as yearMonthDay
+        FROM iot_energy_equipment ee
+        INNER JOIN iot_energy_equipment_device eed on ee.id =eed.equipment_id
+        INNER JOIN iot_device de ON eed.device_id=de.id
+        INNER JOIN iot_device_hour_measurement me on me.device_id=de.id
+        WHERE ee.project_id=#{projectId}  AND me.year_month_day=#{yearMonthDay}
+        GROUP BY dateTime
+    </select>
+    <select id="getLastMonthMeasure" resultType="map">
+        SELECT
+            SUM(convert(IFNULL(me.month_total,'0'),DECIMAL(65))) as monthTotal,
+            convert(me.day,SIGNED) as day,me.month as month,me.year_month_day as yearMonthDay
+        FROM iot_energy_equipment ee
+        INNER JOIN iot_energy_equipment_device eed on ee.id =eed.equipment_id
+        INNER JOIN iot_device de ON eed.device_id=de.id
+        INNER JOIN iot_device_last_measurement me on me.device_id=de.id
+        WHERE ee.project_id=#{projectId} AND me.year=#{year} AND me.month=#{month}
+        GROUP BY me.year_month_day
+    </select>
+    <select id="getMonthMeasure" resultType="map">
+        SELECT
+            SUM(convert(IFNULL(me.month_total,'0'),DECIMAL(65))) as monthTotal,
+            convert(me.day,SIGNED) as day,me.month as month,me.year_month_day as yearMonthDay
+        FROM iot_energy_equipment ee
+                 INNER JOIN iot_energy_equipment_device eed on ee.id =eed.equipment_id
+                 INNER JOIN iot_device de ON eed.device_id=de.id
+                 INNER JOIN iot_device_last_measurement me on me.device_id=de.id
+        WHERE ee.project_id=#{projectId} AND me.year=#{year} AND me.month=#{month}
+        GROUP BY me.year_month_day
+    </select>
+    <select id="getMonthTodayMeasure" resultType="map">
+        select
+            SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(40))) as monthTotal,
+            convert(mea.day,SIGNED) as day,mea.year_month_day as yearMonthDay
+        from iot_energy_equipment  as eq
+                 inner join  iot_energy_equipment_device  as ed  on eq.id=ed.equipment_id AND ed.project_id=#{projectId}
+                 inner join (select max(me.id) as measure_id, me.device_id as device_id
+                             from iot_device_measurement me
+                             WHERE me.project_id=#{projectId} AND me.year_month_day=#{yearMonthDay}
+                             GROUP BY me.device_id )as mes on mes.device_id=ed.device_id
+                 inner join iot_device_measurement mea on mes.measure_id= mea.id
+        where eq.project_id=#{projectId}
+        GROUP BY mea.year_month_day
+    </select>
+
+    <select id="getTotalTotalMeasure" resultType="com.steelman.iot.platform.energyManager.entity.EquipmentDateTotalMeasure">
+        SELECT eq.id as id,eq.name as name,ct.id as consumeId,ct.name as consumeName,
+        IFNULL(mea.total_total,'0') as total
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+        LEFT JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        LEFT JOIN ( SELECT max(me.id) as measure_id,me.device_id as device_id
+        FROM iot_device_measurement me
+        WHERE me.project_id=#{projectId}
+        GROUP BY me.device_id )as mme ON ede.device_id=mme.device_id
+        LEFT JOIN iot_device_measurement mea On mea.id=mme.measure_id
+        where eq.project_id=#{projectId}
+    </select>
+
+    <select id="getLastMeasure" resultType="com.steelman.iot.platform.energyManager.entity.EquipmentDateTotalMeasure">
+        SELECT eq.id as id,eq.name as name,ct.id as consumeId,ct.name as consumeName,
+        IFNULL(mea.total_total,'0') as total
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+        LEFT JOIN  iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        LEFT JOIN  iot_device_last_measurement mea ON ede.device_id=mea.device_id  AND mea.year_month_day=#{yearMonthDay}
+        where eq.project_id=#{projectId}
+    </select>
+
+
+    <select id="getMonthTotalMeasure" resultType="com.steelman.iot.platform.energyManager.entity.EquipmentDateTotalMeasure">
+        SELECT eq.id as id,eq.name as name,ct.id as consumeId,ct.name as consumeName,
+               IFNULL(mea.month_total,'0') as total
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+                 LEFT JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 LEFT JOIN ( SELECT max(me.id) as measure_id,me.device_id as device_id
+                             FROM iot_device_measurement me
+                             WHERE me.project_id=#{projectId} AND  me.year_month_day=#{yearMonthDay}
+                             GROUP BY me.device_id )as mme ON ede.device_id=mme.device_id
+                 LEFT JOIN iot_device_measurement mea On mea.id=mme.measure_id
+        where eq.project_id=#{projectId}
+    </select>
+
+    <select id="getTodayTotalMeasure" resultType="com.steelman.iot.platform.energyManager.entity.EquipmentDateTotalMeasure">
+        SELECT eq.id as id,eq.name as name,ct.id as consumeId,ct.name as consumeName,
+               IFNULL(mea.day_total,'0') as total
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+                 LEFT JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 LEFT JOIN ( SELECT max(me.id) as measure_id,me.device_id as device_id
+                             FROM iot_device_measurement me
+                             WHERE me.project_id=#{projectId} AND  me.year_month_day=#{yearMonthDay}
+                             GROUP BY me.device_id )as mme ON ede.device_id=mme.device_id
+                 LEFT JOIN iot_device_measurement mea On mea.id=mme.measure_id
+        where eq.project_id=#{projectId}
+    </select>
+
+    <select id="getSmartActivePowerData" resultType="map">
+        SELECT SUM(CONVERT(IFNULL(dse.active_power_a,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.active_power_b,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.active_power_c,'0'),SIGNED)) as activePower,
+               dse.date_time_now as dateTime
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id <if test="consumeTypeId != null"> AND ct.id=#{consumeTypeId} </if>
+        INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        INNER JOIN iot_device_hour_data_smart_elec dse ON ede.device_id=dse.device_id AND dse.year_month_day=#{yearMonthDay}
+        WHERE eq.project_id=#{projectId} AND ct.project_id=#{projectId}
+        GROUP BY dse.date_time_now
+    </select>
+
+    <select id="getSuperActivePowerData" resultType="map">
+        SELECT SUM(CONVERT(IFNULL(dse.active_power_a,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.active_power_b,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.active_power_c,'0'),SIGNED)) as activePower,
+               dse.date_time_now as dateTime
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id <if test="consumeTypeId != null"> AND ct.id=#{consumeTypeId} </if>
+        INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        INNER JOIN iot_device_hour_data_smart_super dse ON ede.device_id=dse.device_id AND dse.year_month_day=#{yearMonthDay}
+        WHERE eq.project_id=#{projectId} AND ct.project_id=#{projectId}
+        GROUP BY dse.date_time_now
+    </select>
+
+    <select id="getSmartReactivePowerData" resultType="map">
+        SELECT SUM(CONVERT(IFNULL(dse.reactive_power_a,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.reactive_power_b,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.reactive_power_c,'0'),SIGNED)) as reactivePower,
+               dse.date_time_now as dateTime
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id <if test="consumeTypeId != null"> AND ct.id=#{consumeTypeId} </if>
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN iot_device_hour_data_smart_elec dse ON ede.device_id=dse.device_id AND dse.year_month_day=#{yearMonthDay}
+        WHERE eq.project_id=#{projectId} AND ct.project_id=#{projectId}
+        GROUP BY dse.date_time_now
+    </select>
+
+    <select id="getSuperReactivePowerData" resultType="map">
+        SELECT SUM(CONVERT(IFNULL(dse.reactive_power_a,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.reactive_power_b,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.reactive_power_c,'0'),SIGNED)) as reactivePower,
+               dse.date_time_now as dateTime
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id <if test="consumeTypeId != null"> AND ct.id=#{consumeTypeId} </if>
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN iot_device_hour_data_smart_super dse ON ede.device_id=dse.device_id AND dse.year_month_day=#{yearMonthDay}
+        WHERE eq.project_id=#{projectId} AND ct.project_id=#{projectId}
+        GROUP BY dse.date_time_now
+    </select>
+
+    <select id="getSmartApparentPowerData" resultType="map">
+        SELECT SUM(CONVERT(IFNULL(dse.apparent_power_a,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.apparent_power_b,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.apparent_power_c,'0'),SIGNED)) as apparentPower,
+               dse.date_time_now as dateTime
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id <if test="consumeTypeId != null"> AND ct.id=#{consumeTypeId} </if>
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN iot_device_hour_data_smart_elec dse ON ede.device_id=dse.device_id AND dse.year_month_day=#{yearMonthDay}
+        WHERE eq.project_id=#{projectId} AND ct.project_id=#{projectId}
+        GROUP BY dse.date_time_now
+    </select>
+
+    <select id="getSuperApparentPowerData" resultType="map">
+        SELECT SUM(CONVERT(IFNULL(dse.apparent_power_a,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.apparent_power_b,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.apparent_power_c,'0'),SIGNED)) as apparentPower,
+               dse.date_time_now as dateTime
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id <if test="consumeTypeId != null"> AND ct.id=#{consumeTypeId} </if>
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN iot_device_hour_data_smart_super dse ON ede.device_id=dse.device_id AND dse.year_month_day=#{yearMonthDay}
+        WHERE eq.project_id=#{projectId} AND ct.project_id=#{projectId}
+        GROUP BY dse.date_time_now
+    </select>
+
+    <select id="getPowerAndApparentPowerList" resultType="map">
+        SELECT SUM(CONVERT(IFNULL(dse.apparent_power_a,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.apparent_power_b,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.apparent_power_c,'0'),SIGNED)) as apparentPower,
+               SUM(CONVERT(IFNULL(dse.active_power_a,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.active_power_b,'0'),SIGNED)+
+                   CONVERT(IFNULL(dse.active_power_c,'0'),SIGNED)) as activePower,
+               dse.date_time_now as dateTime
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id <if test="consumeTypeId != null"> AND ct.id=#{consumeTypeId} </if>
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN iot_device_hour_data_smart_elec dse ON ede.device_id=dse.device_id AND dse.year_month_day=#{yearMonthDay}
+        WHERE eq.project_id=#{projectId} AND ct.project_id=#{projectId}
+        GROUP BY dse.date_time_now
+    </select>
+
+    <select id="getPowerAndApparentPowerSuperList" resultType="map">
+        SELECT SUM(CONVERT(IFNULL(dse.apparent_power_a,'0'),SIGNED)+
+                CONVERT(IFNULL(dse.apparent_power_b,'0'),SIGNED)+
+                CONVERT(IFNULL(dse.apparent_power_c,'0'),SIGNED)) as apparentPower,
+              SUM(CONVERT(IFNULL(dse.active_power_a,'0'),SIGNED)+
+                CONVERT(IFNULL(dse.active_power_b,'0'),SIGNED)+
+                CONVERT(IFNULL(dse.active_power_c,'0'),SIGNED)) as activePower,
+        dse.date_time_now as dateTime
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id <if test="consumeTypeId != null"> AND ct.id=#{consumeTypeId} </if>
+        INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        INNER JOIN iot_device_hour_data_smart_super dse ON ede.device_id=dse.device_id AND dse.year_month_day=#{yearMonthDay}
+        WHERE eq.project_id=#{projectId} AND ct.project_id=#{projectId}
+        GROUP BY dse.date_time_now
+    </select>
+
+    <select id="getThdvSmartList" resultType="map">
+        SELECT MAX(CONVERT(REPLACE(dse.thdv_a,'%',''),DECIMAL(4,1))+
+                   CONVERT(REPLACE(dse.thdv_b,'%',''),DECIMAL(4,1))+
+                   CONVERT(REPLACE(dse.thdv_c,'%',''),DECIMAL(4,1))) as thdv,
+        dse.date_time_now as dateTime
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id <if test="consumeTypeId != null"> AND ct.id=#{consumeTypeId} </if>
+        INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        INNER JOIN iot_device_hour_data_smart_elec dse ON ede.device_id=dse.device_id AND dse.year_month_day=#{yearMonthDay}
+        WHERE eq.project_id=#{projectId} AND ct.project_id=#{projectId}
+        GROUP BY dse.date_time_now
+    </select>
+
+    <select id="getEnergyPastDateStatistic" resultType="com.steelman.iot.platform.energyManager.dto.EnergyMeasureDataEntity">
+        SELECT eq.id as equipmentId,
+               eq.name as equipmentName,
+               ct.id as consumeId,
+               ct.name as consumeName,
+               et.id as energyTypeId,
+               et.name as energyTypeName,
+               mea.year_month_day as yearMonthDay,
+               IFNULL(mea.total_total,'0') as total,
+               IFNULL(mea.total_spike,'0') as spike,
+               IFNULL(mea.total_peak,'0') as peak,
+               IFNULL(mea.total_normal,'0') as normal,
+               IFNULL(mea.total_valley,'0') as valley,
+               IFNULL(mea.month_total,'0') as monthTotal,
+               IFNULL(mea.month_spike,'0') as monthSpike,
+               IFNULL(mea.month_peak,'0') as monthPeak,
+               IFNULL(mea.month_normal,'0') as monthNormal,
+               IFNULL(mea.month_valley,'0') as monthValley,
+               IFNULL(mea.day_spike,'0') as daySpike,
+               IFNULL(mea.day_peak,'0') as dayPeak,
+               IFNULL(mea.day_normal,'0') as dayNormal,
+               IFNULL(mea.day_valley,'0') as dayValley,
+               IFNULL(mea.day_total,'0') as dayTotal
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+                 INNER JOIN iot_energy_type et ON eq.energy_type_id=et.id AND et.project_id=#{projectId}
+                 LEFT JOIN  iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 LEFT JOIN  iot_device_last_measurement mea ON ede.device_id=mea.device_id
+        where eq.project_id=#{projectId} AND mea.year_month_day=#{yearMonthDay}
+        <if test="consumeTypeId != null">
+            AND ct.id=#{consumeTypeId}
+        </if>
+    </select>
+
+
+    <select id="getEnergyPastTodayDateStatistic" resultType="com.steelman.iot.platform.energyManager.dto.EnergyMeasureDataEntity">
+        SELECT eq.id as equipmentId,
+               eq.name as equipmentName,
+               ct.id as consumeId,
+               ct.name as consumeName,
+               et.id as energyTypeId,
+               et.name as energyTypeName,
+               mea.year_month_day as yearMonthDay,
+               IFNULL(mea.total_total,'0') as total,
+               IFNULL(mea.total_spike,'0') as spike,
+               IFNULL(mea.total_peak,'0') as peak,
+               IFNULL(mea.total_normal,'0') as normal,
+               IFNULL(mea.total_valley,'0') as valley,
+               IFNULL(mea.month_total,'0') as monthTotal,
+               IFNULL(mea.month_spike,'0') as monthSpike,
+               IFNULL(mea.month_peak,'0') as monthPeak,
+               IFNULL(mea.month_normal,'0') as monthNormal,
+               IFNULL(mea.month_valley,'0') as monthValley,
+               IFNULL(mea.day_spike,'0') as daySpike,
+               IFNULL(mea.day_peak,'0') as dayPeak,
+               IFNULL(mea.day_normal,'0') as dayNormal,
+               IFNULL(mea.day_valley,'0') as dayValley,
+               IFNULL(mea.day_total,'0') as dayTotal
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+        INNER JOIN iot_energy_type et ON eq.energy_type_id=et.id AND et.project_id=#{projectId}
+        LEFT JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        LEFT JOIN ( SELECT max(me.id) as measure_id,me.device_id as device_id
+                             FROM iot_device_measurement me
+                             WHERE me.project_id=#{projectId} AND  me.year_month_day=#{yearMonthDay}
+                             GROUP BY me.device_id )as mme  ON ede.device_id=mme.device_id
+        LEFT JOIN iot_device_measurement mea On mea.id=mme.measure_id
+        where eq.project_id=#{projectId}
+        <if test="consumeTypeId != null">
+            AND ct.id=#{consumeTypeId}
+        </if>
+    </select>
+
+    <select id="getYearMonthMeasure" resultType="map">
+        SELECT
+            SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as monthTotal,
+            CONVERT(mea.`month`,SIGNED) as month,
+            mea.year as year,
+            mea.year_month_day as yearMonthDay,
+            mea.id as id
+        FROM iot_energy_equipment eq
+                 INNER JOIN  iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN  iot_device_last_measurement mea ON ede.device_id=mea.device_id
+        where eq.project_id=#{projectId} AND mea.year=#{year} AND mea.month_last_day=1
+        GROUP BY mea.year,mea.month ORDER BY mea.id asc
+    </select>
+
+    <select id="getMonthTotal" resultType="map">
+        SELECT SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as monthTotal,
+               mea.year as year,
+               CONVERT(mea.`month`,SIGNED) as month,
+               CONCAT(mea.year,'-',mea.month) as yearMonth,
+            mea.year_month_day as yearMonthDay
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN ( SELECT max(me.id) as measure_id,me.device_id as device_id
+                             FROM iot_device_measurement me
+                             WHERE me.project_id=#{projectId} AND  me.year_month_day=#{yearMonthDay}
+                             GROUP BY me.device_id )as mme ON ede.device_id=mme.device_id
+                 INNER JOIN iot_device_measurement mea On mea.id=mme.measure_id
+        where eq.project_id=#{projectId}
+        GROUP BY mea.year_month_day
+    </select>
+
+    <select id="getCount" resultType="long">
+        SELECT count(1) as num
+        FROM iot_energy_equipment
+        WHERE project_id=#{projectId}
+    </select>
+
+
+    <select id="getMonthDetail" resultType="map">
+        SELECT eq.id as equipmentId,
+               eq.name as equipmentName,
+               ct.id as consumeTypeId,
+               ct.name as consumeTypeName,
+               mea.year_month_day as yearMonthDay,
+               IFNULL(mea.month_total,'0') as monthTotal,
+               IFNULL(mea.day_total,'0') as dayTotal,
+               IFNULL(mea.total_total,'0') as totalTotal,
+               DATE_FORMAT(mea.create_time,'%Y-%m-%d %H:%i:%s') as time
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+        LEFT JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        LEFT JOIN ( SELECT max(me.id) as measure_id,me.device_id as device_id
+                             FROM iot_device_measurement me
+                             WHERE me.project_id=#{projectId} AND  me.year_month_day=#{yearMonthDay}
+                             GROUP BY me.device_id )as mme ON ede.device_id=mme.device_id
+        LEFT JOIN iot_device_measurement mea On mea.id=mme.measure_id
+        where eq.project_id=#{projectId}
+    </select>
+
+    <select id="getLastMonthDetail" resultType="map">
+        SELECT eq.id as equipmentId,
+        eq.name as equipmentName,
+        ct.id as consumeTypeId,
+        ct.name as consumeTypeName,
+        mea.year_month_day as yearMonthDay,
+        IFNULL(mea.total_total,'0') as total,
+        IFNULL(mea.total_spike,'0') as spike,
+        IFNULL(mea.total_peak,'0') as peak,
+        IFNULL(mea.total_normal,'0') as normal,
+        IFNULL(mea.total_valley,'0') as valley,
+        IFNULL(mea.month_total,'0') as monthTotal,
+        IFNULL(mea.month_spike,'0') as monthSpike,
+        IFNULL(mea.month_peak,'0') as monthPeak,
+        IFNULL(mea.month_normal,'0') as monthNormal,
+        IFNULL(mea.month_valley,'0') as monthValley,
+        IFNULL(mea.day_spike,'0') as daySpike,
+        IFNULL(mea.day_peak,'0') as dayPeak,
+        IFNULL(mea.day_normal,'0') as dayNormal,
+        IFNULL(mea.day_valley,'0') as dayValley,
+        IFNULL(mea.day_total,'0') as dayTotal
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+        LEFT JOIN  iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        LEFT JOIN  iot_device_last_measurement mea ON ede.device_id=mea.device_id  AND mea.month_last_day=1
+        where eq.project_id=#{projectId} AND mea.year=#{year} AND mea.month=#{month}
+    </select>
+
+
+    <select id="getDayAndMonthMeasure" resultType="map">
+        SELECT ct.id as consumeTypeId,
+               ct.name as consumeTypeName,
+               SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as monthTotal,
+               SUM(CONVERT(IFNULL(mea.month_spike,'0'),DECIMAL(65))) as monthSpike,
+               SUM(CONVERT(IFNULL(mea.month_peak,'0'),DECIMAL(65))) as monthPeak,
+               SUM(CONVERT(IFNULL(mea.month_normal,'0'),DECIMAL(65))) as monthNormal,
+               SUM(CONVERT(IFNULL(mea.month_valley,'0'),DECIMAL(65))) as monthValley,
+               SUM(CONVERT(IFNULL(mea.day_total,'0'),DECIMAL(65))) as dayTotal,
+               SUM(CONVERT(IFNULL(mea.day_spike,'0'),DECIMAL(65))) as daySpike,
+               SUM(CONVERT(IFNULL(mea.day_peak,'0'),DECIMAL(65))) as dayPeak,
+               SUM(CONVERT(IFNULL(mea.day_normal,'0'),DECIMAL(65))) as dayNormal,
+               SUM(CONVERT(IFNULL(mea.day_valley,'0'),DECIMAL(65))) as dayValley
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+        INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        INNER JOIN ( SELECT max(me.id) as measure_id,me.device_id as device_id
+                        FROM iot_device_measurement me
+                        WHERE me.project_id=#{projectId} AND  me.year_month_day=#{yearMonthDay}
+                        GROUP BY me.device_id )as mme ON ede.device_id=mme.device_id
+        INNER JOIN iot_device_measurement mea On mea.id=mme.measure_id
+        where eq.project_id=#{projectId}
+        GROUP BY consumeTypeId
+    </select>
+
+
+    <select id="getLastDayConsumeMeasure" resultType="map">
+        SELECT ct.id as consumeTypeId,
+               ct.name as consumeTypeName,
+               mea.year_month_day as yearMonthDay,
+               SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as monthTotal,
+               SUM(CONVERT(IFNULL(mea.month_spike,'0'),DECIMAL(65))) as monthSpike,
+               SUM(CONVERT(IFNULL(mea.month_peak,'0'),DECIMAL(65))) as monthPeak,
+               SUM(CONVERT(IFNULL(mea.month_normal,'0'),DECIMAL(65))) as monthNormal,
+               SUM(CONVERT(IFNULL(mea.month_valley,'0'),DECIMAL(65))) as monthValley,
+               SUM(CONVERT(IFNULL(mea.day_total,'0'),DECIMAL(65))) as dayTotal,
+               SUM(CONVERT(IFNULL(mea.day_spike,'0'),DECIMAL(65))) as daySpike,
+               SUM(CONVERT(IFNULL(mea.day_peak,'0'),DECIMAL(65))) as dayPeak,
+               SUM(CONVERT(IFNULL(mea.day_normal,'0'),DECIMAL(65))) as dayNormal,
+               SUM(CONVERT(IFNULL(mea.day_valley,'0'),DECIMAL(65))) as dayValley
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN  iot_device_last_measurement mea ON ede.device_id=mea.device_id  AND mea.year_month_day=#{yearMonthDay}
+        where eq.project_id=#{projectId}
+        GROUP BY consumeTypeId
+    </select>
+
+    <select id="getLastMonthTotalMeasure" resultType="map">
+        SELECT ct.id as consumeTypeId,
+               ct.name as consumeTypeName,
+               mea.year as year,
+               mea.month as month,
+               SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as monthTotal,
+               SUM(CONVERT(IFNULL(mea.month_spike,'0'),DECIMAL(65))) as monthSpike,
+               SUM(CONVERT(IFNULL(mea.month_peak,'0'),DECIMAL(65))) as monthPeak,
+               SUM(CONVERT(IFNULL(mea.month_normal,'0'),DECIMAL(65))) as monthNormal,
+               SUM(CONVERT(IFNULL(mea.month_valley,'0'),DECIMAL(65))) as monthValley
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN  iot_device_last_measurement mea ON ede.device_id=mea.device_id  AND mea.month_last_day=1
+        where eq.project_id=#{projectId} AND mea.year=#{year} AND mea.month=#{month}
+        GROUP BY consumeTypeId
+    </select>
+
+    <select id="getDataMonthMapByList" resultType="map">
+        SELECT ct.id as consumeTypeId,
+               ct.name as consumeTypeName,
+               SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as monthTotal,
+               SUM(CONVERT(IFNULL(mea.month_spike,'0'),DECIMAL(65))) as monthSpike,
+               SUM(CONVERT(IFNULL(mea.month_peak,'0'),DECIMAL(65))) as monthPeak,
+               SUM(CONVERT(IFNULL(mea.month_normal,'0'),DECIMAL(65))) as monthNormal,
+               SUM(CONVERT(IFNULL(mea.month_valley,'0'),DECIMAL(65))) as monthValley
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN  iot_device_last_measurement mea ON ede.device_id=mea.device_id  AND mea.month_last_day=1
+        where eq.project_id=#{projectId} AND mea.year=#{year}
+        AND mea.month in
+        <foreach collection="monthList" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+        GROUP BY consumeTypeId
+    </select>
+
+    <select id="getDataYearMeasure" resultType="map">
+        SELECT ct.id as consumeTypeId,
+               ct.name as consumeTypeName,
+               SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as monthTotal,
+               SUM(CONVERT(IFNULL(mea.month_spike,'0'),DECIMAL(65))) as monthSpike,
+               SUM(CONVERT(IFNULL(mea.month_peak,'0'),DECIMAL(65))) as monthPeak,
+               SUM(CONVERT(IFNULL(mea.month_normal,'0'),DECIMAL(65))) as monthNormal,
+               SUM(CONVERT(IFNULL(mea.month_valley,'0'),DECIMAL(65))) as monthValley
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN  iot_device_last_measurement mea ON ede.device_id=mea.device_id  AND mea.month_last_day=1
+        where eq.project_id=#{projectId} AND mea.year=#{year}
+        GROUP BY consumeTypeId
+    </select>
+
+    <select id="getDataYearTotalMeasure" resultType="map">
+        SELECT ct.id as consumeTypeId,
+               ct.name as consumeTypeName,
+               SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as monthTotal
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN  iot_device_last_measurement mea ON ede.device_id=mea.device_id  AND mea.month_last_day=1
+        where eq.project_id=#{projectId} AND mea.year=#{year}
+        GROUP BY consumeTypeId
+    </select>
+
+    <select id="getMonthTotalLastMeasure" resultType="map">
+        SELECT  SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as monthTotal,
+                CONCAT(mea.year,'-',mea.month) as yearMonth,
+                mea.month as month
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN  iot_device_last_measurement mea ON ede.device_id=mea.device_id  AND mea.month_last_day=1
+        where eq.project_id=#{projectId} AND mea.year=#{year}
+        <if test="month != null">
+           AND mea.month=#{month}
+        </if>
+        group by mea.year,mea.month
+    </select>
+
+    <select id="getThdvSuperList" resultType="map">
+        SELECT MAX(CONVERT(REPLACE(dse.thdv_a,'%',''),DECIMAL(4,1))+
+        CONVERT(REPLACE(dse.thdv_b,'%',''),DECIMAL(4,1))+
+        CONVERT(REPLACE(dse.thdv_c,'%',''),DECIMAL(4,1))) as thdv,
+        dse.date_time_now as dateTime
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id <if test="consumeTypeId != null"> AND ct.id=#{consumeTypeId} </if>
+        INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        INNER JOIN iot_device_hour_data_smart_super dse ON ede.device_id=dse.device_id AND dse.year_month_day=#{yearMonthDay}
+        WHERE eq.project_id=#{projectId} AND ct.project_id=#{projectId}
+        GROUP BY dse.date_time_now
+    </select>
+
+
+    <select id="getThdiSmartList" resultType="map">
+        SELECT MAX(CONVERT(REPLACE(dse.thdi_a,'%',''),DECIMAL(4,1))+
+        CONVERT(REPLACE(dse.thdi_b,'%',''),DECIMAL(4,1))+
+        CONVERT(REPLACE(dse.thdi_c,'%',''),DECIMAL(4,1))) as thdi,
+        dse.date_time_now as dateTime
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id <if test="consumeTypeId != null"> AND ct.id=#{consumeTypeId} </if>
+        INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        INNER JOIN iot_device_hour_data_smart_elec dse ON ede.device_id=dse.device_id AND dse.year_month_day=#{yearMonthDay}
+        WHERE eq.project_id=#{projectId} AND ct.project_id=#{projectId}
+        GROUP BY dse.date_time_now
+    </select>
+
+    <select id="getThdiSuperList" resultType="map">
+        SELECT MAX(CONVERT(REPLACE(dse.thdi_a,'%',''),DECIMAL(4,1))+
+        CONVERT(REPLACE(dse.thdi_b,'%',''),DECIMAL(4,1))+
+        CONVERT(REPLACE(dse.thdi_c,'%',''),DECIMAL(4,1))) as thdi,
+        dse.date_time_now as dateTime
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id <if test="consumeTypeId != null"> AND ct.id=#{consumeTypeId} </if>
+        INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        INNER JOIN iot_device_hour_data_smart_super dse ON ede.device_id=dse.device_id AND dse.year_month_day=#{yearMonthDay}
+        WHERE eq.project_id=#{projectId} AND ct.project_id=#{projectId}
+        GROUP BY dse.date_time_now
+    </select>
+    <select id="getHourDiffData" resultType="com.steelman.iot.platform.entity.EnergyHourDifferData">
+        SELECT
+               dm.year_month_day as yearMonthDay,
+               SUM(CONVERT(dm.hour_total,DECIMAL (32))) as hourTotal,
+               dm.date_time_begin as dateTimeBegin,
+               dm.date_time_end as dateTimeEnd
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_equipment_device eqd ON eq.id=eqd.equipment_id
+        INNER JOIN iot_device_hour_differ_measurement dm ON dm.device_id=eqd.device_id
+        WHERE eq.project_id=#{projectId} AND dm.year_month_day=#{yearMonthDay}
+        GROUP BY dm.date_time_begin
+
+    </select>
+
+    <select id="getDayTotal" resultType="com.steelman.iot.platform.entity.dto.EnergyDayData">
+        SELECT mea.year_month_day as yearMonthDay,
+               SUM(CONVERT(mea.day_total,DECIMAL(45))) as dayTotal
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_equipment_device eqd ON eq.id=eqd.equipment_id
+        INNER JOIN iot_device_last_measurement mea ON   eqd.device_id=mea.device_id
+        WHERE  eq.project_id=#{projectId} AND mea.year_month_day=#{yearMonthDay}
+        GROUP BY mea.year_month_day
+    </select>
+
+    <select id="getMonthLastMeasure" resultType="com.steelman.iot.platform.entity.dto.EnergyMonthData">
+        SELECT mea.year as year,
+               mea.month as month,
+               mea.year_month_day as yearMonthDay,
+               SUM(CONVERT(mea.month_total,DECIMAL(45))) as monthTotal
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_equipment_device eqd ON eq.id=eqd.equipment_id
+                 INNER JOIN iot_device_last_measurement mea ON   eqd.device_id=mea.device_id
+        WHERE  eq.project_id=#{projectId} AND mea.year=#{year} AND mea.month=#{month} AND mea.month_last_day=1
+        GROUP BY mea.year_month_day
+    </select>
+
+    <select id="getDayMeasure" resultType="map">
+        SELECT
+               SUM(CONVERT(IFNULL(mea.day_total,'0'),DECIMAL(65))) as dayTotal,
+               SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as monthTotal
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN ( SELECT max(me.id) as measure_id,me.device_id as device_id
+                              FROM iot_device_measurement me
+                              WHERE me.project_id=#{projectId} AND  me.year_month_day=#{yearMonthDay}
+                              GROUP BY me.device_id )as mme ON ede.device_id=mme.device_id
+                 INNER JOIN iot_device_measurement mea On mea.id=mme.measure_id
+        where eq.project_id=#{projectId}
+        GROUP BY eq.project_id
+    </select>
+
+    <select id="getPastMonth" resultType="long">
+        SELECT
+            SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as monthTotal
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+        INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        INNER JOIN  iot_device_last_measurement mea ON ede.device_id=mea.device_id  AND mea.month_last_day=1
+        where eq.project_id=#{projectId} AND mea.year=#{year}
+        <if test="monthList != null">
+            AND mea.month IN
+            <foreach collection="monthList" item="month" separator="," open="(" close=")">
+                #{month}
+            </foreach>
+        </if>
+        GROUP BY eq.project_id
+    </select>
+
+    <select id="getPastYearMonth" resultType="com.steelman.iot.platform.energyManager.entity.EquipmentDateTotalMeasure">
+        SELECT eq.id as id,
+               eq.name as name,
+                SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as total
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN  iot_device_last_measurement mea ON ede.device_id=mea.device_id  AND mea.month_last_day=1
+        where eq.project_id=#{projectId} AND mea.year=#{year}
+        GROUP BY eq.id
+    </select>
+
+    <select id="getLastYearMonth" resultType="map">
+        SELECT mea.year as year,
+               mea.month as month,
+               SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as monthTotal
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN  iot_device_last_measurement mea ON ede.device_id=mea.device_id  AND mea.month_last_day=1
+        where eq.project_id=#{projectId} AND mea.year=#{year}
+        GROUP BY mea.year,mea.month
+    </select>
+
+    <select id="getRankReportMonthData" resultType="com.steelman.iot.platform.entity.vo.EquipmentRankReport">
+        SELECT  eq.id as equipmentId,
+                eq.name as equipmentName,
+            IFNULL(mea.month_total,'0') as total,
+            IFNULL(mea.month_spike,'0') as spike,
+            IFNULL(mea.month_peak,'0') as peak,
+            IFNULL(mea.month_normal,'0') as normal,
+            IFNULL(mea.month_valley,'0') as valley,
+            CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65)) as totalCount
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 INNER JOIN ( SELECT max(me.id) as measure_id,me.device_id as device_id
+                              FROM iot_device_measurement me
+                              WHERE me.project_id=#{projectId} AND  me.year=#{year} AND me.month=#{month}
+                              GROUP BY me.device_id )as mme ON ede.device_id=mme.device_id
+                 INNER JOIN iot_device_measurement mea On mea.id=mme.measure_id
+        where eq.project_id=#{projectId}
+        order BY totalCount desc
+    </select>
+
+    <select id="getRankReportLast" resultType="com.steelman.iot.platform.entity.vo.EquipmentRankReport">
+        SELECT  eq.id as equipmentId,
+                eq.name as equipmentName,
+                SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as total,
+                SUM(CONVERT(IFNULL(mea.month_spike,'0'),DECIMAL(65))) as spike,
+                SUM(CONVERT(IFNULL(mea.month_peak,'0'),DECIMAL(65))) as peak,
+                SUM(CONVERT(IFNULL(mea.month_normal,'0'),DECIMAL(65))) as normal,
+                SUM(CONVERT(IFNULL(mea.month_valley,'0'),DECIMAL(65))) as valley,
+                SUM(CONVERT(IFNULL(mea.month_total,'0'),DECIMAL(65))) as totalCount
+        FROM iot_energy_equipment eq
+        INNER JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        INNER JOIN  iot_device_last_measurement mea ON ede.device_id=mea.device_id  AND mea.month_last_day=1
+        where eq.project_id=#{projectId} AND mea.year=#{year}
+        GROUP BY eq.id
+    </select>
+
+    <select id="getMonthDataDetail" resultType="map">
+        SELECT eq.id as equipmentId,
+               eq.name as equipmentName,
+               ct.id as consumeTypeId,
+               ct.name as consumeTypeName,
+               mea.year_month_day as yearMonthDay,
+               IFNULL(mea.month_total,'0') as monthTotal,
+               IFNULL(mea.day_total,'0') as dayTotal,
+               IFNULL(mea.total_total,'0') as totalTotal,
+               DATE_FORMAT(mea.create_time,'%Y-%m-%d %H:%i:%s') as time
+        FROM iot_energy_equipment eq
+                 INNER JOIN iot_energy_consume_type ct ON eq.consume_type_id=ct.id AND ct.project_id=#{projectId}
+                 LEFT JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+                 LEFT JOIN ( SELECT max(me.id) as measure_id,me.device_id as device_id
+                             FROM iot_device_measurement me
+                             WHERE me.project_id=#{projectId} AND  me.year=#{year} AND me.month=#{month}
+                             GROUP BY me.device_id )as mme ON ede.device_id=mme.device_id
+                 LEFT JOIN iot_device_measurement mea On mea.id=mme.measure_id
+        where eq.project_id=#{projectId}
+    </select>
+
+    <select id="getEnergyStatistic" resultType="com.steelman.iot.platform.largescreen.vo.EnergyStatus">
+        SELECT  eq.id as equipmentId,
+                eq.name as equipmentName,
+                IFNULL(de.status,2) as status,
+                1 as level
+        FROM iot_energy_equipment eq
+        LEFT JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        LEFT JOIN iot_device de ON ede.device_id=de.id AND de.project_id=#{projectId}
+        WHERE eq.project_id=#{projectId}
+    </select>
+
+    <select id="getEquipmentTotal" resultType="map">
+        SELECT eq.id as equipmentId,
+               eq.name as equipmentName,
+               IFNULL(mea.total_total,'0') as totalTotal
+        FROM iot_energy_equipment eq
+        LEFT JOIN iot_energy_equipment_device ede ON eq.id=ede.equipment_id AND ede.project_id=#{projectId}
+        LEFT JOIN ( SELECT max(me.id) as measure_id,me.device_id as device_id
+                             FROM iot_device_measurement me
+                             WHERE me.project_id=#{projectId}
+                             GROUP BY me.device_id )as mme ON ede.device_id=mme.device_id
+                 LEFT JOIN iot_device_measurement mea On mea.id=mme.measure_id
+        where eq.project_id=#{projectId}
+    </select>
+</mapper>

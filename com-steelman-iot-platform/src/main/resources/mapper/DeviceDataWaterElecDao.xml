@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.DeviceDataWaterElecDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.DeviceDataWaterElec">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="device_id" jdbcType="BIGINT" property="deviceId" />
+    <result column="serial_num" jdbcType="VARCHAR" property="serialNum" />
+    <result column="water_pressure" jdbcType="VARCHAR" property="waterPressure" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, device_id, serial_num, water_pressure, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_device_data_water_elec
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_device_data_water_elec
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.DeviceDataWaterElec" useGeneratedKeys="true">
+    insert into iot_device_data_water_elec (device_id, serial_num, water_pressure, 
+      create_time)
+    values (#{deviceId,jdbcType=BIGINT}, #{serialNum,jdbcType=VARCHAR}, #{waterPressure,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.DeviceDataWaterElec" useGeneratedKeys="true">
+    insert into iot_device_data_water_elec
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="serialNum != null">
+        serial_num,
+      </if>
+      <if test="waterPressure != null">
+        water_pressure,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="serialNum != null">
+        #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="waterPressure != null">
+        #{waterPressure,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.DeviceDataWaterElec">
+    update iot_device_data_water_elec
+    <set>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="serialNum != null">
+        serial_num = #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="waterPressure != null">
+        water_pressure = #{waterPressure,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.DeviceDataWaterElec">
+    update iot_device_data_water_elec
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      serial_num = #{serialNum,jdbcType=VARCHAR},
+      water_pressure = #{waterPressure,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findRecentData" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM iot_device_data_water_elec
+    WHERE device_id=#{deviceId}
+    ORDER BY  create_time DESC LIMIT 1
+  </select>
+  <delete id="deleteByDeviceId">
+    delete from iot_device_data_water_elec
+    where device_id=#{deviceId}
+  </delete>
+</mapper>

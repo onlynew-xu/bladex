@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.DeviceDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.Device">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="serial_num" jdbcType="VARCHAR" property="serialNum" />
+    <result column="device_model" jdbcType="VARCHAR" property="deviceModel" />
+    <result column="device_type_id" jdbcType="BIGINT" property="deviceTypeId" />
+    <result column="trans_type" jdbcType="INTEGER" property="transType" />
+    <result column="area_id" jdbcType="BIGINT" property="areaId" />
+    <result column="building_id" jdbcType="BIGINT" property="buildingId" />
+    <result column="storey_id" jdbcType="BIGINT" property="storeyId" />
+    <result column="room_id" jdbcType="BIGINT" property="roomId" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="erasure" jdbcType="INTEGER" property="erasure" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="switch_status" jdbcType="INTEGER" property="switchStatus" />
+    <result column="binding_status" jdbcType="INTEGER" property="bindingStatus" />
+    <result column="binding_type" jdbcType="INTEGER" property="bindingType" />
+    <result column="storey_x" jdbcType="FLOAT" property="storeyX" />
+    <result column="storey_y" jdbcType="FLOAT" property="storeyY" />
+    <result column="storeyCadX" jdbcType="FLOAT" property="storeyCadX" />
+    <result column="storeyCadY" jdbcType="FLOAT" property="storeyCadY" />
+    <result column="jd" jdbcType="DOUBLE" property="jd" />
+    <result column="wd" jdbcType="DOUBLE" property="wd" />
+    <result column="mark" jdbcType="VARCHAR" property="mark" />
+    <result column="ext_flag" jdbcType="INTEGER" property="extFlag" />
+    <result column="video_url" jdbcType="VARCHAR" property="videoUrl" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="hw_version" jdbcType="VARCHAR" property="hwVersion" />
+    <result column="sw_version" jdbcType="VARCHAR" property="swVersion" />
+    <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer" />
+    <result column="product_date" jdbcType="VARCHAR" property="productDate" />
+    <result column="useful_life" jdbcType="VARCHAR" property="usefulLife" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, serial_num, device_model, device_type_id, trans_type, area_id, building_id, 
+    storey_id, room_id, `location`, project_id, erasure, `status`, switch_status, binding_status, 
+    binding_type, storey_x, storey_y, storey_cad_x, storey_cad_y, jd, wd, mark, ext_flag, video_url,
+    version, hw_version, sw_version, manufacturer, product_date, useful_life, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_device
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_device
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.Device" useGeneratedKeys="true">
+    insert into iot_device (name, serial_num, device_model,
+      device_type_id, trans_type, area_id, 
+      building_id, storey_id, room_id, 
+      location, project_id, erasure,
+      status, switch_status, binding_status,
+      binding_type, storey_x, storey_y,
+      storey_cad_x, storey_cad_y, jd,
+      wd, mark, ext_Flag, video_url,
+      version, hw_version, sw_version, 
+      manufacturer, product_date, useful_life, 
+      create_time, update_time)
+    values (#{name,jdbcType=VARCHAR}, #{serialNum,jdbcType=VARCHAR}, #{deviceModel,jdbcType=VARCHAR}, 
+      #{deviceTypeId,jdbcType=BIGINT}, #{transType,jdbcType=INTEGER}, #{areaId,jdbcType=BIGINT}, 
+      #{buildingId,jdbcType=BIGINT}, #{storeyId,jdbcType=BIGINT}, #{roomId,jdbcType=BIGINT}, 
+      #{location,jdbcType=VARCHAR}, #{projectId,jdbcType=BIGINT}, #{erasure,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{switchStatus,jdbcType=INTEGER}, #{bindingStatus,jdbcType=INTEGER}, 
+      #{bindingType,jdbcType=INTEGER}, #{storeyX,jdbcType=FLOAT}, #{storeyY,jdbcType=FLOAT},
+      #{storeyCadX,jdbcType=FLOAT}, #{storeyCadY,jdbcType=FLOAT}, #{jd,jdbcType=DOUBLE},
+      #{wd,jdbcType=DOUBLE}, #{mark,jdbcType=VARCHAR}, #{extFlag,jdbcType=INTEGER}, #{videoUrl,jdbcType=VARCHAR},
+      #{version,jdbcType=VARCHAR}, #{hwVersion,jdbcType=VARCHAR}, #{swVersion,jdbcType=VARCHAR}, 
+      #{manufacturer,jdbcType=VARCHAR}, #{productDate,jdbcType=VARCHAR}, #{usefulLife,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.Device" useGeneratedKeys="true">
+    insert into iot_device
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        `id`,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="serialNum != null">
+        serial_num,
+      </if>
+      <if test="deviceModel != null">
+        device_model,
+      </if>
+      <if test="deviceTypeId != null">
+        device_type_id,
+      </if>
+      <if test="transType != null">
+        trans_type,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="storeyId != null">
+        storey_id,
+      </if>
+      <if test="roomId != null">
+        room_id,
+      </if>
+      <if test="location != null">
+        `location`,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="erasure != null">
+        erasure,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="switchStatus != null">
+        switch_status,
+      </if>
+      <if test="bindingStatus != null">
+        binding_status,
+      </if>
+      <if test="bindingType != null">
+        binding_type,
+      </if>
+      <if test="storeyX != null">
+        storey_x,
+      </if>
+      <if test="storeyY != null">
+        storey_y,
+      </if>
+      <if test="storeyCadX != null">
+        storey_cad_x,
+      </if>
+      <if test="storeyCadY != null">
+        storey_cad_y,
+      </if>
+      <if test="jd != null">
+        jd,
+      </if>
+      <if test="wd != null">
+        wd,
+      </if>
+      <if test="mark != null">
+        mark,
+      </if>
+      <if test="extFlag != null">
+        ext_flag,
+      </if>
+      <if test="videoUrl != null">
+        video_url,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="hwVersion != null">
+        hw_version,
+      </if>
+      <if test="swVersion != null">
+        sw_version,
+      </if>
+      <if test="manufacturer != null">
+        manufacturer,
+      </if>
+      <if test="productDate != null">
+        product_date,
+      </if>
+      <if test="usefulLife != null">
+        useful_life,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNum != null">
+        #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceModel != null">
+        #{deviceModel,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeId != null">
+        #{deviceTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="transType != null">
+        #{transType,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=BIGINT},
+      </if>
+      <if test="storeyId != null">
+        #{storeyId,jdbcType=BIGINT},
+      </if>
+      <if test="roomId != null">
+        #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="erasure != null">
+        #{erasure,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="switchStatus != null">
+        #{switchStatus,jdbcType=INTEGER},
+      </if>
+      <if test="bindingStatus != null">
+        #{bindingStatus,jdbcType=INTEGER},
+      </if>
+      <if test="bindingType != null">
+        #{bindingType,jdbcType=INTEGER},
+      </if>
+      <if test="storeyX != null">
+        #{storeyX,jdbcType=FLOAT},
+      </if>
+      <if test="storeyY != null">
+        #{storeyY,jdbcType=FLOAT},
+      </if>
+      <if test="storeyCadX != null">
+        #{storeyCadX,jdbcType=FLOAT},
+      </if>
+      <if test="storeyCadY != null">
+        #{storeyCadY,jdbcType=FLOAT},
+      </if>
+      <if test="jd != null">
+        #{jd,jdbcType=DOUBLE},
+      </if>
+      <if test="wd != null">
+        #{wd,jdbcType=DOUBLE},
+      </if>
+      <if test="mark != null">
+        #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="extFlag != null">
+        #{extFlag,jdbcType=INTEGER},
+      </if>
+      <if test="videoUrl != null">
+        #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="hwVersion != null">
+        #{hwVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="swVersion != null">
+        #{swVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="productDate != null">
+        #{productDate,jdbcType=VARCHAR},
+      </if>
+      <if test="usefulLife != null">
+        #{usefulLife,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.Device">
+    update iot_device
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNum != null">
+        serial_num = #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceModel != null">
+        device_model = #{deviceModel,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceTypeId != null">
+        device_type_id = #{deviceTypeId,jdbcType=BIGINT},
+      </if>
+      <if test="transType != null">
+        trans_type = #{transType,jdbcType=INTEGER},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=BIGINT},
+      </if>
+      <if test="storeyId != null">
+        storey_id = #{storeyId,jdbcType=BIGINT},
+      </if>
+      <if test="roomId != null">
+        room_id = #{roomId,jdbcType=BIGINT},
+      </if>
+      <if test="location != null">
+        `location` = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="erasure != null">
+        erasure = #{erasure,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="switchStatus != null">
+        switch_status = #{switchStatus,jdbcType=INTEGER},
+      </if>
+      <if test="bindingStatus != null">
+        binding_status = #{bindingStatus,jdbcType=INTEGER},
+      </if>
+      <if test="bindingType != null">
+        binding_type = #{bindingType,jdbcType=INTEGER},
+      </if>
+      <if test="storeyX != null">
+        storey_x = #{storeyX,jdbcType=FLOAT},
+      </if>
+      <if test="storeyY != null">
+        storey_y = #{storeyY,jdbcType=FLOAT},
+      </if>
+      <if test="storeyCadX != null">
+        storey_cad_x = #{storeyCadX,jdbcType=FLOAT},
+      </if>
+      <if test="storeyCadY != null">
+        storey_cad_y = #{storeyCadY,jdbcType=FLOAT},
+      </if>
+      <if test="jd != null">
+        jd = #{jd,jdbcType=DOUBLE},
+      </if>
+      <if test="wd != null">
+        wd = #{wd,jdbcType=DOUBLE},
+      </if>
+      <if test="mark != null">
+        mark = #{mark,jdbcType=VARCHAR},
+      </if>
+      <if test="extFlag != null">
+        ext_flag = #{extFlag,jdbcType=INTEGER},
+      </if>
+      <if test="videoUrl != null">
+        video_url = #{videoUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="hwVersion != null">
+        hw_version = #{hwVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="swVersion != null">
+        sw_version = #{swVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="manufacturer != null">
+        manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      </if>
+      <if test="productDate != null">
+        product_date = #{productDate,jdbcType=VARCHAR},
+      </if>
+      <if test="usefulLife != null">
+        useful_life = #{usefulLife,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.Device">
+    update iot_device
+    set `name` = #{name,jdbcType=VARCHAR},
+      serial_num = #{serialNum,jdbcType=VARCHAR},
+      device_model = #{deviceModel,jdbcType=VARCHAR},
+      device_type_id = #{deviceTypeId,jdbcType=BIGINT},
+      trans_type = #{transType,jdbcType=INTEGER},
+      area_id = #{areaId,jdbcType=BIGINT},
+      building_id = #{buildingId,jdbcType=BIGINT},
+      storey_id = #{storeyId,jdbcType=BIGINT},
+      room_id = #{roomId,jdbcType=BIGINT},
+      `location` = #{location,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=BIGINT},
+      erasure = #{erasure,jdbcType=INTEGER},
+      `status` = #{status,jdbcType=INTEGER},
+      switch_status = #{switchStatus,jdbcType=INTEGER},
+      binding_status = #{bindingStatus,jdbcType=INTEGER},
+      binding_type = #{bindingType,jdbcType=INTEGER},
+      storey_x = #{storeyX,jdbcType=FLOAT},
+      storey_y = #{storeyY,jdbcType=FLOAT},
+      storey_cad_x = #{storeyCadX,jdbcType=FLOAT},
+      storey_cad_y = #{storeyCadY,jdbcType=FLOAT},
+      jd = #{jd,jdbcType=DOUBLE},
+      wd = #{wd,jdbcType=DOUBLE},
+      mark = #{mark,jdbcType=VARCHAR},
+      ext_flag = #{extFlag,jdbcType=INTEGER},
+      video_url = #{videoUrl,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      hw_version = #{hwVersion,jdbcType=VARCHAR},
+      sw_version = #{swVersion,jdbcType=VARCHAR},
+      manufacturer = #{manufacturer,jdbcType=VARCHAR},
+      product_date = #{productDate,jdbcType=VARCHAR},
+      useful_life = #{usefulLife,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="getDeviceStatistic" resultType="java.util.Map">
+    SELECT COUNT(1) as count,de.device_type_id as deviceTypeId,de.status as status
+    FROM iot_device de
+    INNER JOIN iot_device_system ds ON  de.id=ds.device_id and ds.system_id=#{systemId} and ds.project_id=#{projectId}
+    WHERE de.project_id=#{projectId}
+    GROUP BY de.device_type_id,de.status
+    ORDER BY de.device_type_id asc
+  </select>
+
+  <select id="selectByAll"  resultMap="BaseResultMap">
+    SELECT d.* from iot_device d
+    LEFT JOIN iot_device_type t on t.id=d.device_type_id
+    where t.id=#{deviceTypeId}
+    <if test="projectId != null and projectId != ''">
+      and d.project_id = #{projectId}
+    </if>
+    ORDER BY d.id desc limit #{page},#{size}
+  </select>
+  <select id="getDeviceStatisticDaPing" resultType="java.util.Map">
+    SELECT COUNT(1) as count,de.device_type_id as deviceTypeId
+    FROM iot_device de
+           INNER JOIN iot_device_system ds ON  de.id=ds.device_id and ds.system_id=#{systemId}
+    WHERE de.project_id=#{projectId}
+    GROUP BY de.device_type_id
+    ORDER BY de.device_type_id asc
+  </select>
+  <select id="deviceStatusStatistic" resultType="map">
+    SELECT  count(de.id) as count,de.status as status
+    FROM iot_device de
+    INNER JOIN iot_device_system ds ON de.id=ds.device_id AND  ds.system_id=1000
+    WHERE de.project_id=#{projectId}
+    <if test="areaId != null">
+      and de.area_id=#{areaId}
+    </if>
+    <if test="buildingId != null">
+      and de.building_id=#{buildingId}
+    </if>
+    GROUP BY de.status
+  </select>
+  <select id="getDeviceSimpleInfo" resultType="map">
+    SELECT de.id as deviceId,de.name as deviceName,de.status as status,
+   dt.id as deviceTypeId,dt.name as deviceTypeName,de.create_time as createTime
+    FROM iot_device de
+    INNER JOIN iot_device_system ds ON de.id=ds.device_id and ds.system_id=#{systemId} and  ds.project_id=#{projectId}
+    INNER JOIN iot_device_type dt ON de.device_type_id=dt.id
+    WHERE de.project_id=#{projectId}
+    ORDER BY dt.id,de.id ;
+  </select>
+
+  <select id="selectBySerialNum" resultMap="BaseResultMap">
+    SELECT  <include refid="Base_Column_List"></include>
+    FROM iot_device
+    where serial_num=#{serialNum}
+  </select>
+  <select id="selectByDeviceTypeId" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM  iot_device
+    WHERE  project_id=#{projectId}  AND device_type_id=#{deviceTypeId}
+  </select>
+  <select id="getAreaDevice" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from iot_device where area_id=#{areaId} AND project_id=#{projectId}
+  </select>
+  <select id="getMeasureTotalData" resultType="com.steelman.iot.platform.entity.dto.MeasureDataStr">
+        SELECT total_total as total,total_spike as spike,total_peak as peak,total_normal as normal,total_valley as valley
+        FROM iot_device_measurement
+        WHERE device_id=#{deviceId}
+        ORDER By id DESC LIMIT 1
+  </select>
+  <select id="getPastSixDayMeasure" resultType="com.steelman.iot.platform.entity.dto.MeasureDateData">
+        SELECT day_total as total,day_spike as spike,day_peak as peak,day_normal as normal,day_valley as valley ,year_month_day as yearMonthDay,year,month,day
+        FROM iot_device_last_measurement
+        WHERE device_id=#{deviceId}
+        AND (create_time between #{begDate} and #{endDate})
+  </select>
+  <select id="getTodayMeasureData" resultType="com.steelman.iot.platform.entity.dto.MeasureDateData">
+    SELECT day_total as total,day_spike as spike,day_peak as peak,day_normal as normal,day_valley as valley,year_month_day as yearMonthDay,year,month,day
+    FROM iot_device_measurement
+    WHERE device_id=#{deviceId} AND year_month_day=#{yearMonthDay}
+    ORDER By id DESC LIMIT 1
+  </select>
+  <select id="getPastDateDate" resultType="com.steelman.iot.platform.entity.dto.MeasureDateData">
+    SELECT day_total as total,day_spike as spike,day_peak as peak,day_normal as normal,day_valley as value,year_month_day as yearMonthDay
+    FROM iot_device_measurement
+    WHERE device_id=#{deviceId} AND day_last_min=1
+    AND (create_time between #{begDate} and #{endDate})
+  </select>
+  <select id="getDayMeasureData" resultType="com.steelman.iot.platform.entity.dto.MeasureDateData">
+    SELECT day_total as total,day_spike as spike,day_peak as peak,day_normal as normal,day_valley as value,year_month_day as yearMonthDay,year,month,day
+    FROM iot_device_measurement
+    WHERE device_id=#{deviceId} AND year_month_day=#{yearMonthDay} AND day_last_min=1
+  </select>
+  <select id="getLastMonthDayMeasureData" resultType="com.steelman.iot.platform.entity.dto.MeasureDateData">
+    SELECT month_total as total,month_spike as spike,month_peak as peak,month_normal as normal,month_valley as valley ,year_month_day as yearMonthDay,
+    year,month,day,concat(year,month) as yearMonth
+    FROM iot_device_last_measurement
+    WHERE year=#{year} AND month=#{month} AND device_id=#{deviceId}
+    ORDER BY id asc
+  </select>
+  <select id="getTodayMonthMeasure" resultType="com.steelman.iot.platform.entity.dto.MeasureDateData">
+    SELECT month_total as total,month_spike as spike,month_peak as peak,month_normal as normal,month_valley as valley ,year_month_day as yearMonthDay,
+           year,month,day,concat(year,month) as yearMonth
+    FROM iot_device_measurement
+    WHERE device_id=#{deviceId} AND year_month_day=#{yearMonthDay}
+    GROUP BY id DESC LIMIT 1
+  </select>
+  <update id="updateAreaAllNull">
+    update iot_device
+    SET area_id =null,building_id=null,storey_id=null,room_id=null
+    WHERE id=#{deviceId}
+  </update>
+  <update id="updateLocationNull">
+    update iot_device
+    SET location=null
+    WHERE id=#{deviceId}
+  </update>
+  <update id="updateAreaNull">
+    update iot_device
+    SET area_id =null
+    WHERE id=#{deviceId}
+  </update>
+  <update id="updateVideoUrlNull">
+    update iot_device
+    SET video_url =null
+    WHERE id=#{deviceId}
+  </update>
+  <select id="getSystemDeviceList" resultType="com.steelman.iot.platform.entity.dto.EntityDto">
+    SELECT  de.id as id  ,ds.name as name ,de.project_id as projectId
+    FROM iot_device de
+    INNER JOIN iot_device_system ds On de.id=ds.device_id AND ds.project_id=#{projectId}
+    WHERE  de.project_id=#{projectId} AND ds.system_id=#{systemId} AND de.device_type_id=#{deviceTypeId} AND de.binding_status=0
+  </select>
+  <select id="findSystemNameDevice" resultMap="BaseResultMap">
+    SELECT  de.id, ds.`name`, de.serial_num, de.device_model, de.device_type_id, de.trans_type, de.area_id, de.building_id,
+            de.storey_id, de.room_id, de.`location`, de.project_id, de.erasure, de.`status`, de.switch_status, de.binding_status,
+            de.binding_type, de.storey_x, de.storey_y, de.storey_cad_x, de.storey_cad_y, de.jd, de.wd, de.mark, de.ext_flag, de.video_url,
+            de.version, de.hw_version, de.sw_version, de.manufacturer, de.product_date, de.useful_life, de.create_time,
+            de.update_time
+    FROM iot_device de
+    INNER JOIN iot_device_system ds on de.id=ds.device_id
+    WHERE de.id=#{deviceId} and ds.system_id=#{systemId}
+  </select>
+
+  <select id="getPowerDeviceList" resultType="map">
+    select de.id as deviceId,de.status as status
+    from iot_device de
+    INNER JOIN iot_device_system ds ON de.id=ds.device_id
+    WHERE de.project_id=#{projectId} AND ds.system_id=2000
+  </select>
+
+
+  <select id="getDeviceCount" resultType="int">
+    SELECT count(1)
+    FROM iot_device
+    WHERE project_id=#{projectId}
+  </select>
+
+  <select id="findByProjectId" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM iot_device
+    WHERE project_id=#{projectId}
+  </select>
+
+  <select id="getSafeDeviceStatus" resultType="map">
+    SELECT de.id as deviceId,de.status as status
+    FROM iot_device de
+    INNER JOIN iot_device_system sys ON de.id=sys.device_id AND sys.system_id=1000
+    where de.project_id=#{projectId}
+  </select>
+  <select id="getPowerDeviceStatus" resultType="map">
+    SELECT de.id as deviceId,de.status as status
+    FROM iot_device de
+    INNER JOIN iot_device_system sys ON de.id=sys.device_id AND sys.system_id=2000 AND binding_status=1
+    WHERE de.project_id=#{projectId}
+  </select>
+</mapper>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.PowerFeederLoopDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.PowerFeederLoop">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="total_flag" jdbcType="INTEGER" property="totalFlag" />
+    <result column="feeder_id" jdbcType="BIGINT" property="feederId" />
+    <result column="power_id" jdbcType="BIGINT" property="powerId" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, total_flag, feeder_id, power_id, project_id, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_power_feeder_loop
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+    <select id="selectLoopByFeederId" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List"/> from iot_power_feeder_loop where feeder_id = #{feederId} order by id asc
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_power_feeder_loop
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.PowerFeederLoop" useGeneratedKeys="true">
+    insert into iot_power_feeder_loop (`name`, total_flag, feeder_id, 
+      power_id, project_id, create_time, 
+      update_time)
+    values (#{name,jdbcType=VARCHAR}, #{totalFlag,jdbcType=INTEGER}, #{feederId,jdbcType=BIGINT}, 
+      #{powerId,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.PowerFeederLoop" useGeneratedKeys="true">
+    insert into iot_power_feeder_loop
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="totalFlag != null">
+        total_flag,
+      </if>
+      <if test="feederId != null">
+        feeder_id,
+      </if>
+      <if test="powerId != null">
+        power_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFlag != null">
+        #{totalFlag,jdbcType=INTEGER},
+      </if>
+      <if test="feederId != null">
+        #{feederId,jdbcType=BIGINT},
+      </if>
+      <if test="powerId != null">
+        #{powerId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.PowerFeederLoop">
+    update iot_power_feeder_loop
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFlag != null">
+        total_flag = #{totalFlag,jdbcType=INTEGER},
+      </if>
+      <if test="feederId != null">
+        feeder_id = #{feederId,jdbcType=BIGINT},
+      </if>
+      <if test="powerId != null">
+        power_id = #{powerId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.PowerFeederLoop">
+    update iot_power_feeder_loop
+    set `name` = #{name,jdbcType=VARCHAR},
+      total_flag = #{totalFlag,jdbcType=INTEGER},
+      feeder_id = #{feederId,jdbcType=BIGINT},
+      power_id = #{powerId,jdbcType=BIGINT},
+      project_id = #{projectId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findByFeederIdAndLoop" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from iot_power_feeder_loop
+    where feeder_id=#{feederId} AND name=#{loopName}
+  </select>
+  <delete id="deleteByFeederId">
+    delete from iot_power_feeder_loop
+    where feeder_id=#{feederId}
+  </delete>
+  <select id="getLoopList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"></include>
+    from  iot_power_feeder_loop
+    where feeder_id=#{feederId}
+    Order BY total_flag,id asc
+
+  </select>
+</mapper>

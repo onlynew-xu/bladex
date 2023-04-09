@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.DeviceDataSafeElecDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.DeviceDataSafeElec">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="device_id" jdbcType="BIGINT" property="deviceId" />
+    <result column="serial_num" jdbcType="VARCHAR" property="serialNum" />
+    <result column="temp1" jdbcType="VARCHAR" property="temp1" />
+    <result column="temp2" jdbcType="VARCHAR" property="temp2" />
+    <result column="temp3" jdbcType="VARCHAR" property="temp3" />
+    <result column="temp4" jdbcType="VARCHAR" property="temp4" />
+    <result column="elctr0" jdbcType="VARCHAR" property="elctr0" />
+    <result column="elctr1" jdbcType="VARCHAR" property="elctr1" />
+    <result column="elctr2" jdbcType="VARCHAR" property="elctr2" />
+    <result column="elctr3" jdbcType="VARCHAR" property="elctr3" />
+    <result column="volt0" jdbcType="VARCHAR" property="volt0" />
+    <result column="volt1" jdbcType="VARCHAR" property="volt1" />
+    <result column="volt2" jdbcType="VARCHAR" property="volt2" />
+    <result column="volt3" jdbcType="VARCHAR" property="volt3" />
+    <result column="volt4" jdbcType="VARCHAR" property="volt4" />
+    <result column="volt5" jdbcType="VARCHAR" property="volt5" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, device_id, serial_num, temp1, temp2, temp3, temp4, elctr0, elctr1, elctr2, elctr3, 
+    volt0, volt1, volt2, volt3, volt4, volt5, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_device_data_safe_elec
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_device_data_safe_elec
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.DeviceDataSafeElec" useGeneratedKeys="true">
+    insert into iot_device_data_safe_elec (device_id, serial_num, temp1, 
+      temp2, temp3, temp4, 
+      elctr0, elctr1, elctr2, 
+      elctr3, volt0, volt1, 
+      volt2, volt3, volt4, 
+      volt5, create_time)
+    values (#{deviceId,jdbcType=BIGINT}, #{serialNum,jdbcType=VARCHAR}, #{temp1,jdbcType=VARCHAR}, 
+      #{temp2,jdbcType=VARCHAR}, #{temp3,jdbcType=VARCHAR}, #{temp4,jdbcType=VARCHAR}, 
+      #{elctr0,jdbcType=VARCHAR}, #{elctr1,jdbcType=VARCHAR}, #{elctr2,jdbcType=VARCHAR}, 
+      #{elctr3,jdbcType=VARCHAR}, #{volt0,jdbcType=VARCHAR}, #{volt1,jdbcType=VARCHAR}, 
+      #{volt2,jdbcType=VARCHAR}, #{volt3,jdbcType=VARCHAR}, #{volt4,jdbcType=VARCHAR}, 
+      #{volt5,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.DeviceDataSafeElec" useGeneratedKeys="true">
+    insert into iot_device_data_safe_elec
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="serialNum != null">
+        serial_num,
+      </if>
+      <if test="temp1 != null">
+        temp1,
+      </if>
+      <if test="temp2 != null">
+        temp2,
+      </if>
+      <if test="temp3 != null">
+        temp3,
+      </if>
+      <if test="temp4 != null">
+        temp4,
+      </if>
+      <if test="elctr0 != null">
+        elctr0,
+      </if>
+      <if test="elctr1 != null">
+        elctr1,
+      </if>
+      <if test="elctr2 != null">
+        elctr2,
+      </if>
+      <if test="elctr3 != null">
+        elctr3,
+      </if>
+      <if test="volt0 != null">
+        volt0,
+      </if>
+      <if test="volt1 != null">
+        volt1,
+      </if>
+      <if test="volt2 != null">
+        volt2,
+      </if>
+      <if test="volt3 != null">
+        volt3,
+      </if>
+      <if test="volt4 != null">
+        volt4,
+      </if>
+      <if test="volt5 != null">
+        volt5,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="serialNum != null">
+        #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="temp1 != null">
+        #{temp1,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        #{temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="temp3 != null">
+        #{temp3,jdbcType=VARCHAR},
+      </if>
+      <if test="temp4 != null">
+        #{temp4,jdbcType=VARCHAR},
+      </if>
+      <if test="elctr0 != null">
+        #{elctr0,jdbcType=VARCHAR},
+      </if>
+      <if test="elctr1 != null">
+        #{elctr1,jdbcType=VARCHAR},
+      </if>
+      <if test="elctr2 != null">
+        #{elctr2,jdbcType=VARCHAR},
+      </if>
+      <if test="elctr3 != null">
+        #{elctr3,jdbcType=VARCHAR},
+      </if>
+      <if test="volt0 != null">
+        #{volt0,jdbcType=VARCHAR},
+      </if>
+      <if test="volt1 != null">
+        #{volt1,jdbcType=VARCHAR},
+      </if>
+      <if test="volt2 != null">
+        #{volt2,jdbcType=VARCHAR},
+      </if>
+      <if test="volt3 != null">
+        #{volt3,jdbcType=VARCHAR},
+      </if>
+      <if test="volt4 != null">
+        #{volt4,jdbcType=VARCHAR},
+      </if>
+      <if test="volt5 != null">
+        #{volt5,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.DeviceDataSafeElec">
+    update iot_device_data_safe_elec
+    <set>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="serialNum != null">
+        serial_num = #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="temp1 != null">
+        temp1 = #{temp1,jdbcType=VARCHAR},
+      </if>
+      <if test="temp2 != null">
+        temp2 = #{temp2,jdbcType=VARCHAR},
+      </if>
+      <if test="temp3 != null">
+        temp3 = #{temp3,jdbcType=VARCHAR},
+      </if>
+      <if test="temp4 != null">
+        temp4 = #{temp4,jdbcType=VARCHAR},
+      </if>
+      <if test="elctr0 != null">
+        elctr0 = #{elctr0,jdbcType=VARCHAR},
+      </if>
+      <if test="elctr1 != null">
+        elctr1 = #{elctr1,jdbcType=VARCHAR},
+      </if>
+      <if test="elctr2 != null">
+        elctr2 = #{elctr2,jdbcType=VARCHAR},
+      </if>
+      <if test="elctr3 != null">
+        elctr3 = #{elctr3,jdbcType=VARCHAR},
+      </if>
+      <if test="volt0 != null">
+        volt0 = #{volt0,jdbcType=VARCHAR},
+      </if>
+      <if test="volt1 != null">
+        volt1 = #{volt1,jdbcType=VARCHAR},
+      </if>
+      <if test="volt2 != null">
+        volt2 = #{volt2,jdbcType=VARCHAR},
+      </if>
+      <if test="volt3 != null">
+        volt3 = #{volt3,jdbcType=VARCHAR},
+      </if>
+      <if test="volt4 != null">
+        volt4 = #{volt4,jdbcType=VARCHAR},
+      </if>
+      <if test="volt5 != null">
+        volt5 = #{volt5,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.DeviceDataSafeElec">
+    update iot_device_data_safe_elec
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      serial_num = #{serialNum,jdbcType=VARCHAR},
+      temp1 = #{temp1,jdbcType=VARCHAR},
+      temp2 = #{temp2,jdbcType=VARCHAR},
+      temp3 = #{temp3,jdbcType=VARCHAR},
+      temp4 = #{temp4,jdbcType=VARCHAR},
+      elctr0 = #{elctr0,jdbcType=VARCHAR},
+      elctr1 = #{elctr1,jdbcType=VARCHAR},
+      elctr2 = #{elctr2,jdbcType=VARCHAR},
+      elctr3 = #{elctr3,jdbcType=VARCHAR},
+      volt0 = #{volt0,jdbcType=VARCHAR},
+      volt1 = #{volt1,jdbcType=VARCHAR},
+      volt2 = #{volt2,jdbcType=VARCHAR},
+      volt3 = #{volt3,jdbcType=VARCHAR},
+      volt4 = #{volt4,jdbcType=VARCHAR},
+      volt5 = #{volt5,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectBySbidLimit" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select  c.*,d.location,d.erasure
+     from iot_device_data_safe_elec c
+     LEFT JOIN iot_device d on d.id=c.device_id
+     where c.device_id=#{deviceId}
+     order by c.id desc limit 0,10
+  </select>
+
+  <delete id="deleteByDeviceId">
+    delete from iot_device_data_safe_elec
+    where device_id=#{deviceId}
+  </delete>
+</mapper>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <!--控制台输出-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [%t] [%F:%L] - %m%n</pattern>
+        </encoder>
+    </appender>
+    <!--保存最近30天的日志-->
+    <appender name="file-recent" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>logs/all.log</File>
+        <Append>true</Append>
+        <encoder>
+            <pattern>[%p][%d{yyyy-MM-dd HH:mm:ss.SSS}][%c:%L]%m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>logs/all.%d.log</FileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>50MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+    <!--保存所有日志-->
+    <appender name="file-all" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>logs/final.log</File>
+        <Append>true</Append>
+        <encoder>
+            <pattern>[%p][%d{yyyy-MM-dd HH:mm:ss.SSS}][%c:%L]%m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <maxIndex>10</maxIndex>
+            <FileNamePattern>logs/final-%i.log</FileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>50MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+    <!--保存最近30天的错误日志-->
+    <appender name="error-recent" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>error</level>
+        </filter>
+        <Append>true</Append>
+        <encoder>
+            <pattern>[%p][%d{yyyy-MM-dd HH:mm:ss.SSS}][%c:%M]%m%n</pattern>
+        </encoder>
+        <file>logs/error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>logs/error.%d.log</FileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>50MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+    <root level="info">
+        <appender-ref ref="file-recent"/>
+        <appender-ref ref="error-recent"/>
+        <appender-ref ref="file-all"/>
+        <appender-ref ref="console"/>
+    </root>
+</configuration>

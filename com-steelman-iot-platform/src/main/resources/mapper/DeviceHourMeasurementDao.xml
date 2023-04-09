@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.energyManager.dao.DeviceHourMeasurementDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.energyManager.entity.DeviceHourMeasurement">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="device_id" jdbcType="BIGINT" property="deviceId" />
+    <result column="serial_num" jdbcType="VARCHAR" property="serialNum" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="day_spike" jdbcType="VARCHAR" property="daySpike" />
+    <result column="day_peak" jdbcType="VARCHAR" property="dayPeak" />
+    <result column="day_normal" jdbcType="VARCHAR" property="dayNormal" />
+    <result column="day_valley" jdbcType="VARCHAR" property="dayValley" />
+    <result column="day_total" jdbcType="VARCHAR" property="dayTotal" />
+    <result column="day_spike_price" jdbcType="VARCHAR" property="daySpikePrice" />
+    <result column="day_peak_price" jdbcType="VARCHAR" property="dayPeakPrice" />
+    <result column="day_normal_price" jdbcType="VARCHAR" property="dayNormalPrice" />
+    <result column="day_valley_price" jdbcType="VARCHAR" property="dayValleyPrice" />
+    <result column="day_total_price" jdbcType="VARCHAR" property="dayTotalPrice" />
+    <result column="month_spike" jdbcType="VARCHAR" property="monthSpike" />
+    <result column="month_peak" jdbcType="VARCHAR" property="monthPeak" />
+    <result column="month_normal" jdbcType="VARCHAR" property="monthNormal" />
+    <result column="month_valley" jdbcType="VARCHAR" property="monthValley" />
+    <result column="month_total" jdbcType="VARCHAR" property="monthTotal" />
+    <result column="total_spike" jdbcType="VARCHAR" property="totalSpike" />
+    <result column="total_peak" jdbcType="VARCHAR" property="totalPeak" />
+    <result column="total_normal" jdbcType="VARCHAR" property="totalNormal" />
+    <result column="total_valley" jdbcType="VARCHAR" property="totalValley" />
+    <result column="total_total" jdbcType="VARCHAR" property="totalTotal" />
+    <result column="reactive_day_spike" jdbcType="VARCHAR" property="reactiveDaySpike" />
+    <result column="reactive_day_peak" jdbcType="VARCHAR" property="reactiveDayPeak" />
+    <result column="reactive_day_normal" jdbcType="VARCHAR" property="reactiveDayNormal" />
+    <result column="reactive_day_valley" jdbcType="VARCHAR" property="reactiveDayValley" />
+    <result column="reactive_day_total" jdbcType="VARCHAR" property="reactiveDayTotal" />
+    <result column="reactive_month_spike" jdbcType="VARCHAR" property="reactiveMonthSpike" />
+    <result column="reactive_month_peak" jdbcType="VARCHAR" property="reactiveMonthPeak" />
+    <result column="reactive_month_normal" jdbcType="VARCHAR" property="reactiveMonthNormal" />
+    <result column="reactive_month_valley" jdbcType="VARCHAR" property="reactiveMonthValley" />
+    <result column="reactive_month_total" jdbcType="VARCHAR" property="reactiveMonthTotal" />
+    <result column="reactive_total_spike" jdbcType="VARCHAR" property="reactiveTotalSpike" />
+    <result column="reactive_total_peak" jdbcType="VARCHAR" property="reactiveTotalPeak" />
+    <result column="reactive_total_normal" jdbcType="VARCHAR" property="reactiveTotalNormal" />
+    <result column="reactive_total_valley" jdbcType="VARCHAR" property="reactiveTotalValley" />
+    <result column="reactive_total_total" jdbcType="VARCHAR" property="reactiveTotalTotal" />
+    <result column="year" jdbcType="VARCHAR" property="year" />
+    <result column="month" jdbcType="VARCHAR" property="month" />
+    <result column="day" jdbcType="VARCHAR" property="day" />
+    <result column="year_month_day" jdbcType="VARCHAR" property="yearMonthDay" />
+    <result column="date_time_begin" jdbcType="VARCHAR" property="dateTimeBegin" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, device_id, serial_num, project_id, day_spike, day_peak, day_normal, day_valley, 
+    day_total, day_spike_price, day_peak_price, day_normal_price, day_valley_price, day_total_price, 
+    month_spike, month_peak, month_normal, month_valley, month_total, total_spike, total_peak, 
+    total_normal, total_valley, total_total, reactive_day_spike, reactive_day_peak, reactive_day_normal, 
+    reactive_day_valley, reactive_day_total, reactive_month_spike, reactive_month_peak, 
+    reactive_month_normal, reactive_month_valley, reactive_month_total, reactive_total_spike, 
+    reactive_total_peak, reactive_total_normal, reactive_total_valley, reactive_total_total, 
+    `year`, `month`, `day`, year_month_day, date_time_begin, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_device_hour_measurement
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_device_hour_measurement
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.energyManager.entity.DeviceHourMeasurement" useGeneratedKeys="true">
+    insert into iot_device_hour_measurement (device_id, serial_num, project_id, 
+      day_spike, day_peak, day_normal, 
+      day_valley, day_total, day_spike_price, 
+      day_peak_price, day_normal_price, day_valley_price, 
+      day_total_price, month_spike, month_peak, 
+      month_normal, month_valley, month_total, 
+      total_spike, total_peak, total_normal, 
+      total_valley, total_total, reactive_day_spike, 
+      reactive_day_peak, reactive_day_normal, reactive_day_valley, 
+      reactive_day_total, reactive_month_spike, reactive_month_peak, 
+      reactive_month_normal, reactive_month_valley, 
+      reactive_month_total, reactive_total_spike, 
+      reactive_total_peak, reactive_total_normal, 
+      reactive_total_valley, reactive_total_total, 
+      `year`, `month`, `day`, year_month_day, 
+      date_time_begin, create_time)
+    values (#{deviceId,jdbcType=BIGINT}, #{serialNum,jdbcType=VARCHAR}, #{projectId,jdbcType=BIGINT}, 
+      #{daySpike,jdbcType=VARCHAR}, #{dayPeak,jdbcType=VARCHAR}, #{dayNormal,jdbcType=VARCHAR}, 
+      #{dayValley,jdbcType=VARCHAR}, #{dayTotal,jdbcType=VARCHAR}, #{daySpikePrice,jdbcType=VARCHAR}, 
+      #{dayPeakPrice,jdbcType=VARCHAR}, #{dayNormalPrice,jdbcType=VARCHAR}, #{dayValleyPrice,jdbcType=VARCHAR}, 
+      #{dayTotalPrice,jdbcType=VARCHAR}, #{monthSpike,jdbcType=VARCHAR}, #{monthPeak,jdbcType=VARCHAR}, 
+      #{monthNormal,jdbcType=VARCHAR}, #{monthValley,jdbcType=VARCHAR}, #{monthTotal,jdbcType=VARCHAR}, 
+      #{totalSpike,jdbcType=VARCHAR}, #{totalPeak,jdbcType=VARCHAR}, #{totalNormal,jdbcType=VARCHAR}, 
+      #{totalValley,jdbcType=VARCHAR}, #{totalTotal,jdbcType=VARCHAR}, #{reactiveDaySpike,jdbcType=VARCHAR}, 
+      #{reactiveDayPeak,jdbcType=VARCHAR}, #{reactiveDayNormal,jdbcType=VARCHAR}, #{reactiveDayValley,jdbcType=VARCHAR}, 
+      #{reactiveDayTotal,jdbcType=VARCHAR}, #{reactiveMonthSpike,jdbcType=VARCHAR}, #{reactiveMonthPeak,jdbcType=VARCHAR}, 
+      #{reactiveMonthNormal,jdbcType=VARCHAR}, #{reactiveMonthValley,jdbcType=VARCHAR}, 
+      #{reactiveMonthTotal,jdbcType=VARCHAR}, #{reactiveTotalSpike,jdbcType=VARCHAR}, 
+      #{reactiveTotalPeak,jdbcType=VARCHAR}, #{reactiveTotalNormal,jdbcType=VARCHAR}, 
+      #{reactiveTotalValley,jdbcType=VARCHAR}, #{reactiveTotalTotal,jdbcType=VARCHAR}, 
+      #{year,jdbcType=VARCHAR}, #{month,jdbcType=VARCHAR}, #{day,jdbcType=VARCHAR}, #{yearMonthDay,jdbcType=VARCHAR}, 
+      #{dateTimeBegin,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.energyManager.entity.DeviceHourMeasurement" useGeneratedKeys="true">
+    insert into iot_device_hour_measurement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="serialNum != null">
+        serial_num,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="daySpike != null">
+        day_spike,
+      </if>
+      <if test="dayPeak != null">
+        day_peak,
+      </if>
+      <if test="dayNormal != null">
+        day_normal,
+      </if>
+      <if test="dayValley != null">
+        day_valley,
+      </if>
+      <if test="dayTotal != null">
+        day_total,
+      </if>
+      <if test="daySpikePrice != null">
+        day_spike_price,
+      </if>
+      <if test="dayPeakPrice != null">
+        day_peak_price,
+      </if>
+      <if test="dayNormalPrice != null">
+        day_normal_price,
+      </if>
+      <if test="dayValleyPrice != null">
+        day_valley_price,
+      </if>
+      <if test="dayTotalPrice != null">
+        day_total_price,
+      </if>
+      <if test="monthSpike != null">
+        month_spike,
+      </if>
+      <if test="monthPeak != null">
+        month_peak,
+      </if>
+      <if test="monthNormal != null">
+        month_normal,
+      </if>
+      <if test="monthValley != null">
+        month_valley,
+      </if>
+      <if test="monthTotal != null">
+        month_total,
+      </if>
+      <if test="totalSpike != null">
+        total_spike,
+      </if>
+      <if test="totalPeak != null">
+        total_peak,
+      </if>
+      <if test="totalNormal != null">
+        total_normal,
+      </if>
+      <if test="totalValley != null">
+        total_valley,
+      </if>
+      <if test="totalTotal != null">
+        total_total,
+      </if>
+      <if test="reactiveDaySpike != null">
+        reactive_day_spike,
+      </if>
+      <if test="reactiveDayPeak != null">
+        reactive_day_peak,
+      </if>
+      <if test="reactiveDayNormal != null">
+        reactive_day_normal,
+      </if>
+      <if test="reactiveDayValley != null">
+        reactive_day_valley,
+      </if>
+      <if test="reactiveDayTotal != null">
+        reactive_day_total,
+      </if>
+      <if test="reactiveMonthSpike != null">
+        reactive_month_spike,
+      </if>
+      <if test="reactiveMonthPeak != null">
+        reactive_month_peak,
+      </if>
+      <if test="reactiveMonthNormal != null">
+        reactive_month_normal,
+      </if>
+      <if test="reactiveMonthValley != null">
+        reactive_month_valley,
+      </if>
+      <if test="reactiveMonthTotal != null">
+        reactive_month_total,
+      </if>
+      <if test="reactiveTotalSpike != null">
+        reactive_total_spike,
+      </if>
+      <if test="reactiveTotalPeak != null">
+        reactive_total_peak,
+      </if>
+      <if test="reactiveTotalNormal != null">
+        reactive_total_normal,
+      </if>
+      <if test="reactiveTotalValley != null">
+        reactive_total_valley,
+      </if>
+      <if test="reactiveTotalTotal != null">
+        reactive_total_total,
+      </if>
+      <if test="year != null">
+        `year`,
+      </if>
+      <if test="month != null">
+        `month`,
+      </if>
+      <if test="day != null">
+        `day`,
+      </if>
+      <if test="yearMonthDay != null">
+        year_month_day,
+      </if>
+      <if test="dateTimeBegin != null">
+        date_time_begin,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="serialNum != null">
+        #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="daySpike != null">
+        #{daySpike,jdbcType=VARCHAR},
+      </if>
+      <if test="dayPeak != null">
+        #{dayPeak,jdbcType=VARCHAR},
+      </if>
+      <if test="dayNormal != null">
+        #{dayNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="dayValley != null">
+        #{dayValley,jdbcType=VARCHAR},
+      </if>
+      <if test="dayTotal != null">
+        #{dayTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="daySpikePrice != null">
+        #{daySpikePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="dayPeakPrice != null">
+        #{dayPeakPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="dayNormalPrice != null">
+        #{dayNormalPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="dayValleyPrice != null">
+        #{dayValleyPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="dayTotalPrice != null">
+        #{dayTotalPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="monthSpike != null">
+        #{monthSpike,jdbcType=VARCHAR},
+      </if>
+      <if test="monthPeak != null">
+        #{monthPeak,jdbcType=VARCHAR},
+      </if>
+      <if test="monthNormal != null">
+        #{monthNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="monthValley != null">
+        #{monthValley,jdbcType=VARCHAR},
+      </if>
+      <if test="monthTotal != null">
+        #{monthTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="totalSpike != null">
+        #{totalSpike,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPeak != null">
+        #{totalPeak,jdbcType=VARCHAR},
+      </if>
+      <if test="totalNormal != null">
+        #{totalNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="totalValley != null">
+        #{totalValley,jdbcType=VARCHAR},
+      </if>
+      <if test="totalTotal != null">
+        #{totalTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveDaySpike != null">
+        #{reactiveDaySpike,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveDayPeak != null">
+        #{reactiveDayPeak,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveDayNormal != null">
+        #{reactiveDayNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveDayValley != null">
+        #{reactiveDayValley,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveDayTotal != null">
+        #{reactiveDayTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveMonthSpike != null">
+        #{reactiveMonthSpike,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveMonthPeak != null">
+        #{reactiveMonthPeak,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveMonthNormal != null">
+        #{reactiveMonthNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveMonthValley != null">
+        #{reactiveMonthValley,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveMonthTotal != null">
+        #{reactiveMonthTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveTotalSpike != null">
+        #{reactiveTotalSpike,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveTotalPeak != null">
+        #{reactiveTotalPeak,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveTotalNormal != null">
+        #{reactiveTotalNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveTotalValley != null">
+        #{reactiveTotalValley,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveTotalTotal != null">
+        #{reactiveTotalTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null">
+        #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="yearMonthDay != null">
+        #{yearMonthDay,jdbcType=VARCHAR},
+      </if>
+      <if test="dateTimeBegin != null">
+        #{dateTimeBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.energyManager.entity.DeviceHourMeasurement">
+    update iot_device_hour_measurement
+    <set>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="serialNum != null">
+        serial_num = #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="daySpike != null">
+        day_spike = #{daySpike,jdbcType=VARCHAR},
+      </if>
+      <if test="dayPeak != null">
+        day_peak = #{dayPeak,jdbcType=VARCHAR},
+      </if>
+      <if test="dayNormal != null">
+        day_normal = #{dayNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="dayValley != null">
+        day_valley = #{dayValley,jdbcType=VARCHAR},
+      </if>
+      <if test="dayTotal != null">
+        day_total = #{dayTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="daySpikePrice != null">
+        day_spike_price = #{daySpikePrice,jdbcType=VARCHAR},
+      </if>
+      <if test="dayPeakPrice != null">
+        day_peak_price = #{dayPeakPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="dayNormalPrice != null">
+        day_normal_price = #{dayNormalPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="dayValleyPrice != null">
+        day_valley_price = #{dayValleyPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="dayTotalPrice != null">
+        day_total_price = #{dayTotalPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="monthSpike != null">
+        month_spike = #{monthSpike,jdbcType=VARCHAR},
+      </if>
+      <if test="monthPeak != null">
+        month_peak = #{monthPeak,jdbcType=VARCHAR},
+      </if>
+      <if test="monthNormal != null">
+        month_normal = #{monthNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="monthValley != null">
+        month_valley = #{monthValley,jdbcType=VARCHAR},
+      </if>
+      <if test="monthTotal != null">
+        month_total = #{monthTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="totalSpike != null">
+        total_spike = #{totalSpike,jdbcType=VARCHAR},
+      </if>
+      <if test="totalPeak != null">
+        total_peak = #{totalPeak,jdbcType=VARCHAR},
+      </if>
+      <if test="totalNormal != null">
+        total_normal = #{totalNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="totalValley != null">
+        total_valley = #{totalValley,jdbcType=VARCHAR},
+      </if>
+      <if test="totalTotal != null">
+        total_total = #{totalTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveDaySpike != null">
+        reactive_day_spike = #{reactiveDaySpike,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveDayPeak != null">
+        reactive_day_peak = #{reactiveDayPeak,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveDayNormal != null">
+        reactive_day_normal = #{reactiveDayNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveDayValley != null">
+        reactive_day_valley = #{reactiveDayValley,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveDayTotal != null">
+        reactive_day_total = #{reactiveDayTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveMonthSpike != null">
+        reactive_month_spike = #{reactiveMonthSpike,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveMonthPeak != null">
+        reactive_month_peak = #{reactiveMonthPeak,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveMonthNormal != null">
+        reactive_month_normal = #{reactiveMonthNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveMonthValley != null">
+        reactive_month_valley = #{reactiveMonthValley,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveMonthTotal != null">
+        reactive_month_total = #{reactiveMonthTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveTotalSpike != null">
+        reactive_total_spike = #{reactiveTotalSpike,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveTotalPeak != null">
+        reactive_total_peak = #{reactiveTotalPeak,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveTotalNormal != null">
+        reactive_total_normal = #{reactiveTotalNormal,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveTotalValley != null">
+        reactive_total_valley = #{reactiveTotalValley,jdbcType=VARCHAR},
+      </if>
+      <if test="reactiveTotalTotal != null">
+        reactive_total_total = #{reactiveTotalTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null">
+        `year` = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null">
+        `month` = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="day != null">
+        `day` = #{day,jdbcType=VARCHAR},
+      </if>
+      <if test="yearMonthDay != null">
+        year_month_day = #{yearMonthDay,jdbcType=VARCHAR},
+      </if>
+      <if test="dateTimeBegin != null">
+        date_time_begin = #{dateTimeBegin,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.energyManager.entity.DeviceHourMeasurement">
+    update iot_device_hour_measurement
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      serial_num = #{serialNum,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=BIGINT},
+      day_spike = #{daySpike,jdbcType=VARCHAR},
+      day_peak = #{dayPeak,jdbcType=VARCHAR},
+      day_normal = #{dayNormal,jdbcType=VARCHAR},
+      day_valley = #{dayValley,jdbcType=VARCHAR},
+      day_total = #{dayTotal,jdbcType=VARCHAR},
+      day_spike_price = #{daySpikePrice,jdbcType=VARCHAR},
+      day_peak_price = #{dayPeakPrice,jdbcType=VARCHAR},
+      day_normal_price = #{dayNormalPrice,jdbcType=VARCHAR},
+      day_valley_price = #{dayValleyPrice,jdbcType=VARCHAR},
+      day_total_price = #{dayTotalPrice,jdbcType=VARCHAR},
+      month_spike = #{monthSpike,jdbcType=VARCHAR},
+      month_peak = #{monthPeak,jdbcType=VARCHAR},
+      month_normal = #{monthNormal,jdbcType=VARCHAR},
+      month_valley = #{monthValley,jdbcType=VARCHAR},
+      month_total = #{monthTotal,jdbcType=VARCHAR},
+      total_spike = #{totalSpike,jdbcType=VARCHAR},
+      total_peak = #{totalPeak,jdbcType=VARCHAR},
+      total_normal = #{totalNormal,jdbcType=VARCHAR},
+      total_valley = #{totalValley,jdbcType=VARCHAR},
+      total_total = #{totalTotal,jdbcType=VARCHAR},
+      reactive_day_spike = #{reactiveDaySpike,jdbcType=VARCHAR},
+      reactive_day_peak = #{reactiveDayPeak,jdbcType=VARCHAR},
+      reactive_day_normal = #{reactiveDayNormal,jdbcType=VARCHAR},
+      reactive_day_valley = #{reactiveDayValley,jdbcType=VARCHAR},
+      reactive_day_total = #{reactiveDayTotal,jdbcType=VARCHAR},
+      reactive_month_spike = #{reactiveMonthSpike,jdbcType=VARCHAR},
+      reactive_month_peak = #{reactiveMonthPeak,jdbcType=VARCHAR},
+      reactive_month_normal = #{reactiveMonthNormal,jdbcType=VARCHAR},
+      reactive_month_valley = #{reactiveMonthValley,jdbcType=VARCHAR},
+      reactive_month_total = #{reactiveMonthTotal,jdbcType=VARCHAR},
+      reactive_total_spike = #{reactiveTotalSpike,jdbcType=VARCHAR},
+      reactive_total_peak = #{reactiveTotalPeak,jdbcType=VARCHAR},
+      reactive_total_normal = #{reactiveTotalNormal,jdbcType=VARCHAR},
+      reactive_total_valley = #{reactiveTotalValley,jdbcType=VARCHAR},
+      reactive_total_total = #{reactiveTotalTotal,jdbcType=VARCHAR},
+      `year` = #{year,jdbcType=VARCHAR},
+      `month` = #{month,jdbcType=VARCHAR},
+      `day` = #{day,jdbcType=VARCHAR},
+      year_month_day = #{yearMonthDay,jdbcType=VARCHAR},
+      date_time_begin = #{dateTimeBegin,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByDeviceId" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM iot_device_hour_measurement
+    WHERE device_id=#{deviceId}
+  </select>
+
+  <update id="updateNormal">
+    <foreach collection="updateDeviceHourMeasurement" item="item" separator=";">
+      UPDATE iot_device_hour_measurement
+      SET day_normal=#{item.dayNormal},day_valley=#{item.dayValley}
+      WHERE id=#{item.id}
+    </foreach>
+  </update>
+</mapper>

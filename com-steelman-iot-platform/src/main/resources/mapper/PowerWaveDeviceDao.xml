@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.PowerWaveDeviceDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.PowerWaveDevice">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="wave_id" jdbcType="BIGINT" property="waveId" />
+    <result column="device_id" jdbcType="BIGINT" property="deviceId" />
+    <result column="power_id" jdbcType="BIGINT" property="powerId" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, wave_id, device_id, power_id, project_id, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_power_wave_device
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+    <select id="selectByWaveId" resultType="com.steelman.iot.platform.entity.vo.PowerDeviceInfo">
+      select
+        a.id,
+        ds.name as deviceName,
+        a.device_id as deviceId,
+        b.status as status,
+        b.serial_num as serialNum,
+        b.device_type_id as deviceTypeId,
+        c.name as deviceTypeName
+      from iot_power_wave_device a
+             inner join iot_device b on a.device_id = b.id
+             inner join iot_device_type c on b.device_type_id = c.id
+             inner join iot_device_system ds on ds.device_id=b.id
+      where a.wave_id = #{waveId} and ds.system_id=2000
+      order by a.id desc
+    </select>
+    <select id="selectByDeviceId" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List"/> from iot_power_wave_device where device_id =#{deviceId}
+    </select>
+    <select id="selectWaveDevice" resultMap="BaseResultMap">
+      select <include refid="Base_Column_List"/> from iot_power_wave_device where wave_id = #{waveId}
+    </select>
+    <select id="selectWaveWhetherAlarm" resultType="java.lang.Boolean">
+      select count(0)
+      from iot_power_wave_device a
+             inner join iot_device b on a.device_id = b.id
+      where a.wave_id = #{waveId}
+        and b.status = 1
+    </select>
+  <select id="selectWaveWhetherOffLine" resultType="java.lang.Boolean">
+    select count(0)
+    from iot_power_wave_device a
+           inner join iot_device b on a.device_id = b.id
+    where a.wave_id = #{waveId}
+      and b.status int(2,4)
+  </select>
+    <select id="selectWaveByDeviceId" resultType="com.steelman.iot.platform.entity.PowerWave">
+      select b.* from iot_power_wave_device a inner join iot_power_wave b on a.wave_id = b.id where a.device_id = #{id}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_power_wave_device
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.PowerWaveDevice" useGeneratedKeys="true">
+    insert into iot_power_wave_device (wave_id, device_id, power_id, 
+      project_id, create_time, update_time
+      )
+    values (#{waveId,jdbcType=BIGINT}, #{deviceId,jdbcType=BIGINT}, #{powerId,jdbcType=BIGINT}, 
+      #{projectId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.PowerWaveDevice" useGeneratedKeys="true">
+    insert into iot_power_wave_device
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="waveId != null">
+        wave_id,
+      </if>
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="powerId != null">
+        power_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="waveId != null">
+        #{waveId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="powerId != null">
+        #{powerId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.PowerWaveDevice">
+    update iot_power_wave_device
+    <set>
+      <if test="waveId != null">
+        wave_id = #{waveId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="powerId != null">
+        power_id = #{powerId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.PowerWaveDevice">
+    update iot_power_wave_device
+    set wave_id = #{waveId,jdbcType=BIGINT},
+      device_id = #{deviceId,jdbcType=BIGINT},
+      power_id = #{powerId,jdbcType=BIGINT},
+      project_id = #{projectId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <delete id="deleteByDeviceId">
+    DELETE FROM iot_power_wave_device
+    WHERE  device_id=#{deviceId}
+  </delete>
+  <select id="findByDeviceSet" resultType="com.steelman.iot.platform.entity.dto.PowerDeviceDto">
+    SELECT pwd.device_id as deviceId, p.id as powerId,p.name as powerName,pw.id as powerDeviceId,
+           pw.name as powerDeviceName,3 as type
+    FROM iot_power_wave_device pwd
+    INNER JOIN iot_power_wave pw ON  pwd.wave_id=pw.id AND pw.project_id=#{projectId}
+    INNER JOIN iot_power p ON pwd.power_id=p.id
+    where pwd.project_id=#{projectId} AND pwd.device_id IN
+    <foreach collection="deviceIdSet" item="deviceId" open="(" close=")" separator=",">
+      #{deviceId}
+    </foreach>
+  </select>
+  <select id="getPowerDeviceList" resultType="long">
+    SELECT device_id
+    FROM iot_power_wave_device
+    WHERE project_id=#{projectId} AND power_id=#{powerId}
+  </select>
+</mapper>

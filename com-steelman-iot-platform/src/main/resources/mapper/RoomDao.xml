@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.RoomDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.Room">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="building_id" jdbcType="BIGINT" property="buildingId" />
+    <result column="storey_id" jdbcType="BIGINT" property="storeyId" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="area_id" jdbcType="BIGINT" property="areaId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `name`, building_id, storey_id, project_id, picture, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from iot_region_room
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_region_room
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+
+  <delete id="deleteByRoom" parameterType="com.steelman.iot.platform.entity.Room">
+    delete from iot_region_room
+    where 1=1
+    <if test="areaId != null">
+      and area_id= #{areaId,jdbcType=BIGINT}
+    </if>
+    <if test="buildingId != null">
+      and building_id= #{buildingId,jdbcType=BIGINT}
+    </if>
+    <if test="storeyId != null">
+      and storey_id = #{storeyId,jdbcType=BIGINT}
+    </if>
+
+  </delete>
+
+
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.Room" useGeneratedKeys="true">
+    insert into iot_region_room (`name`, building_id, storey_id,
+      project_id, picture, create_time,
+      update_time,area_id)
+    values (#{name,jdbcType=VARCHAR}, #{buildingId,jdbcType=BIGINT}, #{storeyId,jdbcType=BIGINT},
+      #{projectId,jdbcType=BIGINT}, #{picture,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP},
+      #{updateTime,jdbcType=TIMESTAMP},#{areaId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.Room" useGeneratedKeys="true">
+    insert into iot_region_room
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="storeyId != null">
+        storey_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="picture != null">
+        picture,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="areaId != null">
+        area_id
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=BIGINT},
+      </if>
+      <if test="storeyId != null">
+        #{storeyId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.Room">
+    update iot_region_room
+    <set>
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=BIGINT},
+      </if>
+      <if test="storeyId != null">
+        storey_id = #{storeyId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=BIGINT}
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.Room">
+    update iot_region_room
+    set `name` = #{name,jdbcType=VARCHAR},
+      building_id = #{buildingId,jdbcType=BIGINT},
+      storey_id = #{storeyId,jdbcType=BIGINT},
+      project_id = #{projectId,jdbcType=BIGINT},
+      picture = #{picture,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByAll"  resultMap="BaseResultMap" >
+    SELECT CONCAT(a.`name`,"-",b.`name`,"-",s.`name`,"-",r.`name`) as contName,r.*
+     from iot_region_room r
+     LEFT JOIN iot_region_storey s on s.id=r.storey_id
+     LEFT JOIN iot_region_building b on b.id=s.building_id
+     LEFT JOIN iot_region_area a on a.id=b.area_id
+     ORDER BY r.id desc limit #{page},#{size}
+  </select>
+  <select id="selectByProjectId" resultMap="BaseResultMap">
+     SELECT <include refid="Base_Column_List"></include>
+     FROM iot_region_room
+     WHERE project_id=#{projectId}
+  </select>
+  <select id="getByStoreyAndRoom" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM iot_region_room
+    WHERE id=#{roomId} AND storey_id=#{storeyId}
+  </select>
+
+  <select id="selectByProjectIdAndStoreyId" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM iot_region_room
+    WHERE  project_id=#{projectId}
+    <if test="storeyId != null">
+      AND storey_id=#{storeyId}
+    </if>
+  </select>
+  <select id="selectInfoByProjectId" resultType="com.steelman.iot.platform.entity.dto.EntityDto">
+    SELECT ro.id as id,CONCAT(IFNULL(ar.name,''),IF(ISNULL(ar.name),'','-'),bu.name,'-',st.name,'-',ro.name) as name,ro.project_id as projectId
+    FROM iot_region_room ro
+    INNER JOIN iot_region_storey st ON ro.storey_id=st.id AND st.project_id=#{projectId}
+    INNER JOIN iot_region_building bu On ro.building_id=bu.id AND bu.project_id=#{projectId}
+    LEFT JOIN iot_region_area ar ON ro.area_id=ar.id AND ar.project_id=#{projectId}
+    WHERE ro.project_id=#{projectId}
+  </select>
+  <select id="getByProjectId" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List"></include>
+    FROM iot_region_room
+    WHERE project_id=#{projectId}
+  </select>
+</mapper>

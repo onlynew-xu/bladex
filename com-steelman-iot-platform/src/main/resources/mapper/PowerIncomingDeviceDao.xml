@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.PowerIncomingDeviceDao">
+    <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.PowerIncomingDevice">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="incoming_id" jdbcType="BIGINT" property="incomingId"/>
+        <result column="device_id" jdbcType="BIGINT" property="deviceId"/>
+        <result column="power_id" jdbcType="BIGINT" property="powerId"/>
+        <result column="project_id" jdbcType="BIGINT" property="projectId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+        ,
+        incoming_id,
+        device_id,
+        power_id,
+        project_id,
+        create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from iot_power_incoming_device
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+
+    <select id="selectByIncomingId" resultType="com.steelman.iot.platform.entity.vo.PowerDeviceInfo">
+        select
+            a.id,
+            ds.name as deviceName,
+            b.status as status,
+            a.device_id as deviceId,
+            b.serial_num as serialNum,
+            b.device_type_id as deviceTypeId,
+            c.name as deviceTypeName
+        from iot_power_incoming_device a
+                 inner join iot_device b on a.device_id = b.id
+                 inner join iot_device_type c on b.device_type_id = c.id
+                 inner join iot_device_system  ds ON b.id=ds.device_id
+        where a.incoming_id = #{incomingId} AND ds.system_id=2000
+        order by a.id desc
+    </select>
+
+    <select id="selectCountMeasurement" resultType="java.util.Map">
+        select ifnull(sum(convert(b.total_peak, decimal (13, 3))), 0)   as totalPeak,
+               ifnull(sum(convert(b.total_normal, decimal (13, 3))), 0) as totalNormal,
+               ifnull(sum(convert(b.total_valley, decimal (13, 3))), 0) as totalValley,
+               ifnull(sum(convert(b.total_total, decimal (13, 3))), 0)  as totalTotal,
+               0.000                                                    as totalSpike
+        from iot_power_incoming_device a
+                 inner join iot_device_measurement b on a.device_id = b.device_id
+        where a.project_id = #{projectId}
+          and b.day_last_min = 1
+    </select>
+    <select id="selectEnergyTrend" resultType="java.lang.String">
+        select
+            case
+                when #{type} = 1
+                    then ifnull(sum(convert(b.total_total, decimal (13, 3))), 0)
+                when #{type} = 2
+                    then 0.000
+                when #{type} = 3
+                    then ifnull(sum(convert(b.total_peak, decimal (13, 3))), 0)
+                when #{type} = 4
+                    then ifnull(sum(convert(b.total_normal, decimal (13, 3))), 0)
+                else ifnull(sum(convert(b.total_valley, decimal (13, 3))), 0) end as totalData
+        from iot_power_incoming_device a
+                 inner join iot_device_measurement b on a.device_id = b.device_id
+        where a.project_id = #{projectId}
+          and b.day_last_min = 1
+          and date_format(b.create_time, '%Y-%m-%d') = #{date}
+    </select>
+
+    <select id="selectByDeviceId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from iot_power_incoming_device where device_id = #{deviceId}
+    </select>
+
+    <select id="selectIncomingDevice" resultType="com.steelman.iot.platform.entity.PowerIncomingDevice">
+        select
+        <include refid="Base_Column_List"/>
+        from iot_power_incoming_device where incoming_id = #{incomingId}
+    </select>
+    <select id="selectIncomingWhetherAlarm" resultType="java.lang.Boolean">
+        select count(0)
+        from iot_power_incoming_device a
+                 inner join iot_device b on a.device_id = b.id
+        where a.incoming_id = #{incomingId}
+          and b.status = 1
+    </select>
+    <select id="selectIncomingWhetherOffLine" resultType="java.lang.Boolean">
+        select count(0)
+        from iot_power_incoming_device a
+                 inner join iot_device b on a.device_id = b.id
+        where a.incoming_id = #{incomingId}
+          and b.status int(2,4)
+    </select>
+
+    <select id="selectPowerIncomingByDeviceId" resultType="com.steelman.iot.platform.entity.PowerIncoming">
+        select b.* from iot_power_incoming_device a inner join iot_power_incoming b on a.incoming_id = b.id where a.device_id = #{id}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from iot_power_incoming_device
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id"
+            parameterType="com.steelman.iot.platform.entity.PowerIncomingDevice" useGeneratedKeys="true">
+        insert into iot_power_incoming_device (incoming_id, device_id, power_id,
+                                               project_id, create_time, update_time)
+        values (#{incomingId,jdbcType=BIGINT}, #{deviceId,jdbcType=BIGINT}, #{powerId,jdbcType=BIGINT},
+                #{projectId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.steelman.iot.platform.entity.PowerIncomingDevice" useGeneratedKeys="true">
+        insert into iot_power_incoming_device
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="incomingId != null">
+                incoming_id,
+            </if>
+            <if test="deviceId != null">
+                device_id,
+            </if>
+            <if test="powerId != null">
+                power_id,
+            </if>
+            <if test="projectId != null">
+                project_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="incomingId != null">
+                #{incomingId,jdbcType=BIGINT},
+            </if>
+            <if test="deviceId != null">
+                #{deviceId,jdbcType=BIGINT},
+            </if>
+            <if test="powerId != null">
+                #{powerId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.PowerIncomingDevice">
+        update iot_power_incoming_device
+        <set>
+            <if test="incomingId != null">
+                incoming_id = #{incomingId,jdbcType=BIGINT},
+            </if>
+            <if test="deviceId != null">
+                device_id = #{deviceId,jdbcType=BIGINT},
+            </if>
+            <if test="powerId != null">
+                power_id = #{powerId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.PowerIncomingDevice">
+        update iot_power_incoming_device
+        set incoming_id = #{incomingId,jdbcType=BIGINT},
+            device_id   = #{deviceId,jdbcType=BIGINT},
+            power_id    = #{powerId,jdbcType=BIGINT},
+            project_id  = #{projectId,jdbcType=BIGINT},
+            create_time = #{createTime,jdbcType=TIMESTAMP},
+            update_time = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <delete id="deleteByDeviceId">
+        DELETE FROM  iot_power_incoming_device
+        WHERE   device_id=#{deviceId}
+    </delete>
+
+    <select id="findByDeviceSet" resultType="com.steelman.iot.platform.entity.dto.PowerDeviceDto">
+        SELECT  p.id as powerId,p.name as powerName,pi.id as powerDeviceId,pi.name as powerDeviceName ,1 as type,pid.device_id as deviceId
+        FROM iot_power_incoming_device pid
+        INNER JOIN  iot_power_incoming pi ON pid.incoming_id=pi.id
+        INNER JOIN  iot_power p ON pid.power_id=p.id
+        WHERE pid.project_id=#{projectId} AND pid.device_id IN
+        <foreach collection="deviceIdSet" open="(" close=")" separator="," item="deviceId">
+            #{deviceId}
+        </foreach>
+    </select>
+    <select id="getBindingStatus" resultType="long">
+        SELECT pid.device_id as deviceId
+        FROM iot_power_incoming_device pid
+        INNER JOIN iot_device de on pid.device_id=de.id
+        where pid.incoming_id=#{incomingId} AND de.binding_status=1  AND (de.status=1 OR de.status=3)
+        LIMIT 1
+    </select>
+    <select id="getBindingOnDevice" resultType="long">
+        SELECT  pid.device_id
+        FROM iot_power_incoming_device pid
+        INNER JOIN iot_device de ON pid.device_id=de.id
+        WHERE pid.incoming_id=#{incomingId} AND (de.status=3 OR de.status=1)
+        ORDER BY pid.create_time
+        LIMIT 1
+    </select>
+    <select id="getPowerDeviceList" resultType="long">
+        SELECT  device_id
+        FROM iot_power_incoming_device
+        WHERE project_id=#{projectId} AND power_id=#{powerId}
+    </select>
+</mapper>

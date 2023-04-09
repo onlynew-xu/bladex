@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.PowerMatriculationDao">
+    <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.PowerMatriculation">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="brand" jdbcType="VARCHAR" property="brand"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="first_transformer_id" jdbcType="BIGINT" property="firstTransformerId"/>
+        <result column="second_transformer_id" jdbcType="BIGINT" property="secondTransformerId"/>
+        <result column="power_id" jdbcType="BIGINT" property="powerId"/>
+        <result column="project_id" jdbcType="BIGINT" property="projectId"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+        ,
+        `name`,
+        brand,
+        `status`,
+        first_transformer_id,
+        second_transformer_id,
+        power_id,
+        project_id,
+        create_time,
+        update_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from iot_power_matriculation
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <select id="selectByTransformerId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from iot_power_matriculation
+        where first_transformer_id = #{transformerId}
+        order by id desc
+    </select>
+    <select id="selectCountByPowerId" resultType="java.lang.Long">
+        select ifnull(count(0), 0)
+        from iot_power_matriculation
+        where power_id = #{powerId}
+    </select>
+    <select id="selectMatriculationTransformer" resultType="com.steelman.iot.platform.entity.PowerTransformer">
+        select *
+        from iot_power_matriculation a
+                 inner join iot_power_transformer b on a.first_transformer_id = b.id
+        where a.id = #{matriculationId}
+        union
+        select *
+        from iot_power_matriculation a
+                 inner join iot_power_transformer b on a.second_transformer_id = b.id
+        where a.id = #{matriculationId}
+    </select>
+    <select id="selectPowerMatriculationCenter"
+            resultType="com.steelman.iot.platform.entity.vo.DeviceCenterVo">
+        select a.id, a.name,a.create_time, b.url, b.power_type_id
+        from iot_power_matriculation a
+                 left join iot_power_type_picture b on b.power_type_id = 8
+        where a.power_id = #{powerId}
+        order by a.id desc
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from iot_power_matriculation
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id"
+            parameterType="com.steelman.iot.platform.entity.PowerMatriculation" useGeneratedKeys="true">
+        insert into iot_power_matriculation (`name`, brand, `status`,
+                                             first_transformer_id, second_transformer_id,
+                                             power_id, project_id, create_time,
+                                             update_time)
+        values (#{name,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+                #{firstTransformerId,jdbcType=BIGINT}, #{secondTransformerId,jdbcType=BIGINT},
+                #{powerId,jdbcType=BIGINT}, #{projectId,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP},
+                #{updateTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id"
+            parameterType="com.steelman.iot.platform.entity.PowerMatriculation" useGeneratedKeys="true">
+        insert into iot_power_matriculation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="brand != null">
+                brand,
+            </if>
+            <if test="status != null">
+                `status`,
+            </if>
+            <if test="firstTransformerId != null">
+                first_transformer_id,
+            </if>
+            <if test="secondTransformerId != null">
+                second_transformer_id,
+            </if>
+            <if test="powerId != null">
+                power_id,
+            </if>
+            <if test="projectId != null">
+                project_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="brand != null">
+                #{brand,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="firstTransformerId != null">
+                #{firstTransformerId,jdbcType=BIGINT},
+            </if>
+            <if test="secondTransformerId != null">
+                #{secondTransformerId,jdbcType=BIGINT},
+            </if>
+            <if test="powerId != null">
+                #{powerId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.PowerMatriculation">
+        update iot_power_matriculation
+        <set>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="brand != null">
+                brand = #{brand,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="firstTransformerId != null">
+                first_transformer_id = #{firstTransformerId,jdbcType=BIGINT},
+            </if>
+            <if test="secondTransformerId != null">
+                second_transformer_id = #{secondTransformerId,jdbcType=BIGINT},
+            </if>
+            <if test="powerId != null">
+                power_id = #{powerId,jdbcType=BIGINT},
+            </if>
+            <if test="projectId != null">
+                project_id = #{projectId,jdbcType=BIGINT},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.PowerMatriculation">
+        update iot_power_matriculation
+        set `name`                = #{name,jdbcType=VARCHAR},
+            brand                 = #{brand,jdbcType=VARCHAR},
+            `status`              = #{status,jdbcType=INTEGER},
+            first_transformer_id  = #{firstTransformerId,jdbcType=BIGINT},
+            second_transformer_id = #{secondTransformerId,jdbcType=BIGINT},
+            power_id              = #{powerId,jdbcType=BIGINT},
+            project_id            = #{projectId,jdbcType=BIGINT},
+            create_time           = #{createTime,jdbcType=TIMESTAMP},
+            update_time           = #{updateTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="selectCountByTransformId" resultType="long">
+        SELECT ifnull(count(0),0)
+        from iot_power_matriculation
+        where project_id=#{projectId} AND (first_transformer_id=#{transformId} OR second_transformer_id=#{transformId} )
+    </select>
+    <select id="selectByPowerAndName" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM iot_power_matriculation
+        WHERE power_id=#{powerId} AND name=#{name}
+    </select>
+    <select id="selectAllByTransformerId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM iot_power_matriculation
+        WHERE first_transformer_id=#{transformerId} OR second_transformer_id=#{transformerId}
+    </select>
+    <select id="findByTransformerId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM iot_power_matriculation
+        WHERE first_transformer_id=#{transformerId} OR second_transformer_id=#{transformerId}
+           OR first_transformer_id=#{secondTransformerId} OR second_transformer_id=#{secondTransformerId}
+    </select>
+    <select id="findByPowerId" resultMap="BaseResultMap">
+        SELECT <include refid="Base_Column_List"></include>
+        FROM iot_power_matriculation
+        WHERE power_id=#{powerId}
+    </select>
+</mapper>

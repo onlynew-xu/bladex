@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.steelman.iot.platform.dao.DeviceTaskDao">
+  <resultMap id="BaseResultMap" type="com.steelman.iot.platform.entity.DeviceTask">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="device_id" jdbcType="BIGINT" property="deviceId" />
+    <result column="device_status" jdbcType="INTEGER" property="deviceStatus" />
+    <result column="serial_num" jdbcType="VARCHAR" property="serialNum" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="detail" jdbcType="VARCHAR" property="detail" />
+    <result column="system_id" jdbcType="BIGINT" property="systemId" />
+    <result column="project_id" jdbcType="BIGINT" property="projectId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="worker_id" jdbcType="BIGINT" property="workerId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, device_id, device_status, serial_num, user_id, detail, system_id, project_id, 
+    `status`, worker_id, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from iot_device_task
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from iot_device_task
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.DeviceTask" useGeneratedKeys="true">
+    insert into iot_device_task (device_id, device_status, serial_num, 
+      user_id, detail, system_id, 
+      project_id, `status`, worker_id, 
+      create_time, update_time)
+    values (#{deviceId,jdbcType=BIGINT}, #{deviceStatus,jdbcType=INTEGER}, #{serialNum,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=BIGINT}, #{detail,jdbcType=VARCHAR}, #{systemId,jdbcType=BIGINT}, 
+      #{projectId,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{workerId,jdbcType=BIGINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.steelman.iot.platform.entity.DeviceTask" useGeneratedKeys="true">
+    insert into iot_device_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="deviceStatus != null">
+        device_status,
+      </if>
+      <if test="serialNum != null">
+        serial_num,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="detail != null">
+        detail,
+      </if>
+      <if test="systemId != null">
+        system_id,
+      </if>
+      <if test="projectId != null">
+        project_id,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="workerId != null">
+        worker_id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceStatus != null">
+        #{deviceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="serialNum != null">
+        #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="detail != null">
+        #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        #{systemId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="workerId != null">
+        #{workerId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.steelman.iot.platform.entity.DeviceTask">
+    update iot_device_task
+    <set>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=BIGINT},
+      </if>
+      <if test="deviceStatus != null">
+        device_status = #{deviceStatus,jdbcType=INTEGER},
+      </if>
+      <if test="serialNum != null">
+        serial_num = #{serialNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="detail != null">
+        detail = #{detail,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null">
+        system_id = #{systemId,jdbcType=BIGINT},
+      </if>
+      <if test="projectId != null">
+        project_id = #{projectId,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="workerId != null">
+        worker_id = #{workerId,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.steelman.iot.platform.entity.DeviceTask">
+    update iot_device_task
+    set device_id = #{deviceId,jdbcType=BIGINT},
+      device_status = #{deviceStatus,jdbcType=INTEGER},
+      serial_num = #{serialNum,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      detail = #{detail,jdbcType=VARCHAR},
+      system_id = #{systemId,jdbcType=BIGINT},
+      project_id = #{projectId,jdbcType=BIGINT},
+      `status` = #{status,jdbcType=INTEGER},
+      worker_id = #{workerId,jdbcType=BIGINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findByDeviceId"  resultMap="BaseResultMap">
+   select CASE t.device_status WHEN 1 THEN '报警' WHEN 2 THEN '主动离线' WHEN 3 THEN '正常'
+  WHEN 4 THEN '异常下线' END as devStu,CASE t.status WHEN 0 THEN '待执行' WHEN 1 THEN '执行中'
+  WHEN 2 THEN '已完成' WHEN 3 THEN '已过期' END as status,t.*
+   from iot_device_task t
+   LEFT JOIN iot_device d on d.id=t.device_id
+   where d.id=#{deviceId} order by t.id desc limit #{page},#{size}
+  </select>
+  <delete id="removeByDeviceSystem">
+    DELETE FROM iot_device_task
+    WHERE device_id=#{deviceId} AND project_id=#{projectId} AND system_id=#{systemId}
+  </delete>
+  <delete id="deleteByDeviceId">
+    DELETE FROM iot_device_task
+    WHERE device_id=#{deviceId}
+  </delete>
+</mapper>
