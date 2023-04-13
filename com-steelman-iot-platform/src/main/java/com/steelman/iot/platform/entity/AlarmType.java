@@ -10,7 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * iot_alarm_type
+ * iot_alarm_type    告警类型
  * @author 
  */
 @Data

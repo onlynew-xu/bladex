@@ -117,6 +117,7 @@ public class AlarmWarnController extends BaseController {
             logger.error(ExceptionUtils.getStackMsg(e,"/api/alarmWarn/safe/alarmType/statistic"));
             result=Result.exceptionRe(result);
         }
+
         Type type=new TypeToken<Result<Map<String,List<AlarmTypeStatistic>>>>(){}.getType();
         return JsonUtils.toJson(result,type);
     }

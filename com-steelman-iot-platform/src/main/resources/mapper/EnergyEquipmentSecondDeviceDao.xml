@@ -21,7 +21,11 @@
     from iot_energy_equipment_second_device
     where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <select id="getEnergyEquipmentSecondCount" resultType="java.lang.Integer">
+      SELECT COUNT(*)
+      FROM iot_energy_equipment_second_device
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from iot_energy_equipment_second_device
     where id = #{id,jdbcType=BIGINT}
   </delete>

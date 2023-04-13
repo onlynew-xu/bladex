@@ -248,6 +248,13 @@
     LEFT JOIN  iot_device de ON de.id=esd.device_id AND de.project_id=#{projectId}
     WHERE es.project_id=#{projectId}
   </select>
+
+  <select id="getEnergyEquipmentSecondCount" resultType="int">
+    SELECT COUNT(*)
+    FROM energy_equipment_second
+    WHERE project_id = #{projectId}
+  </select>
+  
   <select id="consumeStatistic" resultType="map">
     SELECT count(1) as num,es.consume_type_id as typeId
     FROM iot_energy_equipment_second es

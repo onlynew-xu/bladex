@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/com-steelman-iot-platform/com-steelman-iot-platform.iml" filepath="$PROJECT_DIR$/com-steelman-iot-platform/com-steelman-iot-platform.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/iot-platform.iml" filepath="$PROJECT_DIR$/.idea/iot-platform.iml" />
     </modules>
   </component>
 </project>

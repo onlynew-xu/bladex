@@ -11,5 +11,8 @@ public class EnergyStatus {
     private Long equipmentId;
     private String equipmentName;
     private Integer status;
+    /**
+     * lever级别
+     */
     private Integer level;
 }

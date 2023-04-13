@@ -14,6 +14,11 @@ public interface EnergyEquipmentSecondDao {
 
     int insertSelective(EnergyEquipmentSecond record);
 
+    /**
+     * 获取二级设备详情
+     * @param id
+     * @return
+     */
     EnergyEquipmentSecond selectByPrimaryKey(Long id);
 
     int updateByPrimaryKeySelective(EnergyEquipmentSecond record);
@@ -21,6 +26,10 @@ public interface EnergyEquipmentSecondDao {
     int updateByPrimaryKey(EnergyEquipmentSecond record);
 
     List<EnergyStatus> getEnergyStatistic(@Param("projectId") Long projectId);
+
+
+
+
 
     /**
      * 获取二级能耗类型统计

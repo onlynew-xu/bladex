@@ -14,4 +14,9 @@ public interface EnergyEquipmentSecondDeviceDao {
     int updateByPrimaryKeySelective(EnergyEquipmentSecondDevice record);
 
     int updateByPrimaryKey(EnergyEquipmentSecondDevice record);
+
+    /**
+     * 获取二级设备总数
+     */
+    int getEnergyEquipmentSecondCount();
 }

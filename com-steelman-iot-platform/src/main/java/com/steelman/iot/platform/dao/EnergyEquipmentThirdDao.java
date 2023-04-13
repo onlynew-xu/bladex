@@ -14,6 +14,11 @@ public interface EnergyEquipmentThirdDao {
 
     int insertSelective(EnergyEquipmentThird record);
 
+    /**
+     * 设备详情
+     * @param id
+     * @return
+     */
     EnergyEquipmentThird selectByPrimaryKey(Long id);
 
     int updateByPrimaryKeySelective(EnergyEquipmentThird record);
@@ -21,6 +26,12 @@ public interface EnergyEquipmentThirdDao {
     int updateByPrimaryKey(EnergyEquipmentThird record);
 
     List<EnergyStatus> getEnergyStatistic(@Param("projectId") Long projectId);
+
+    /**
+     * 三级能源设备总数
+     */
+    int getEnergyEquipmentThirdCount(@Param("projectId") Long projectId);
+
 
     /**
      * 三级能耗类型统计

@@ -238,6 +238,14 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
+  <!--查询3级能源设备总数-->
+  <select id="getEnergyEquipmentThirdCount" resultType="int">
+    SELECT COUNT(*)
+    FROM energy_equipment_third
+    WHERE project_id = #{projectId}
+  </select>
+
+
   <select id="getEnergyStatistic" resultType="com.steelman.iot.platform.largescreen.vo.EnergyStatus">
     SELECT et.id as equipmentId,
            et.name as equipmentName,

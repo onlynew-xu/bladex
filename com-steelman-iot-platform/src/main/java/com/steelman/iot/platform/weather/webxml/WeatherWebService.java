@@ -17,7 +17,7 @@ import java.net.URL;
  *
  */
 @WebServiceClient(name = "WeatherWebService",
-                  wsdlLocation = "/steelman/iot_platform/weather/WeatherWebService.wsdl",
+                  wsdlLocation = "/iot-platform/weather/WeatherWebService.wsdl",
                   targetNamespace = "http://WebXml.com.cn/")
 public class WeatherWebService extends Service {
 
@@ -32,11 +32,11 @@ public class WeatherWebService extends Service {
     static {
         URL url = null;
         try {
-            url = new URL("/steelman/iot_platform/weather/WeatherWebService.wsdl");
+            url = new URL("/iot-platform/weather/WeatherWebService.wsdl");
         } catch (MalformedURLException e) {
             java.util.logging.Logger.getLogger(WeatherWebService.class.getName())
                 .log(java.util.logging.Level.INFO,
-                     "Can not initialize the default wsdl from {0}", "/steelman/iot_platform/weather/WeatherWebService.wsdl");
+                     "Can not initialize the default wsdl from {0}", "/iot-platform/weather/WeatherWebService.wsdl");
         }
         WSDL_LOCATION = url;
     }
