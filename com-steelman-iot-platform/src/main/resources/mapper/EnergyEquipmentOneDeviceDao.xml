@@ -24,9 +24,15 @@
 
 
     <select id="getEnergyEquipmentOneCount" resultType="java.lang.Integer">
-        SELECT COUNT(*)
-        FROM iot_energy_equipment_one_device
+        SELECT COUNT(equipment_one_id) as equipment_count
+        FROM iot_energy_equipment_one_device;
+
     </select>
+    <select id="findAll" resultType="com.steelman.iot.platform.entity.EnergyEquipmentOneDevice" resultMap="BaseResultMap">
+        SELECT id, equipment_one_id
+        FROM iot_energy_equipment_one_device;
+    </select>
+
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from iot_energy_equipment_One_device

@@ -1,6 +1,9 @@
 package com.steelman.iot.platform.dao;
 
+import com.steelman.iot.platform.entity.EnergyEquipmentSecondDevice;
 import com.steelman.iot.platform.entity.EnergyEquipmentThirdDevice;
+
+import java.util.List;
 
 public interface EnergyEquipmentThirdDeviceDao {
     int deleteByPrimaryKey(Long id);
@@ -19,4 +22,9 @@ public interface EnergyEquipmentThirdDeviceDao {
      * 获取三级设备总数
      */
     int getEnergyEquipmentThirdCount();
+
+    /**
+     * 查询三级设备表
+     */
+    List<EnergyEquipmentThirdDevice> findAll();
 }

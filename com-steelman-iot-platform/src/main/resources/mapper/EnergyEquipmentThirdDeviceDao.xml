@@ -27,6 +27,11 @@
     FROM iot_energy_equipment_third_device
   </select>
 
+  <select id="findAll" resultType="com.steelman.iot.platform.entity.EnergyEquipmentThirdDevice" resultMap="BaseResultMap">
+    SELECT id, equipment_third_id
+    FROM iot_energy_equipment_third_device;
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from iot_energy_equipment_third_device
     where id = #{id,jdbcType=BIGINT}

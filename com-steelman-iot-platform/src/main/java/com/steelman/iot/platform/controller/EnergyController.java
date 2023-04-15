@@ -1,10 +1,7 @@
 package com.steelman.iot.platform.controller;
 
 import com.google.gson.reflect.TypeToken;
-import com.steelman.iot.platform.entity.EnergyEquipmentOne;
-import com.steelman.iot.platform.entity.EnergyEquipmentSecond;
-import com.steelman.iot.platform.entity.EnergyEquipmentThird;
-import com.steelman.iot.platform.entity.Project;
+import com.steelman.iot.platform.entity.*;
 import com.steelman.iot.platform.entity.dto.EnergyYearMonthConsumeDate;
 import com.steelman.iot.platform.entity.dto.EquipmentCenterInfo;
 import com.steelman.iot.platform.entity.dto.EquipmentInfoDto;
@@ -117,7 +114,7 @@ public class EnergyController extends BaseController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error(ExceptionUtils.getStackMsg(e,"/api/enery/energy-equipment-one/count"));
+            logger.error(ExceptionUtils.getStackMsg(e,"/api/energy/energy-equipment-one/count"));
             result = Result.exceptionRe(result);
         }
         Type type = new TypeToken<Result<Map<String, Integer>>>() {
@@ -126,8 +123,49 @@ public class EnergyController extends BaseController {
     }
 
     /**
-     * 一级能耗名字
+     * 返回一级设备表
      */
+    @PostMapping(value = "/energy-equipment-one-device/ids", produces = CommonUtils.MediaTypeJSON)
+    public String getIdAndEquipmentOneId() {
+        Result<List<Map<String, Object>>> result = new Result<>();
+        result.setCode(0);
+        try {
+            List<EnergyEquipmentOneDevice> records = energyEquipmentOneDeviceService.findAll();
+
+//            for (EnergyEquipmentDevice record : records) {
+//                System.out.println(record.getId());
+//                System.out.println(record.getEquipmentId());
+//
+//            }
+
+            if (records != null && !records.isEmpty()) {
+                List<Map<String, Object>> data = new ArrayList<>();
+                for (EnergyEquipmentOneDevice record : records) {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("id", record.getId());
+                    map.put("equipmentOneId", record.getEquipmentOneId());
+                    data.add(map);
+                }
+                result = Result.success("查询成功", data);
+            } else {
+                result = Result.empty(result);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(ExceptionUtils.getStackMsg(e, "/api/energy/energy-equipment-one-device/ids"));
+            result = Result.exceptionRe(result);
+        }
+
+        Type type = new TypeToken<Result<List<Map<String, Object>>>>() {
+        }.getType();
+        return JsonUtils.toJson(result, type);
+    }
+
+
+
+        /**
+         * 一级能耗名字
+         */
     @PostMapping(value = "/energy-equipment-one/name", produces = CommonUtils.MediaTypeJSON)
     public String getEnergyEquipmentOneNameById(@RequestParam("id") Long id) {
         Result<Map<String, String>> result = new Result<>();
@@ -213,13 +251,52 @@ public class EnergyController extends BaseController {
             //打印异常堆栈信息
             e.printStackTrace();
             //使用logger记录错误日志
-            logger.error(ExceptionUtils.getStackMsg(e, "/api/enery/energy-equipment-second/count"));
+            logger.error(ExceptionUtils.getStackMsg(e, "/api/energy/energy-equipment-second/count"));
             //设计结果为异常信息
             result = Result.exceptionRe(result);
         }
         Type type = new TypeToken<Result<Map<String, Integer>>>() {
         }.getType();
 
+        return JsonUtils.toJson(result, type);
+    }
+
+    /**
+     * 返回二级设备表
+     */
+    @PostMapping(value = "/energy-equipment-second-device/ids", produces = CommonUtils.MediaTypeJSON)
+    public String getIdAndEquipmentSecondId() {
+        Result<List<Map<String, Object>>> result = new Result<>();
+        result.setCode(0);
+        try {
+            List<EnergyEquipmentSecondDevice> records = energyEquipmentSecondDeviceService.findAll();
+//
+//            for (EnergyEquipmentSecondDevice record : records) {
+//                System.out.println(record.getId());
+//                System.out.println(record.getEquipmentSecondId());
+//
+//            }
+
+            if (records != null && !records.isEmpty()) {
+                List<Map<String, Object>> data = new ArrayList<>();
+                for (EnergyEquipmentSecondDevice record : records) {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("id", record.getId());
+                    map.put("equipmentSecondId", record.getEquipmentSecondId());
+                    data.add(map);
+                }
+                result = Result.success("查询成功", data);
+            } else {
+                result = Result.empty(result);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(ExceptionUtils.getStackMsg(e, "/api/energy/energy-equipment-second-device/ids"));
+            result = Result.exceptionRe(result);
+        }
+
+        Type type = new TypeToken<Result<List<Map<String, Object>>>>() {
+        }.getType();
         return JsonUtils.toJson(result, type);
     }
 
@@ -315,7 +392,7 @@ public class EnergyController extends BaseController {
             //打印异常堆栈信息
             e.printStackTrace();
             //使用logger记录错误日志
-            logger.error(ExceptionUtils.getStackMsg(e,"/api/enery/energy-equipment-third/count"));
+            logger.error(ExceptionUtils.getStackMsg(e,"/api/energy/energy-equipment-third/count"));
             //设计结果为异常信息
             result = Result.exceptionRe(result);
         }
@@ -324,6 +401,45 @@ public class EnergyController extends BaseController {
 
         return JsonUtils.toJson(result,type);
 
+    }
+
+    /**
+     * 返回三级设备表
+     */
+    @PostMapping(value = "/energy-equipment-third-device/ids", produces = CommonUtils.MediaTypeJSON)
+    public String getIdAndEquipmentThirdId() {
+        Result<List<Map<String, Object>>> result = new Result<>();
+        result.setCode(0);
+        try {
+            List<EnergyEquipmentThirdDevice> records = energyEquipmentThirdDeviceService.findAll();
+//
+//            for (EnergyEquipmentSecondDevice record : records) {
+//                System.out.println(record.getId());
+//                System.out.println(record.getEquipmentSecondId());
+//
+//            }
+
+            if (records != null && !records.isEmpty()) {
+                List<Map<String, Object>> data = new ArrayList<>();
+                for (EnergyEquipmentThirdDevice record : records) {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("id", record.getId());
+                    map.put("equipmentThirdId", record.getEquipmentThirdId());
+                    data.add(map);
+                }
+                result = Result.success("查询成功", data);
+            } else {
+                result = Result.empty(result);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(ExceptionUtils.getStackMsg(e, "/api/energy/energy-equipment-third-device/ids"));
+            result = Result.exceptionRe(result);
+        }
+
+        Type type = new TypeToken<Result<List<Map<String, Object>>>>() {
+        }.getType();
+        return JsonUtils.toJson(result, type);
     }
     /**
      * 三级能耗名字
@@ -415,7 +531,7 @@ public class EnergyController extends BaseController {
             //打印异常堆栈信息
             e.printStackTrace();
             //使用logger记录错误日志
-            logger.error(ExceptionUtils.getStackMsg(e,"/api/enery/energy-equipment-fourth/count"));
+            logger.error(ExceptionUtils.getStackMsg(e,"/api/energy/energy-equipment-fourth/count"));
             //设计结果为异常信息
             result = Result.exceptionRe(result);
         }

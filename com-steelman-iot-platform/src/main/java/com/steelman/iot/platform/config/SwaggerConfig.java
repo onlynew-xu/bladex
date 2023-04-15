@@ -35,8 +35,8 @@ public class SwaggerConfig {
     private ApiInfo apiInfo(){
         //作者信息
         Contact contact = new Contact("leo", "leo.com", "1115466542@qq.com");
-        return new ApiInfo("leotang的api文档",
-                "哈哈哈哈",
+        return new ApiInfo("Api文档",
+                "iot",
                 "1.0",
                 "http://steelman.iot",
                 contact,

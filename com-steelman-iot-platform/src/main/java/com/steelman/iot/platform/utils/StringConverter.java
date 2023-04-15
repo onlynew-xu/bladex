@@ -19,4 +19,6 @@ public class StringConverter implements JsonSerializer<String>, JsonDeserializer
             throws JsonParseException {
         return json.getAsJsonPrimitive().getAsString();
     }
+
+
 }
