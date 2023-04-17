@@ -50,6 +50,12 @@ public class EnergyEquipmentDeviceServiceImpl extends BaseService implements Ene
         equipmentDeviceDao.updateByPrimaryKeySelective(equipmentDevice);
     }
 
+    /**
+     * 能源设备排行榜
+     * @param projectId
+     * @param type
+     * @return
+     */
     @Override
     public List<EnergyDeviceInfo> deviceEnergyConsumeRank(Long projectId, Integer type) {
         LocalDate localDate = LocalDate.now();
@@ -165,6 +171,13 @@ public class EnergyEquipmentDeviceServiceImpl extends BaseService implements Ene
         return equipmentDeviceDao.selectByEquipmentId(id);
     }
 
+    /**
+     * 能源设备排行榜
+     * @param projectId
+     * @param typeId 1月/2季度/3年
+     * @param part
+     * @return
+     */
     @Override
     public List<EnergyDeviceInfo> deviceEnergyConsumePartRank(Long projectId, Integer typeId ,Object part) {
         if(typeId.equals(1)){

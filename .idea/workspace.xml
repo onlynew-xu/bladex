@@ -4,27 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="45bfdd09-5ed4-4a04-9903-74fb91677f54" name="Changes" comment="本地测试能源设备总数/name/详情，已结束">
+    <list default="true" id="45bfdd09-5ed4-4a04-9903-74fb91677f54" name="Changes" comment="4/15更新，增加设备列表">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/config/SwaggerConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/controller/EnergyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/controller/EnergyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/dao/EnergyEquipmentOneDeviceDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/dao/EnergyEquipmentOneDeviceDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/dao/EnergyEquipmentSecondDeviceDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/dao/EnergyEquipmentSecondDeviceDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/dao/EnergyEquipmentThirdDeviceDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/dao/EnergyEquipmentThirdDeviceDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/entity/EnergyEquipmentSecondDevice.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/entity/EnergyEquipmentSecondDevice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/service/EnergyEquipmentOneDeviceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/service/EnergyEquipmentOneDeviceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/service/EnergyEquipmentSecondDeviceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/service/EnergyEquipmentSecondDeviceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/service/EnergyEquipmentThirdDeviceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/service/EnergyEquipmentThirdDeviceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/service/impl/EnergyEquipmentOneDeviceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/service/impl/EnergyEquipmentOneDeviceServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/service/impl/EnergyEquipmentSecondDeviceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/service/impl/EnergyEquipmentSecondDeviceServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/service/impl/EnergyEquipmentThirdDeviceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/service/impl/EnergyEquipmentThirdDeviceServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/utils/StringConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/utils/StringConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/resources/mapper/EnergyEquipmentOneDeviceDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/resources/mapper/EnergyEquipmentOneDeviceDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/resources/mapper/EnergyEquipmentSecondDeviceDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/resources/mapper/EnergyEquipmentSecondDeviceDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/resources/mapper/EnergyEquipmentThirdDeviceDao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/resources/mapper/EnergyEquipmentThirdDeviceDao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/all.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/all.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/error.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/error.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs/final.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs/final.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/service/impl/EnergyEquipmentDeviceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/java/com/steelman/iot/platform/service/impl/EnergyEquipmentDeviceServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/resources/application-product.properties" beforeDir="false" afterPath="$PROJECT_DIR$/com-steelman-iot-platform/src/main/resources/application-product.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +134,8 @@
       <workItem from="1681278576131" duration="6812000" />
       <workItem from="1681285682230" duration="376000" />
       <workItem from="1681286311815" duration="76305000" />
-      <workItem from="1681555855748" duration="13000" />
+      <workItem from="1681555855748" duration="1454000" />
+      <workItem from="1681634395233" duration="8938000" />
     </task>
     <task id="LOCAL-00001" summary="本地测试能源设备总数/name/详情，已结束">
       <created>1681379511015</created>
@@ -166,7 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681379567474</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="4/15更新，增加设备列表">
+      <created>1681555979461</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1681555979461</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,7 +191,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="本地测试" />
     <MESSAGE value="本地测试能源设备总数/name/详情，已结束" />
-    <option name="LAST_COMMIT_MESSAGE" value="本地测试能源设备总数/name/详情，已结束" />
+    <MESSAGE value="4/15更新，增加设备列表" />
+    <option name="LAST_COMMIT_MESSAGE" value="4/15更新，增加设备列表" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
